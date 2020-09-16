@@ -1,0 +1,189 @@
+<template>
+  <div>
+    <div class="row">
+      <div class="col-md-12">
+        <v-card>
+          <v-card-title>
+            Edit Periode
+          </v-card-title>
+          <v-card-text>
+            <v-form ref="form" v-model="valid" lazy-validation>
+              <v-text-field
+                v-model="periodData.name"
+                label="Nama Periode"
+                required
+              ></v-text-field>
+
+              <v-row>
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    v-model="startDate"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="periodData.start_date"
+                        label="Pembukaan Beasiswa"
+                        prepend-icon="event"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="periodData.start_date"
+                      @input="startDate = false"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-spacer></v-spacer>
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    v-model="endFileDate"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="periodData.due_date_file"
+                        label="Batas Pengumpulan File Beasiswa"
+                        prepend-icon="event"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="periodData.due_date_file"
+                      @input="endFileDate = false"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    v-model="endDate"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="periodData.end_date"
+                        label="Penutupan Beasiswa"
+                        prepend-icon="event"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="periodData.end_date"
+                      @input="endDate = false"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-spacer></v-spacer>
+              </v-row>
+
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                @click="validate"
+              >
+                Confirm
+              </v-btn>
+
+              <v-btn color="error" class="mr-4" @click="reset">
+                Reset Form
+              </v-btn>
+            </v-form>
+            <v-dialog v-model="isLoading" persistent width="300">
+              <v-card color="primary" dark>
+                <v-card-text>
+                  Please Wait...
+                  <v-progress-linear
+                    indeterminate
+                    color="white"
+                    class="mb-0"
+                  ></v-progress-linear>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+          </v-card-text>
+        </v-card>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { mapState, mapActions } from "vuex";
+
+export default {
+  data() {
+    return {
+      isLoading: false,
+      date: new Date().toISOString().substr(0, 10),
+      id: this.$route.params.id,
+      startDate: false,
+      endDate: false,
+      endFileDate: false,
+      menu: false,
+      valid: false,
+      modal: false,
+      menu2: false
+    };
+  },
+  computed: {
+    ...mapState("period", ["periodData"])
+  },
+  components: {},
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Vuetify", route: "alerts" },
+      { title: "Form Inputs & Control", route: "autocompletes" },
+      { title: "Fileinptus" }
+    ]);
+    this.onFetchData();
+  },
+
+  methods: {
+    ...mapActions("period", ["updatePeriod", "getPeriod"]),
+    // code 1
+    async onFetchData() {
+      this.isLoading = true;
+      await this.getPeriod({ id: this.id });
+      this.isLoading = false;
+    },
+    async validate() {
+      this.isLoading = true;
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+
+        await this.updatePeriod({ id: this.id, payload: this.periodData });
+        this.periodData = {};
+        this.isLoading = true;
+        this.$router.push({ name: "PeriodsList" });
+      }
+      this.isLoading = false;
+    },
+    reset() {
+      this.$refs.form.reset();
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation();
+    }
+  }
+};
+</script>
