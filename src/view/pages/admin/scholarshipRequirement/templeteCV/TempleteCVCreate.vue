@@ -91,7 +91,6 @@ export default {
   methods: {
     ...mapActions("cvtemplete", ["createCvTemplete"]),
     async validate() {
-      console.log(this.cvtempleteData);
       if (this.$refs.form.validate()) {
         this.dialog = true;
         this.snackbar = true;

@@ -199,7 +199,6 @@ export default {
       // this.loading = false;
     },
     async onChangeFilter() {
-      console.log("asdasd");
       await this.getUploadScholarshipList({
         period_id: this.selectedPeriod,
         next_stage: null

@@ -249,7 +249,6 @@ export default {
       // this.loading = false;
     },
     async onChangeFilter() {
-      console.log("asdasd");
       await this.getUploadScholarshipFgd({
         period_id: this.selectedPeriod,
         final_stage: 1

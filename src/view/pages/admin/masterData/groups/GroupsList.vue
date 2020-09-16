@@ -142,7 +142,6 @@ export default {
       await this.getPeriodList();
     },
     async onChangeFilter() {
-      console.log("asdasd");
       await this.getGroupList(this.selectedPeriod);
     },
     onEditGroupList(id) {

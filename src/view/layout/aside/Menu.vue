@@ -540,10 +540,6 @@ export default {
   // buat multi user
   computed: {
     ...mapState(["auth"])
-  },
-  mounted() {
-    console.log(this.auth.user);
-    console.log(this.auth.user.level);
   }
 };
 </script>

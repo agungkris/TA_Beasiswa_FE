@@ -150,7 +150,6 @@ export default {
       await this.getPeriodList();
     },
     async onChangeFilter() {
-      console.log("asdasd");
       await this.getAnnouncementList(this.selectedPeriod);
     },
     onEditAnnouncementList(id) {

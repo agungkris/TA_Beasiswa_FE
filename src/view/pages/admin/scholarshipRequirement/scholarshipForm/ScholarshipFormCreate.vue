@@ -91,7 +91,6 @@ export default {
   methods: {
     ...mapActions("scholarshipform", ["createScholarshipForm"]),
     async validate() {
-      console.log(this.scholarshipformData);
       if (this.$refs.form.validate()) {
         this.dialog = true;
         this.snackbar = true;

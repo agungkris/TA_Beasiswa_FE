@@ -224,7 +224,6 @@ export default {
       { title: this.title }
     ]);
     this.getPeriodList();
-    console.log(this.user);
   },
   methods: {
     ...mapActions("uploadscholarship", ["createUploadScholarship"]),
