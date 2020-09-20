@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getPeriodList(context) {
     try {
-      let response = await ApiService.get("api/scholarship/periods");
+      let response = await ApiService.query("api/scholarship/periods");
       context.commit("setPeriodList", response.data);
     } catch (error) {
       throw error;
