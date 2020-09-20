@@ -40,7 +40,7 @@ const actions = {
   },
   async getAnnouncement(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshipannouncement/get/${id}`
       );
       context.commit("setAnnouncementData", response.data);

@@ -29,7 +29,7 @@ const actions = {
   },
   async getUsers(context, { id }) {
     try {
-      let response = await ApiService.get(`api/auth/users/get/${id}`);
+      let response = await ApiService.query(`api/auth/users/get/${id}`);
       context.commit("setUsersData", response.data);
     } catch (error) {
       throw Error(error);

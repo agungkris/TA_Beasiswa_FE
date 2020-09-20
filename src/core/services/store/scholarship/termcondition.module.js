@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getTermConditionList(context) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         "api/scholarship/scholarshipinformation"
       );
       context.commit("setTermConditionList", response.data);
@@ -34,7 +34,7 @@ const actions = {
   },
   async getTermCondition(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/termcondition/get/${id}`
       );
       context.commit("setTermConditionData", response.data);

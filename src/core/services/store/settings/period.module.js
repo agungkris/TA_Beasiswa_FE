@@ -30,7 +30,9 @@ const actions = {
   },
   async getPeriod(context, { id }) {
     try {
-      let response = await ApiService.get(`api/scholarship/periods/get/${id}`);
+      let response = await ApiService.query(
+        `api/scholarship/periods/get/${id}`
+      );
       context.commit("setPeriodData", response.data);
     } catch (error) {
       throw Error(error);

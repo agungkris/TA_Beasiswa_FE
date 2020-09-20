@@ -113,7 +113,7 @@ const actions = {
 
   async getUploadScholarship(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshipsubmissions/get/${id}`
       );
       context.commit("setUploadScholarshipData", response.data);

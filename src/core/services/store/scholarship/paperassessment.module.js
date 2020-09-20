@@ -56,7 +56,7 @@ const actions = {
   },
   async getPaperAssessment(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshippaperassessments/get/${id}`
       );
       context.commit("setPaperAssessmentData", response.data);

@@ -67,7 +67,7 @@ const actions = {
   [VERIFY_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("api/auth")
+      ApiService.query("api/auth")
         .then(({ data }) => {
           context.commit("checkAuth", data);
         })

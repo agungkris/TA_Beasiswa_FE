@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getCvTempleteList(context) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         "api/scholarship/scholarshipinformation"
       );
       context.commit("setCvTempleteList", response.data);
@@ -34,7 +34,7 @@ const actions = {
   },
   async getCvTemplete(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/cvtemplete/get/${id}`
       );
       context.commit("setCvTempleteData", response.data);

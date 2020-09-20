@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getCategoryJuryList(context) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         "api/scholarship/scholarshipcategoryjury"
       );
       context.commit("setCategoryJuryList", response.data);
@@ -34,7 +34,7 @@ const actions = {
   },
   async getCategoryJury(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshipcategoryJury/get/${id}`
       );
       context.commit("setCategoryJuryData", response.data);

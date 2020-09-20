@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async randomMember(context, { period }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         "api/scholarship/studentgroup/random?period_id=" + period
       );
       context.commit("setGroupList", response.data);
@@ -48,7 +48,7 @@ const actions = {
   },
   async getGroup(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/studentgroup/get/${id}`
       );
       context.commit("setGroupData", response.data);

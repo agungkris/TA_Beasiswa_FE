@@ -34,7 +34,7 @@ const actions = {
   },
   async getFgdAssessment(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshippresentationassessments/get/${id}`
       );
       context.commit("setFgdAssessmentData", response.data);

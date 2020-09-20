@@ -14,7 +14,7 @@ const mutations = {
 const actions = {
   async getScholarshipFormList(context) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         "api/scholarship/scholarshipinformation"
       );
       context.commit("setScholarshipFormList", response.data);
@@ -34,7 +34,7 @@ const actions = {
   },
   async getScholarshipForm(context, { id }) {
     try {
-      let response = await ApiService.get(
+      let response = await ApiService.query(
         `api/scholarship/scholarshipform/get/${id}`
       );
       context.commit("setScholarshipFormData", response.data);
