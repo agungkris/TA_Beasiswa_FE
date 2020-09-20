@@ -53,9 +53,15 @@
             {{ formatRupiah(item.total) }}
           </template> -->
           <template v-slot:item.action="{ item }">
-            <v-tooltip left v-if="auth.user.level == 'student' || 'admin'">
+            <v-tooltip
+              right
+              v-if="
+                (auth.user.level == 'student' || 'admin') &&
+                  item.document !== null
+              "
+            >
               <template v-slot:activator="{ on, attrs }">
-                <a :href="item.document">
+                <a :href="item.document" v-if="item.document != null">
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon>
                       mdi-download
@@ -65,7 +71,7 @@
               </template>
               <span>Unduh Pengumuman</span>
             </v-tooltip>
-            <v-tooltip left v-if="auth.user.level == 'admin'">
+            <v-tooltip right v-if="auth.user.level == 'admin'">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -81,16 +87,42 @@
               <span>Edit Pengumuman</span>
             </v-tooltip>
 
-            <v-tooltip right v-if="auth.user.level == 'admin'">
+            <v-dialog
+              v-model="dialog"
+              persistent
+              max-width="290"
+              v-if="auth.user.level == 'admin'"
+            >
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon @click="onDelete(item.id)" v-bind="attrs" v-on="on">
-                  <v-icon>
+                <v-btn icon v-bind="attrs" v-on="on">
+                  <v-icon color="red darken-4">
                     mdi-delete
                   </v-icon>
                 </v-btn>
               </template>
-              <span>Hapus Pemberitahuan</span>
-            </v-tooltip>
+
+              <v-card>
+                <v-card-title class="headline">Hapus Periode</v-card-title>
+                <v-card-text
+                  >Apakah Anda yakin ingin menghapus pemberitahuan
+                  ini?</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="disable" text @click="dialog = false"
+                    >Kembali</v-btn
+                  >
+                  <v-btn
+                    color="red darken-4"
+                    text
+                    icon
+                    @click="onDelete(item.id)"
+                    class="mr-2"
+                    >Hapus</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </template>
         </v-data-table>
       </v-card-text>
@@ -105,6 +137,7 @@ export default {
   data() {
     return {
       searchpengumuman: "",
+      dialog: false,
       headers: [
         {
           text: "Periode Pengumuman",
@@ -160,8 +193,10 @@ export default {
     },
     async onDelete(id) {
       try {
+        this.dialog = true;
         await this.deleteAnnouncement({ id: id });
         await this.onFetchData();
+        this.dialog = false;
       } catch (error) {
         alert(error);
       }

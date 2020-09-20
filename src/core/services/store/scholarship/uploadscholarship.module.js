@@ -105,6 +105,7 @@ const actions = {
         "api/scholarship/scholarshipsubmissions/create",
         payload
       );
+      // context.commit("setUploadScholarshipData", {});
     } catch (error) {
       throw Error(error);
     }

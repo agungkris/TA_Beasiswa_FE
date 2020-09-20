@@ -11,8 +11,17 @@
                 :rules="nameRules"
                 disabled
               ></v-text-field>
-
-              <div class="mb-5">
+              <v-card-text>
+                <v-select
+                  class="my-2"
+                  label="Periode Pengajuan Beasiswa"
+                  target="#dropdown-example"
+                  v-model="selectedPeriod"
+                  :items="periodList"
+                  item-value="id"
+                  @change="onChangeFilter"
+                  item-text="name"
+                ></v-select>
                 <v-data-table
                   :items="uploadscholarshipList"
                   :headers="headers"
@@ -37,7 +46,7 @@
                     ></v-simple-checkbox>
                   </template>
                 </v-data-table>
-              </div>
+              </v-card-text>
 
               <v-btn
                 :disabled="!valid"
@@ -46,10 +55,6 @@
                 @click="validate"
               >
                 Confirm
-              </v-btn>
-
-              <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
               </v-btn>
             </v-form>
           </v-card-text>
@@ -87,7 +92,8 @@ export default {
   },
   computed: {
     ...mapState("createjury", ["createjuryData"]),
-    ...mapState("uploadscholarship", ["uploadscholarshipList"])
+    ...mapState("uploadscholarship", ["uploadscholarshipList"]),
+    ...mapState("period", ["periodList"])
   },
 
   async mounted() {
@@ -96,19 +102,30 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    this.getPeriodList();
     await this.onFetchData();
   },
 
   methods: {
     ...mapActions("createjury", ["updateCreateJury", "getCreateJury"]),
     ...mapActions("uploadscholarship", ["getUploadScholarshipList"]),
+    ...mapActions("period", ["getPeriodList"]),
     async onFetchData() {
       await this.getCreateJury({ id: this.id });
       await this.getUploadScholarshipList({
         period_id: null,
         next_stage: null
       });
+      await this.getPeriodList();
     },
+
+    async onChangeFilter() {
+      await this.getUploadScholarshipList({
+        period_id: this.selectedPeriod,
+        next_stage: null
+      });
+    },
+
     async validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
@@ -120,9 +137,6 @@ export default {
         this.createjuryData = {};
         this.$router.push({ name: "JuryList" });
       }
-    },
-    reset() {
-      this.$refs.form.reset();
     }
   }
 };

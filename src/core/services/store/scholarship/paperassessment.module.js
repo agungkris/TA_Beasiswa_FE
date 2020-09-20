@@ -1,7 +1,8 @@
 import ApiService from "../../api.service";
 const state = {
   paperassessmentList: [],
-  paperassessmentData: {}
+  paperassessmentData: {},
+  paperassessmentReport: {}
 };
 const mutations = {
   setPaperAssessmentList(state, payload) {
@@ -9,9 +10,29 @@ const mutations = {
   },
   setPaperAssessmentData(state, payload) {
     state.paperassessmentData = payload;
+  },
+  setPaperAssessmentReport(state, payload) {
+    state.paperassessmentReport = payload;
   }
 };
 const actions = {
+  async report(context, { student_id, period_id }) {
+    try {
+      var searchParams = new URLSearchParams();
+      if (student_id != null) {
+        searchParams.append("student_id", student_id);
+      }
+      if (period_id != null) {
+        searchParams.append("period_id", period_id);
+      }
+      let response = await ApiService.query(
+        "api/scholarship/scholarshippaperassessments/report?" + searchParams
+      );
+      context.commit("setPaperAssessmentReport", response.data);
+    } catch (error) {
+      throw error;
+    }
+  },
   async getPaperAssessmentList(context) {
     try {
       let response = await ApiService.query(
@@ -28,6 +49,7 @@ const actions = {
         `api/scholarship/scholarshippaperassessments/create/${id}`,
         payload
       );
+      context.commit("setPaperAssessmentData", {});
     } catch (error) {
       throw Error(error);
     }

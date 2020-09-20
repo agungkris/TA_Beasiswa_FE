@@ -2,8 +2,9 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Create Group'">
-          <template v-slot:preview>
+        <v-card>
+          <v-card-title>Edit Grup</v-card-title>
+          <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
                 class="my-2"
@@ -14,7 +15,7 @@
                 item-value="id"
                 item-text="name"
                 required
-                :rules="period"
+                :rules="periode"
               ></v-overflow-btn>
               <v-text-field
                 v-model="groupData.group_name"
@@ -43,15 +44,14 @@
                 Reset Form
               </v-btn>
             </v-form>
-          </template>
-        </KTCodePreview>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
@@ -60,15 +60,12 @@ export default {
     return {
       id: this.$route.params.id,
       valid: true,
-      periode: [v => !!v || "Periode Pengajuan Beasiswa harus diisi"],
+      periode: [v => !!v || "Periode grup beasiswa harus diisi"],
       name: "",
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || "Nama kelompok harus diisi"],
       topic: "",
-      topicRules: [v => !!v || "Topic is required"]
+      topicRules: [v => !!v || "Topik harus diisi"]
     };
-  },
-  components: {
-    KTCodePreview
   },
 
   computed: {

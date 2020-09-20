@@ -1,12 +1,32 @@
 <template>
   <div class="row justify-center">
     <div class="col-md-6">
-      <v-card>
-        <!-- <v-card-text>
-          <p item-value="id" item-text="name">
-            Nama Mahasiswa : {{ uploadscholarshipData.student_id }}
+      <v-card class="mb-6">
+        <v-card-title>DATA MAHASISWA</v-card-title>
+        <v-card-text>
+          <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
+          <!-- {{ student.profile.prodi }} -->
+          <p>
+            Program Studi : {{ uploadscholarshipData.student.profile.prodi }}
           </p>
-        </v-card-text> -->
+          <p>
+            Angkatan : {{ uploadscholarshipData.student.profile.generation }}
+          </p>
+        </v-card-text>
+      </v-card>
+
+      <v-card>
+        <v-card-title>PENILAIAN JURI</v-card-title>
+        <v-card-text>
+          <p>PENILAIAN KARYA TULIS :{{ paperassessmentReport.papers_score }}</p>
+          <p>KOMENTAR JURI :{{ paperassessmentReport.comment }}</p>
+        </v-card-text>
+      </v-card>
+    </div>
+
+    <div class="col-md-6">
+      <v-card>
+        <v-card-title>FILE MAHASISWA</v-card-title>
         <v-card-text>
           FORMULIR BEASISWA :
           <a :href="uploadscholarshipData.submit_form">DOWNLOAD</a>
@@ -31,21 +51,6 @@
           BUKTI PRESTASI / SURAT PERMOHONAN REKTOR :
           <a :href="uploadscholarshipData.other_requirement">DOWNLOAD</a>
         </v-card-text>
-        <!-- <v-card-text v-model="paperassessmentData.score">
-          NILAI KARYA TULIS :
-        </v-card-text>-->
-        <v-text-field
-          v-model="paperassessmentData.papers_score"
-          disabled
-        ></v-text-field>
-
-        <v-textarea
-          outlined
-          name="input-7-4"
-          label="Komentar"
-          v-model="paperassessmentData.comment"
-          disabled
-        ></v-textarea>
       </v-card>
     </div>
 
@@ -69,7 +74,7 @@ export default {
   },
   computed: {
     ...mapState("uploadscholarship", ["uploadscholarshipData"]),
-    ...mapState("paperassessment", ["paperassessmentData"])
+    ...mapState("paperassessment", ["paperassessmentReport"])
   },
   async mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -80,10 +85,13 @@ export default {
   },
   methods: {
     ...mapActions("uploadscholarship", ["getUploadScholarship", "NextStage"]),
-    ...mapActions("paperassessment", ["getPaperAssessment"]),
+    ...mapActions("paperassessment", ["report"]),
     async onFetchData() {
       await this.getUploadScholarship({ id: this.id });
-      await this.getPaperAssessment({ id: this.id });
+      await this.report({
+        student_id: this.id,
+        period_id: this.$route.params.period
+      });
     },
     async validate(data) {
       await this.NextStage({ id: this.id, next_stage: data });

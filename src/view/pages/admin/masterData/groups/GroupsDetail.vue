@@ -26,11 +26,11 @@ export default {
         },
         {
           text: "Program Studi",
-          value: "prodi"
+          value: "profile.prodi"
         },
         {
           text: "Angkatan",
-          value: "generation"
+          value: "profile.generation"
         }
       ]
     };
@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     ...mapActions("group", ["getGroup"]),
+
     async onFetchData() {
       await this.getGroup({ id: this.id });
     }

@@ -41,6 +41,7 @@ const actions = {
   async createGroup(context, { payload }) {
     try {
       await ApiService.post("api/scholarship/studentgroup/create", payload);
+      context.commit("setGroupData", {});
     } catch (error) {
       throw Error(error);
     }

@@ -12,6 +12,7 @@
                 v-model="periodData.name"
                 label="Nama Periode"
                 required
+                :rules="namaperiode"
               ></v-text-field>
 
               <v-row>
@@ -28,10 +29,12 @@
                       <v-text-field
                         v-model="periodData.start_date"
                         label="Pembukaan Beasiswa"
-                        prepend-icon="event"
+                        prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
                         v-on="on"
+                        required
+                        :rules="startdate"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -53,11 +56,13 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
                         v-model="periodData.due_date_file"
-                        label="Batas Pengumpulan File Beasiswa"
-                        prepend-icon="event"
+                        label="Batas Pengumpulan Dokumen Beasiswa"
+                        prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
                         v-on="on"
+                        required
+                        :rules="endfile"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -79,10 +84,12 @@
                       <v-text-field
                         v-model="periodData.end_date"
                         label="Penutupan Beasiswa"
-                        prepend-icon="event"
+                        prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
                         v-on="on"
+                        required
+                        :rules="enddate"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -140,8 +147,13 @@ export default {
       endFileDate: false,
       menu: false,
       valid: false,
-      modal: false,
-      menu2: false
+
+      namaperiode: [v => !!v || "Periode harus diisi"],
+      startdate: [v => !!v || "Tanggal pembukaan beasiswa harus diisi"],
+      endfile: [
+        v => !!v || "Tanggal batas pengumpulan dokumen beasiswa harus diisi"
+      ],
+      enddate: [v => !!v || "Tanggal penutupan beasiswa harus diisi"]
     };
   },
   computed: {

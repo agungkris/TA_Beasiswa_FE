@@ -2,31 +2,32 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Create Group'">
-          <template v-slot:preview>
+        <v-card>
+          <v-card-title>Buat Grup</v-card-title>
+          <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
                 class="my-2"
-                label="Periode Group Beasiswa"
+                label="Periode Grup Beasiswa"
                 target="#dropdown-example"
                 v-model="groupData.period_id"
                 :items="periodList"
                 item-value="id"
                 item-text="name"
                 required
-                :rules="period"
+                :rules="periode"
               ></v-overflow-btn>
               <v-text-field
                 v-model="groupData.group_name"
                 :rules="nameRules"
-                label="Group Name"
+                label="Nama Kelompok"
                 required
               ></v-text-field>
 
               <v-text-field
                 v-model="groupData.topic"
                 :rules="topicRules"
-                label="Topic"
+                label="Topik"
                 required
               ></v-text-field>
 
@@ -43,15 +44,14 @@
                 Reset Form
               </v-btn>
             </v-form>
-          </template>
-        </KTCodePreview>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
@@ -59,15 +59,12 @@ export default {
   data() {
     return {
       valid: true,
-      periode: [v => !!v || "Periode Pengajuan Beasiswa harus diisi"],
+      periode: [v => !!v || "Periode grup beasiswa harus diisi"],
       name: "",
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || "Nama Kelompok harus diisi"],
       topic: "",
-      topicRules: [v => !!v || "Topic is required"]
+      topicRules: [v => !!v || "Topik harus diisi"]
     };
-  },
-  components: {
-    KTCodePreview
   },
 
   computed: {

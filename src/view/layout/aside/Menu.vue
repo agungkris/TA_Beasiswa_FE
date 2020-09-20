@@ -1,7 +1,6 @@
 <template>
   <ul class="menu-nav">
     <router-link
-      v-if="auth.user.level == 'admin'"
       to="/dashboard"
       v-slot="{ href, navigate, isActive, isExactActive }"
     >

@@ -2,8 +2,9 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Buat Pengumuman'">
-          <template v-slot:preview>
+        <v-card>
+          <v-card-title>Buat Pengumuman</v-card-title>
+          <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
                 class="my-2"
@@ -50,19 +51,23 @@
                 </template>
               </v-file-input>
 
-              <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Publikasi</v-btn>
-
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mr-4"
+                @click="validate"
+                >Publikasi</v-btn
+              >
               <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
             </v-form>
-          </template>
-        </KTCodePreview>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
@@ -70,33 +75,31 @@ export default {
   data() {
     return {
       valid: false,
-      periode: [(v) => !!v || "Periode pemberitahuan harus diisi"],
+      periode: [v => !!v || "Periode pemberitahuan harus diisi"],
       judul: "",
-      judulRules: [(v) => !!v || "Judul wajib diisi"],
+      judulRules: [v => !!v || "Judul wajib diisi"],
       deskripsi: "",
-      deskripsiRules: [(v) => !!v || "Deskripsi wajib diisi"],
+      deskripsiRules: [v => !!v || "Deskripsi wajib diisi"],
       dokumen: "",
       dokumenRules: [
         // (v) => !!v || "Dokumen wajib diisi",
-        (value) =>
+        value =>
           !value ||
           value.size < 500000 ||
-          "Dokumen harus berukuran maksimal 500 KB!",
-      ],
+          "Dokumen harus berukuran maksimal 500 KB!"
+      ]
     };
   },
   computed: {
     ...mapState("announcement", ["announcementData"]),
-    ...mapState("period", ["periodList"]),
+    ...mapState("period", ["periodList"])
   },
-  components: {
-    KTCodePreview,
-  },
+
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vuetify", route: "alerts" },
       { title: "Form Inputs & Control", route: "autocompletes" },
-      { title: "Fileinptus" },
+      { title: "Fileinptus" }
     ]);
     this.getPeriodList();
   },
@@ -124,7 +127,7 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },
-  },
+    }
+  }
 };
 </script>

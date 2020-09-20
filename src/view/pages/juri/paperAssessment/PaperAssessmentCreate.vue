@@ -90,6 +90,9 @@
               <v-text-field
                 label="Skor"
                 v-model="paperassessmentData.format_papers"
+                required
+                :rules="papers"
+                type="number"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -104,6 +107,9 @@
               <v-text-field
                 label="Skor"
                 v-model="paperassessmentData.creativity"
+                required
+                :rules="creativity"
+                type="number"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -115,6 +121,9 @@
               <v-text-field
                 label="Skor"
                 v-model="paperassessmentData.contribution"
+                required
+                :rules="contribution"
+                type="number"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -126,6 +135,9 @@
               <v-text-field
                 label="Skor"
                 v-model="paperassessmentData.information"
+                required
+                :rules="information"
+                type="number"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -137,6 +149,9 @@
               <v-text-field
                 label="Skor"
                 v-model="paperassessmentData.conclusion"
+                required
+                :rules="conclusion"
+                type="number"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -165,7 +180,14 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
-    return { id: this.$route.params.id };
+    return {
+      id: this.$route.params.id,
+      papers: [v => !!v || "Nilai harus diisi dari 0-100"],
+      creativity: [v => !!v || "Nilai harus diisi dari 0-100"],
+      contribution: [v => !!v || "Nilai harus diisi dari 0-100"],
+      information: [v => !!v || "Nilai harus diisi dari 0-100"],
+      conclusion: [v => !!v || "Nilai harus diisi dari 0-100"]
+    };
   },
   computed: {
     ...mapState("paperassessment", ["paperassessmentData"]),

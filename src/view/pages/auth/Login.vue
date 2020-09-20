@@ -34,6 +34,10 @@
           </div>
         </div> -->
 
+        <b-alert variant="danger" v-if="loginError" show
+          >Username atau Password yang dimasukkan salah</b-alert
+        >
+
         <div
           role="alert"
           v-bind:class="{ show: errors.length }"
@@ -121,6 +125,8 @@ export default {
   data() {
     return {
       // Remove this dummy login info
+      loginError: false,
+      loginErrors: [],
       form: {
         username: "",
         password: ""
@@ -170,19 +176,32 @@ export default {
       submitButton.classList.add("spinner", "spinner-light", "spinner-right");
 
       // dummy delay
-      setTimeout(() => {
-        // send login request
-        this.$store
-          .dispatch(LOGIN, { username, password })
-          // go to which page after successfully login
-          .then(() => this.$router.push({ name: "dashboard" }));
+      // setTimeout(() => {
+      // send login request
+      this.$store
+        .dispatch(LOGIN, { username, password })
+        // go to which page after successfully login
+        .then(() => {
+          // console.log(data);
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+          this.$router.push({ name: "dashboard" });
+        })
+        .catch(() => {
+          // console.log(error.response);
+          // let errors = error.response.data
+          submitButton.classList.remove(
+            "spinner",
+            "spinner-light",
+            "spinner-right"
+          );
+          this.loginError = true;
+        });
 
-        submitButton.classList.remove(
-          "spinner",
-          "spinner-light",
-          "spinner-right"
-        );
-      }, 2000);
+      // }, 2000);
     }
   },
   computed: {

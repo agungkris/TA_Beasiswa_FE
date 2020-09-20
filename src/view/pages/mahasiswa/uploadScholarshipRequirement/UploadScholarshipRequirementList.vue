@@ -142,14 +142,13 @@
               <v-dialog v-model="dialog" width="390">
                 <v-card>
                   <v-card-text> </v-card-text>
-                  <v-list-item-title class="text-center"
-                    >Pengajuan Beasiswa Pembangunan Jaya berhasil
-                    dikirim.</v-list-item-title
-                  >
+                  <v-list-item-title class="text-center">{{
+                    dialogMessage
+                  }}</v-list-item-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="success" text @click="dialog = false">
-                      Selesai
+                      Close
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -170,6 +169,7 @@ export default {
       title: "Pengumpulan Dokumen Beasiswa Pembangunan Jaya",
       valid: true,
       dialog: false,
+      dialogMessage: "",
       periode: [v => !!v || "Periode Pengajuan Beasiswa harus diisi"],
       submitform: [
         v => !!v || "Formulir Beasiswa harus diisi",
@@ -230,7 +230,6 @@ export default {
     ...mapActions("period", ["getPeriodList"]),
     async validate() {
       if (this.$refs.form.validate()) {
-        this.dialog = true;
         this.snackbar = true;
         let formData = new FormData();
         formData.append("period_id", this.uploadscholarshipData.period_id);
@@ -243,9 +242,18 @@ export default {
           "other_requirements",
           this.uploadscholarshipData.other_requirements
         );
-        await this.createUploadScholarship({ payload: formData });
+        try {
+          await this.createUploadScholarship({ payload: formData });
+          this.dialog = true;
+          this.dialogMessage =
+            "Pengajuan Beasiswa Pembangunan Jaya berhasil dikirim.";
+          this.$router.push({ name: "UploadScholarshipRequirementList" });
+        } catch (error) {
+          this.dialog = true;
+          this.dialogMessage = "Gagal";
+        }
+
         // this.uploadscholarshipData = {};
-        this.$router.push({ name: "UploadScholarshipRequirementList" });
       }
     },
     reset() {

@@ -154,6 +154,12 @@ export default new Router({
               component: () =>
                 import("@/view/pages/admin/users/jury/JuryPaperCreate.vue")
             },
+            {
+              path: "jury/detail/:id",
+              name: "JuryDetail",
+              component: () =>
+                import("@/view/pages/admin/users/jury/JuryDetail.vue")
+            },
 
             {
               path: "students",
@@ -168,7 +174,7 @@ export default new Router({
                 import("@/view/pages/admin/users/students/StudentsCreate.vue")
             },
             {
-              path: "students/edit/:id",
+              path: "students/edit/:id/period/:period",
               name: "StudentsEdit",
               component: () =>
                 import("@/view/pages/admin/users/students/StudentsEdit.vue")
@@ -284,25 +290,19 @@ export default new Router({
                 import("@/view/pages/juri/fgdAssessment/FgdAssessmentList.vue")
             },
             {
-              path: "fgd-assessment/edit/:id",
+              path: "fgd-assessment/edit/:student_id/period/:period",
               name: "FgdAssessmentEdit",
               component: () =>
                 import("@/view/pages/juri/fgdAssessment/FgdAssessmentEdit.vue")
             },
             {
-              path: "fgd-assessment/detail",
+              path: "fgd-assessment/detail/:id/period/:period",
               name: "FgdAssessmentDetail",
               component: () =>
                 import(
                   "@/view/pages/juri/fgdAssessment/FgdAssessmentDetail.vue"
                 )
             }
-            // {
-            //   path: "fgd-assessment/score",
-            //   name: "FgdAssessmentScore",
-            //   component: () =>
-            //     import("@/view/pages/juri/fgdAssessment/FgdAssessmentScore.vue")
-            // }
           ]
         },
         {

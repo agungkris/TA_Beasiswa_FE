@@ -82,6 +82,7 @@ export default {
     return {
       id: this.$route.params.id,
       valid: false,
+      periode: [v => !!v || "Periode pemberitahuan harus diisi"],
       judul: "",
       judulRules: [v => !!v || "Judul wajib diisi"],
       deskripsi: "",

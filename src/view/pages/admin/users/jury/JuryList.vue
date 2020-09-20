@@ -44,7 +44,7 @@
             <v-checkbox v-model="item.category_jury.fgd" :disabled="true" />
           </template>
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip left>
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -60,7 +60,7 @@
               <span>Edit Juri</span>
             </v-tooltip>
 
-            <v-tooltip right>
+            <!-- <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon @click="onDelete(item.id)" v-bind="attrs" v-on="on">
                   <v-icon>
@@ -69,7 +69,41 @@
                 </v-btn>
               </template>
               <span>Hapus Akun</span>
-            </v-tooltip>
+            </v-tooltip> -->
+
+            <v-dialog v-model="dialog" persistent max-width="290">
+              <!-- <v-tooltip right> -->
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                  <v-icon color="red darken-4">
+                    mdi-delete
+                  </v-icon>
+                </v-btn>
+              </template>
+              <!-- <span>Hapus Akun</span>
+              </v-tooltip> -->
+
+              <v-card>
+                <v-card-title class="headline">Hapus Akun Juri</v-card-title>
+                <v-card-text
+                  >Apakah Anda yakin ingin menghapus akun juri ini?</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="disable" text @click="dialog = false"
+                    >Kembali</v-btn
+                  >
+                  <v-btn
+                    color="red darken-4"
+                    text
+                    icon
+                    @click="onDelete(item.id)"
+                    class="mr-2"
+                    >Hapus</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </template>
         </v-data-table>
       </v-card-text>
@@ -107,7 +141,7 @@
             />
           </template>
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip top>
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -121,6 +155,22 @@
                 </v-btn>
               </template>
               <span>Pilih Mahasiswa</span>
+            </v-tooltip>
+
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  :to="{ name: 'JuryDetail', params: { id: item.id } }"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon>
+                    mdi-information-outline
+                  </v-icon>
+                </v-btn>
+              </template>
+              <span>Detail</span>
             </v-tooltip>
           </template>
         </v-data-table>
@@ -138,6 +188,7 @@ export default {
       searchdaftarjury: "",
       searchkaryatulis: "",
       searchfgd: "",
+      dialog: false,
       headers: [
         {
           text: "Nama Lengkap",
@@ -217,8 +268,10 @@ export default {
     },
     async onDelete(id) {
       try {
+        this.dialog = true;
         await this.deleteCreateJury({ id: id });
         await this.onFetchData();
+        this.dialog = false;
       } catch (error) {
         alert(error);
       }

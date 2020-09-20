@@ -23,6 +23,7 @@ const actions = {
   async createPeriod(context, { payload }) {
     try {
       await ApiService.post("api/scholarship/periods/create", payload);
+      context.commit("setPeriodData", {});
     } catch (error) {
       throw Error(error);
     }

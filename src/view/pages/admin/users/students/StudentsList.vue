@@ -34,16 +34,16 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
           <template v-slot:item.action="{ item }">
             <!-- {{ item }} -->
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
-                  :to="{ name: 'StudentsEdit', params: { id: item.id } }"
+                  :to="{
+                    name: 'StudentsEdit',
+                    params: { id: item.id, period: item.period_id }
+                  }"
                   v-bind="attrs"
                   v-on="on"
                 >
@@ -52,7 +52,7 @@
                   </v-icon>
                 </v-btn>
               </template>
-              <span>File Mahasiswa</span>
+              <span>Data Mahasiswa</span>
             </v-tooltip>
           </template>
         </v-data-table>
@@ -83,16 +83,22 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
           <template v-slot:item.action="{ item }">
-            <!-- {{ item }} -->
-            <v-btn icon :to="{ name: 'StudentsFgd', params: { id: item.id } }">
-              <v-icon>
-                mdi-file-find
-              </v-icon>
-            </v-btn>
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  v-on="on"
+                  :to="{ name: 'StudentsFgd', params: { id: item.id } }"
+                >
+                  <v-icon>
+                    mdi-file-find
+                  </v-icon>
+                </v-btn>
+              </template>
+              <span>Data Mahasiswa</span>
+            </v-tooltip>
           </template>
         </v-data-table>
       </v-card-text>

@@ -3,7 +3,7 @@
     <v-card class="mb-6">
       <v-card-title
         >Kelompok FGD
-        <v-tooltip top>
+        <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon :to="{ name: 'GroupsCreate' }" v-bind="attrs" v-on="on">
               <v-icon>
@@ -13,7 +13,7 @@
           </template>
           <span>Buat Kelompok</span>
         </v-tooltip>
-        <v-tooltip top>
+        <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon @click="onRandom()" v-bind="attrs" v-on="on">
               <v-icon>
@@ -45,8 +45,8 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
-            <v-tooltip left>
+          <template v-slot:[`item.action`]="{ item }">
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -62,7 +62,7 @@
               <span>Detail</span>
             </v-tooltip>
 
-            <v-tooltip top>
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -78,16 +78,36 @@
               <span>Edit Kelompok</span>
             </v-tooltip>
 
-            <v-tooltip right>
+            <v-dialog v-model="dialog" persistent max-width="290">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon @click="onDelete(item.id)" v-bind="attrs" v-on="on">
+                <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon color="red darken-4">
                     mdi-account-remove
                   </v-icon>
                 </v-btn>
               </template>
-              <span>Hapus Kelompok</span>
-            </v-tooltip>
+
+              <v-card>
+                <v-card-title class="headline">Hapus Kelompok</v-card-title>
+                <v-card-text
+                  >Apakah Anda yakin ingin menghapus kelompok ini?</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="disable" text @click="dialog = false"
+                    >Kembali</v-btn
+                  >
+                  <v-btn
+                    color="red darken-4"
+                    text
+                    icon
+                    @click="onDelete(item.id)"
+                    class="mr-2"
+                    >Hapus</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </template>
         </v-data-table>
       </v-card-text>
@@ -101,6 +121,7 @@ export default {
   data() {
     return {
       selectedPeriod: "",
+      dialog: false,
       headers: [
         {
           text: "Periode Beasiswa",
@@ -152,8 +173,10 @@ export default {
     },
     async onDelete(id) {
       try {
+        this.dialog = true;
         await this.deleteGroup({ id: id });
         await this.onFetchData();
+        this.dialog = false;
       } catch (error) {
         alert(error);
       }

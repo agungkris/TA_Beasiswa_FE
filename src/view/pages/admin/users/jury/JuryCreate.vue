@@ -2,8 +2,9 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Buat Akun Juri'">
-          <template v-slot:preview>
+        <v-card>
+          <v-card-title>Buat Akun Juri</v-card-title>
+          <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="createjuryData.name"
@@ -57,15 +58,14 @@
                 Reset Form
               </v-btn>
             </v-form>
-          </template>
-        </KTCodePreview>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
@@ -74,28 +74,24 @@ export default {
     return {
       karyatulis: false,
       fgd: false,
-      createjuryData: {
-        valid: false,
-        name: "",
-        nameRules: [v => !!v || "Name is required"],
-        username: "",
-        usernameRules: [v => !!v || "NIK is required"],
-        email: "",
-        emailRules: [
-          v => !!v || "E-mail is required",
-          v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-        ],
-        password: "",
-        passwordRules: [v => !!v || "Password is required"]
-      }
+      valid: false,
+      name: "",
+      nameRules: [v => !!v || "Name is required"],
+      username: "",
+      usernameRules: [v => !!v || "NIK is required"],
+      email: "",
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      password: "",
+      passwordRules: [v => !!v || "Password is required"]
     };
   },
   computed: {
     ...mapState("createjury", ["createjuryData"])
   },
-  components: {
-    KTCodePreview
-  },
+
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vuetify", route: "alerts" },
@@ -118,9 +114,6 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

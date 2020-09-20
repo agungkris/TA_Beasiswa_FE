@@ -3,6 +3,7 @@
     <v-card class="mb-6">
       <v-card-title
         >Kelompok FGD
+
         <v-spacer></v-spacer>
         <v-overflow-btn
           class="mt-6"
@@ -25,12 +26,15 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
-            <v-tooltip left>
+          <template v-slot:[`item.action`]="{ item }">
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
-                  :to="{ name: 'FgdAssessmentDetail' }"
+                  :to="{
+                    name: 'FgdAssessmentDetail',
+                    params: { id: item.id, period: item.period_id }
+                  }"
                   v-bind="attrs"
                   v-on="on"
                 >
@@ -41,22 +45,6 @@
               </template>
               <span>Detail</span>
             </v-tooltip>
-
-            <!-- <v-tooltip top>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  :to="{ name: 'GroupsEdit', params: { id: item.id } }"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-icon>
-                    mdi-account-edit
-                  </v-icon>
-                </v-btn>
-              </template>
-              <span>Edit Kelompok</span>
-            </v-tooltip> -->
           </template>
         </v-data-table>
       </v-card-text>
@@ -70,6 +58,7 @@ export default {
   data() {
     return {
       selectedPeriod: "",
+      dialog: false,
       headers: [
         {
           text: "Periode Beasiswa",
@@ -121,8 +110,10 @@ export default {
     },
     async onDelete(id) {
       try {
+        this.dialog = true;
         await this.deleteGroup({ id: id });
         await this.onFetchData();
+        this.dialog = false;
       } catch (error) {
         alert(error);
       }

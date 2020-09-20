@@ -2,8 +2,9 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Edit Jury'">
-          <template v-slot:preview>
+        <v-card>
+          <v-card-title>Edit Juri</v-card-title>
+          <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="createjuryData.name"
@@ -57,15 +58,14 @@
                 Reset Form
               </v-btn>
             </v-form>
-          </template>
-        </KTCodePreview>
+          </v-card-text>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
@@ -89,9 +89,7 @@ export default {
       passwordRules: [v => !!v || "Password is required"]
     };
   },
-  components: {
-    KTCodePreview
-  },
+
   computed: {
     ...mapState("createjury", ["createjuryData"])
   },
