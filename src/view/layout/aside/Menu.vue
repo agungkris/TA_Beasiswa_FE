@@ -268,7 +268,7 @@
               </a>
             </li>
           </router-link>
-          <router-link
+          <!-- <router-link
             :to="{ name: 'OthersScholarshipList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
           >
@@ -288,7 +288,7 @@
                 <span class="menu-text">Beasiswa Lainnya</span>
               </a>
             </li>
-          </router-link>
+          </router-link> -->
         </ul>
       </div>
     </li>

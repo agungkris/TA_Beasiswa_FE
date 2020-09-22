@@ -5,29 +5,29 @@
     v-bind:class="headerClasses"
   >
     <!--begin::Logo-->
-    <a href="/">
+    <!-- <a href="/">
       <img alt="Logo" :src="headerLogo" />
-    </a>
+    </a> -->
     <!--end::Logo-->
     <!--begin::Toolbar-->
     <div class="d-flex align-items-center">
       <!--begin::Aside Mobile Toggle-->
       <button
         v-if="asideEnabled"
-        class="btn p-0 burger-icon burger-icon-left"
+        class="btn p-0 burger-icon burger-icon-right "
         id="kt_aside_mobile_toggle"
       >
         <span></span>
       </button>
       <!--end::Aside Mobile Toggle-->
       <!--begin::Header Menu Mobile Toggle-->
-      <button
+      <!-- <button
         class="btn p-0 burger-icon ml-4"
         id="kt_header_mobile_toggle"
         ref="kt_header_mobile_toggle"
       >
         <span></span>
-      </button>
+      </button> -->
       <!--end::Header Menu Mobile Toggle-->
       <!--begin::Topbar Mobile Toggle-->
       <button

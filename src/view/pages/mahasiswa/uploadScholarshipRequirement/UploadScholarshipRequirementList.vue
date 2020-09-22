@@ -250,16 +250,14 @@ export default {
           this.$router.push({ name: "UploadScholarshipRequirementList" });
         } catch (error) {
           this.dialog = true;
-          this.dialogMessage = "Gagal";
+          this.dialogMessage =
+            "Periode pengumpulan berkas beasiswa telah selesai";
         }
-
-        // this.uploadscholarshipData = {};
       }
     },
     reset() {
       this.$refs.form.reset();
     }
-    // onDeleteService(id) {}
   }
 };
 </script>

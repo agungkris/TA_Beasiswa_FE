@@ -102,7 +102,9 @@
               </template>
 
               <v-card>
-                <v-card-title class="headline">Hapus Periode</v-card-title>
+                <v-card-title class="headline"
+                  >Hapus Pemberitahuan</v-card-title
+                >
                 <v-card-text
                   >Apakah Anda yakin ingin menghapus pemberitahuan
                   ini?</v-card-text

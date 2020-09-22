@@ -109,7 +109,7 @@
       </v-card-text>
     </v-card>
 
-    <v-card>
+    <!-- <v-card>
       <v-card-title
         >Daftar Juri Karya Tulis
         <v-spacer></v-spacer>
@@ -175,7 +175,7 @@
           </template>
         </v-data-table>
       </v-card-text>
-    </v-card>
+    </v-card> -->
   </div>
 </template>
 
@@ -214,30 +214,30 @@ export default {
           text: "Action",
           value: "action"
         }
-      ],
-
-      headers2: [
-        {
-          text: "Nama Lengkap",
-          value: "name"
-        },
-        {
-          text: "NIDN",
-          value: "username"
-        },
-        {
-          text: "Email",
-          value: "email"
-        },
-        {
-          text: "Juri Karya Tulis",
-          value: "karya_tulis"
-        },
-        {
-          text: "Action",
-          value: "action"
-        }
       ]
+
+      // headers2: [
+      //   {
+      //     text: "Nama Lengkap",
+      //     value: "name"
+      //   },
+      //   {
+      //     text: "NIDN",
+      //     value: "username"
+      //   },
+      //   {
+      //     text: "Email",
+      //     value: "email"
+      //   },
+      //   {
+      //     text: "Juri Karya Tulis",
+      //     value: "karya_tulis"
+      //   },
+      //   {
+      //     text: "Action",
+      //     value: "action"
+      //   }
+      // ]
     };
   },
   computed: {
