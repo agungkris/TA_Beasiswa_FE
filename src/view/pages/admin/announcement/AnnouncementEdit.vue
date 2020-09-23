@@ -128,15 +128,15 @@ export default {
         formData.append("description", this.announcementData.description);
         formData.append("document", this.announcementData.document);
 
-        await this.updateAnnouncement({ id: this.id, payload: this.formData });
+        await this.updateAnnouncement({
+          id: this.id,
+          payload: this.announcementData
+        });
         this.$router.push({ name: "AnnouncementList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

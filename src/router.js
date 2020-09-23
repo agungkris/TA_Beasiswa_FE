@@ -36,7 +36,7 @@ export default new Router({
                 import("@/view/pages/admin/announcement/AnnouncementCreate.vue")
             },
             {
-              path: "announcement/edit",
+              path: "announcement/edit/:id",
               name: "AnnouncementEdit",
               component: () =>
                 import("@/view/pages/admin/announcement/AnnouncementEdit.vue")

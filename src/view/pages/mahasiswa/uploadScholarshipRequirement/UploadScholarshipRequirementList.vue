@@ -251,7 +251,7 @@ export default {
         } catch (error) {
           this.dialog = true;
           this.dialogMessage =
-            "Periode pengumpulan berkas beasiswa telah selesai";
+            "GAGAL, Pengajuan Beasiswa diluar tanggal yang telah ditentukan.";
         }
       }
     },
