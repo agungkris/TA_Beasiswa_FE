@@ -52,7 +52,6 @@
           </div>
           <div class="d-flex flex-column">
             <a
-              href="#"
               class="font-weight-bold font-size-h5 text-dark-75 text-hover-success"
             >
               {{ auth.user.username }}

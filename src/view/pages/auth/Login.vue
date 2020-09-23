@@ -60,6 +60,7 @@
             v-model="$v.form.username.$model"
             :state="validateState('username')"
             aria-describedby="input-1-live-feedback"
+            placeholder="Email"
           ></b-form-input>
 
           <b-form-invalid-feedback id="input-1-live-feedback">
@@ -80,6 +81,7 @@
             v-model="$v.form.password.$model"
             :state="validateState('password')"
             aria-describedby="input-2-live-feedback"
+            placeholder="Password"
           ></b-form-input>
 
           <b-form-invalid-feedback id="input-2-live-feedback">

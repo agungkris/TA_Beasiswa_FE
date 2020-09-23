@@ -33,7 +33,7 @@
     </v-row>
     <v-row v-if="auth.user.level == 'admin'">
       <v-col class="md-6">
-        <v-card color="#008854" dark>
+        <v-card color="#9E9E9E" dark>
           <v-card-title>3. Membuka Pengguna</v-card-title>
           <v-card-text>
             <p>
@@ -48,7 +48,7 @@
         </v-card>
       </v-col>
       <v-col class="md-6">
-        <v-card color="#385F73" dark>
+        <v-card color="#B71C1C" dark>
           <v-card-title>4. Membuka Laporan Beasiswa</v-card-title>
           <v-card-text>
             <p>
@@ -64,7 +64,7 @@
     </v-row>
     <v-row v-if="auth.user.level == 'admin'">
       <v-col class="md-6">
-        <v-card color="#008854" dark>
+        <v-card color="#6D4C41" dark>
           <v-card-title>5. Membuka Master Data</v-card-title>
           <v-card-text>
             <p>
