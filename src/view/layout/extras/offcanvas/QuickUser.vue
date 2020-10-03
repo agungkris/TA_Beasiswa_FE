@@ -11,8 +11,8 @@
       </span>
       <span class="symbol symbol-35 symbol-light-success">
         <img v-if="false" alt="Pic" :src="picture" />
-        <span v-if="true" class="symbol-label font-size-h5 font-weight-bold">
-          US
+        <span v-if="true" class="symbol-label font-size-h6 font-weight-bold">
+          UPJ
         </span>
       </span>
     </div>
@@ -206,7 +206,7 @@ export default {
     // ...mapState("users", ["usersList"]),
     ...mapState(["auth"]),
     picture() {
-      return process.env.BASE_URL + "media/users/300_21.jpg";
+      return process.env.BASE_URL + "media/users/logo-upj.png";
     }
   },
   async mounted() {

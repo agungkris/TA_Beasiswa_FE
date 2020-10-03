@@ -87,7 +87,8 @@ export default {
       "uploadscholarshipList",
       "uploadscholarshipData"
     ]),
-    ...mapState("period", ["periodList"])
+    ...mapState("period", ["periodList"]),
+    ...mapState(["auth"])
   },
   async mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -103,13 +104,15 @@ export default {
     async onFetchData() {
       await this.getUploadScholarshipList({
         period_id: null,
-        next_stage: null
+        next_stage: null,
+        jury_id: this.auth.user.id
       });
     },
     async onChangeFilter() {
       await this.getUploadScholarshipList({
         period_id: this.selectedPeriod,
-        next_stage: null
+        next_stage: null,
+        jury_id: this.auth.user.id
       });
     },
 

@@ -134,7 +134,9 @@
               Halaman Penilaian Karya Tulis merupakan halaman yang digunakan
               untuk menilai karya tulis mahasiswa yang telah dikumpulkan.
             </p>
-            <v-btn>Lihat</v-btn>
+            <a href="media/document/tes.pdf" download>
+              <v-btn>Lihat</v-btn>
+            </a>
           </v-card-text>
         </v-card>
       </v-col>

@@ -19,6 +19,7 @@ import groupmember from "./settings/groupmember.module";
 import paperassessment from "./scholarship/paperassessment.module";
 import fgdassessment from "./scholarship/fgdassessment.module";
 import categoryjury from "./scholarship/categoryjury.module";
+import paperjury from "./scholarship/paperjury.module";
 
 Vue.use(Vuex);
 
@@ -41,7 +42,8 @@ export default new Vuex.Store({
     groupmember,
     paperassessment,
     fgdassessment,
-    categoryjury
+    categoryjury,
+    paperjury
     //#endregion
   }
 });

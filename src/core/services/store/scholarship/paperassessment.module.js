@@ -49,7 +49,7 @@ const actions = {
         `api/scholarship/scholarshippaperassessments/create/${id}`,
         payload
       );
-      context.commit("setPaperAssessmentData", {});
+      context.commit("setPaperAssessmentReport", {});
     } catch (error) {
       throw Error(error);
     }

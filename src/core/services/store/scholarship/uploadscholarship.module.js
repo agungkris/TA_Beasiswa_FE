@@ -26,7 +26,7 @@ const mutations = {
 const actions = {
   async getUploadScholarshipList(
     context,
-    { next_stage, period_id, final_stage }
+    { next_stage, period_id, final_stage, jury_id, submission_member }
   ) {
     try {
       var searchParams = new URLSearchParams();
@@ -38,6 +38,12 @@ const actions = {
       }
       if (final_stage != null) {
         searchParams.append("final_stage", final_stage);
+      }
+      if (jury_id != null) {
+        searchParams.append("jury_id", jury_id);
+      }
+      if (submission_member != null) {
+        searchParams.append("submission_member", submission_member);
       }
 
       let response = await ApiService.query(

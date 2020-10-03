@@ -89,7 +89,7 @@ export default {
     async onFetchData() {
       await this.getUploadScholarship({ id: this.id });
       await this.report({
-        student_id: this.id,
+        student_id: this.uploadscholarshipData.student_id,
         period_id: this.$route.params.period
       });
     },

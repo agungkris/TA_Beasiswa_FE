@@ -126,11 +126,13 @@ export default {
         formData.append("period_id", this.announcementData.period_id);
         formData.append("title", this.announcementData.title);
         formData.append("description", this.announcementData.description);
-        formData.append("document", this.announcementData.document);
+        if (this.announcementData.document != null) {
+          formData.append("document", this.announcementData.document);
+        }
 
         await this.updateAnnouncement({
           id: this.id,
-          payload: this.announcementData
+          payload: formData
         });
         this.$router.push({ name: "AnnouncementList" });
       }

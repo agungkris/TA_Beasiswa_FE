@@ -218,7 +218,7 @@ export default {
           payload: this.fgdassessmentData
         });
         this.fgdassessmentData = {};
-        this.$router.push({ name: "FgdAssessmentDetail" });
+        this.$router.push({ name: "FgdAssessmentList" });
       }
     }
   }

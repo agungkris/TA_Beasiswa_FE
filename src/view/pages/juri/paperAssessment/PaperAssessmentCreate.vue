@@ -89,7 +89,7 @@
             <v-col cols="3">
               <v-text-field
                 label="Skor"
-                v-model="paperassessmentData.format_papers"
+                v-model="paperassessmentReport.format_papers"
                 required
                 :rules="papers"
                 type="number"
@@ -106,7 +106,7 @@
             <v-col cols="3">
               <v-text-field
                 label="Skor"
-                v-model="paperassessmentData.creativity"
+                v-model="paperassessmentReport.creativity"
                 required
                 :rules="creativity"
                 type="number"
@@ -120,7 +120,7 @@
             <v-col cols="3">
               <v-text-field
                 label="Skor"
-                v-model="paperassessmentData.contribution"
+                v-model="paperassessmentReport.contribution"
                 required
                 :rules="contribution"
                 type="number"
@@ -134,7 +134,7 @@
             <v-col cols="3">
               <v-text-field
                 label="Skor"
-                v-model="paperassessmentData.information"
+                v-model="paperassessmentReport.information"
                 required
                 :rules="information"
                 type="number"
@@ -148,7 +148,7 @@
             <v-col cols="3">
               <v-text-field
                 label="Skor"
-                v-model="paperassessmentData.conclusion"
+                v-model="paperassessmentReport.conclusion"
                 required
                 :rules="conclusion"
                 type="number"
@@ -161,7 +161,7 @@
                 outlined
                 name="input-7-4"
                 label="Komentar"
-                v-model="paperassessmentData.comment"
+                v-model="paperassessmentReport.comment"
               ></v-textarea>
               <v-btn :disabled="!valid" color="success" @click="validate">
                 Selesai
@@ -190,7 +190,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("paperassessment", ["paperassessmentData"]),
+    ...mapState("paperassessment", ["paperassessmentReport"]),
     ...mapState(["auth"])
   },
   mounted() {
@@ -208,13 +208,13 @@ export default {
     async validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        this.paperassessmentData.period_id = this.$route.params.period;
-        this.paperassessmentData.jury_id = this.auth.user.id;
+        this.paperassessmentReport.period_id = this.$route.params.period;
+        this.paperassessmentReport.jury_id = this.auth.user.id;
         await this.createPaperAssessment({
           id: this.id,
-          payload: this.paperassessmentData
+          payload: this.paperassessmentReport
         });
-        this.paperassessmentData = {};
+        this.paperassessmentReport = {};
         this.$router.push({ name: "PaperAssessmentList" });
       }
     }

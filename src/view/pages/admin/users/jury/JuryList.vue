@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mb-6">
+    <v-card>
       <v-card-title
         >Daftar Juri Beasiswa Pembangunan Jaya
         <v-tooltip right>
@@ -60,16 +60,22 @@
               <span>Edit Juri</span>
             </v-tooltip>
 
-            <!-- <v-tooltip right>
+            <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon @click="onDelete(item.id)" v-bind="attrs" v-on="on">
+                <v-btn
+                  icon
+                  :to="{ name: 'JuryPaperCreate', params: { id: item.id } }"
+                  v-bind="attrs"
+                  v-on="on"
+                  v-if="item.category_jury.karya_tulis != null"
+                >
                   <v-icon>
-                    mdi-delete
+                    mdi-account-multiple-plus
                   </v-icon>
                 </v-btn>
               </template>
-              <span>Hapus Akun</span>
-            </v-tooltip> -->
+              <span>Pilih Mahasiswa</span>
+            </v-tooltip>
 
             <v-dialog v-model="dialog" persistent max-width="290">
               <!-- <v-tooltip right> -->
@@ -108,74 +114,6 @@
         </v-data-table>
       </v-card-text>
     </v-card>
-
-    <!-- <v-card>
-      <v-card-title
-        >Daftar Juri Karya Tulis
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="searchdaftarjury"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-card-text>
-        <v-data-table
-          :headers="headers2"
-          :items="createjuryList"
-          :search="searchdaftarjury"
-          :footer-props="{
-            'items-per-page-options': [5, 10, 25, 50]
-          }"
-          :items-per-page="5"
-        >
-          <template v-slot:[`item.karya_tulis`]="{ item }">
-            <v-checkbox
-              v-model="item.category_jury.karya_tulis"
-              :disabled="true"
-            />
-          </template>
-          <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  :to="{ name: 'JuryPaperCreate', params: { id: item.id } }"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-icon>
-                    mdi-account-multiple-plus
-                  </v-icon>
-                </v-btn>
-              </template>
-              <span>Pilih Mahasiswa</span>
-            </v-tooltip>
-
-            <v-tooltip right>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  icon
-                  :to="{ name: 'JuryDetail', params: { id: item.id } }"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-icon>
-                    mdi-information-outline
-                  </v-icon>
-                </v-btn>
-              </template>
-              <span>Detail</span>
-            </v-tooltip>
-          </template>
-        </v-data-table>
-      </v-card-text>
-    </v-card> -->
   </div>
 </template>
 
@@ -214,30 +152,30 @@ export default {
           text: "Action",
           value: "action"
         }
-      ]
+      ],
 
-      // headers2: [
-      //   {
-      //     text: "Nama Lengkap",
-      //     value: "name"
-      //   },
-      //   {
-      //     text: "NIDN",
-      //     value: "username"
-      //   },
-      //   {
-      //     text: "Email",
-      //     value: "email"
-      //   },
-      //   {
-      //     text: "Juri Karya Tulis",
-      //     value: "karya_tulis"
-      //   },
-      //   {
-      //     text: "Action",
-      //     value: "action"
-      //   }
-      // ]
+      headers2: [
+        {
+          text: "Nama Lengkap",
+          value: "name"
+        },
+        {
+          text: "NIDN",
+          value: "username"
+        },
+        {
+          text: "Email",
+          value: "email"
+        },
+        {
+          text: "Juri Karya Tulis",
+          value: "karya_tulis"
+        },
+        {
+          text: "Action",
+          value: "action"
+        }
+      ]
     };
   },
   computed: {

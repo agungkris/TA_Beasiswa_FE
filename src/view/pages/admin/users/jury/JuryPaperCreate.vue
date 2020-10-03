@@ -2,8 +2,8 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <v-card>
-          <v-card-title>Pemilihan Mahasiswa</v-card-title>
+        <v-card class="mb-5">
+          <v-card-title>Pemilihan Karya Tulis Mahasiswa</v-card-title>
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
@@ -40,10 +40,11 @@
                       class="mx-4"
                     ></v-text-field>
                   </template>
-                  <template v-slot:item.pilihan="{ item }">
-                    <v-simple-checkbox
-                      v-model="item.pilihan"
-                    ></v-simple-checkbox>
+                  <template v-slot:[`item.pilihan`]="{ item }">
+                    <v-checkbox
+                      :value="item.id"
+                      v-model="paperjuryData.submission_id"
+                    ></v-checkbox>
                   </template>
                 </v-data-table>
               </v-card-text>
@@ -54,16 +55,28 @@
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
             </v-form>
           </v-card-text>
-          <template v-slot:html>
-            {{ createjuryData.html }}
-          </template>
-          <template v-slot:js>
-            {{ createjuryData.js }}
-          </template>
+        </v-card>
+
+        <v-card>
+          <v-card-title>Mahasiswa Terpilih</v-card-title>
+          <v-card-text>
+            <v-data-table :headers="headers2" :items="paperjuryList">
+              <template v-slot:item.action="{ item }">
+                <v-btn
+                  color="red darken-4"
+                  text
+                  icon
+                  @click="onRemove(item.id)"
+                  class="mr-2"
+                  >Hapus</v-btn
+                >
+              </template>
+            </v-data-table>
+          </v-card-text>
         </v-card>
       </div>
     </div>
@@ -87,22 +100,39 @@ export default {
         },
         { text: "Program Studi", value: "student.profile.prodi" },
         { text: "Pilihan", value: "pilihan" }
+      ],
+      headers2: [
+        {
+          text: "Nama Lengkap",
+          value: "student.name"
+        },
+        {
+          text: "Program Studi",
+          value: "student.profile.prodi"
+        },
+
+        {
+          text: "Action",
+          value: "action"
+        }
       ]
     };
   },
   computed: {
     ...mapState("createjury", ["createjuryData"]),
     ...mapState("uploadscholarship", ["uploadscholarshipList"]),
-    ...mapState("period", ["periodList"])
+    ...mapState("period", ["periodList"]),
+    ...mapState("paperjury", ["paperjuryData", "paperjuryList"])
   },
 
   async mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vuetify", route: "alerts" },
-      { title: "Form Inputs & Control", route: "autocompletes" },
+      { title: "Form Inputs & Control", route: "atocompletes" },
       { title: "Fileinptus" }
     ]);
     this.getPeriodList();
+    this.getSubmissionMember();
     await this.onFetchData();
   },
 
@@ -110,19 +140,27 @@ export default {
     ...mapActions("createjury", ["updateCreateJury", "getCreateJury"]),
     ...mapActions("uploadscholarship", ["getUploadScholarshipList"]),
     ...mapActions("period", ["getPeriodList"]),
+    ...mapActions("paperjury", [
+      "createPaperJury",
+      "getSubmissionMember",
+      "deletePaperJury"
+    ]),
     async onFetchData() {
       await this.getCreateJury({ id: this.id });
       await this.getUploadScholarshipList({
         period_id: null,
-        next_stage: null
+        next_stage: null,
+        submission_member: true
       });
       await this.getPeriodList();
+      await this.getSubmissionMember({ id: this.id });
     },
 
     async onChangeFilter() {
       await this.getUploadScholarshipList({
         period_id: this.selectedPeriod,
-        next_stage: null
+        next_stage: null,
+        submission_member: true
       });
     },
 
@@ -130,12 +168,23 @@ export default {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.createjuryData.level = "juri";
-        await this.updateCreateJury({
+        await this.createPaperJury({
           id: this.id,
-          payload: this.createjuryData
+          payload: this.paperjuryData
         });
-        this.createjuryData = {};
+        this.paperjuryData = {};
         this.$router.push({ name: "JuryList" });
+      }
+    },
+    async onRemove(submission_id) {
+      try {
+        await this.deletePaperJury({
+          id: this.id,
+          submission_id: submission_id
+        });
+        await this.onFetchData();
+      } catch (error) {
+        alert(error);
       }
     }
   }
