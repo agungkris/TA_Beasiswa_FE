@@ -90,7 +90,10 @@
                   icon
                   v-bind="attrs"
                   v-on="on"
-                  :to="{ name: 'StudentsFgd', params: { id: item.id } }"
+                  :to="{
+                    name: 'StudentsFgd',
+                    params: { id: item.id, period: item.period_id }
+                  }"
                 >
                   <v-icon>
                     mdi-file-find

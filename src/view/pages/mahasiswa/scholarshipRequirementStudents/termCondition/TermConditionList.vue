@@ -17,9 +17,6 @@
               UNDUH FILE SYARAT DAN KETENTUAN BEASISWA PEMBANGUNAN JAYA
             </a>
           </template>
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
           <template v-slot:item.action="{ item }">
             <!-- {{ item }} -->
           </template>

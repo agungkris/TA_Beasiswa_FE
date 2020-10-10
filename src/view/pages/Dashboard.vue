@@ -47,11 +47,13 @@
               pemberitahuan yang nantinya akan diperlihatkan kepada mahasiswa
               yang memiliki akun pada website ini
             </p>
-            <v-btn class="mr-2" color="#880E4F" dark>Lihat Daftar Akun</v-btn>
-            <v-btn class="mr-2" color="#880E4F" dark
+            <v-btn class="mr-2 mt-2" color="#880E4F" dark
+              >Lihat Daftar Akun</v-btn
+            >
+            <v-btn class="mr-2 mt-2" color="#880E4F" dark
               >Lihat Daftar Mahasiswa</v-btn
             >
-            <v-btn color="#880E4F" dark>Lihat Daftar Juri</v-btn>
+            <v-btn class="mt-2" color="#880E4F" dark>Lihat Daftar Juri</v-btn>
           </v-card-text>
         </v-card>
       </v-col>
@@ -156,7 +158,7 @@
               Halaman Penilaian Karya Tulis merupakan halaman yang digunakan
               untuk menilai karya tulis mahasiswa yang telah dikumpulkan.
             </p>
-            <a href="media/document/tes.pdf" download>
+            <a :href="jurikaryatulisData.juri_karya_tulis">
               <v-btn color="#1A237E" dark>Lihat</v-btn>
             </a>
           </v-card-text>
@@ -173,32 +175,42 @@
               untuk memberikan penilaian kepada mahasiswa yang sedang melakukan
               presentasi.
             </p>
-            <a href="media/document/tes.pdf" download>
+            <a :href="jurifgdData.juri_fgd">
               <v-btn color="#004D40" dark>Lihat</v-btn>
             </a>
           </v-card-text>
         </v-card>
-        <!-- <v-card color="#385F73" dark>
-          <v-card-title>2. Penilaian FGD</v-card-title>
-          <v-card-text>
-            <p>
-              Pada sesi presentasi Forum Group Discussion, halaman ini digunaan
-              untuk memberikan penilaian kepada mahasiswa yang sedang melakukan
-              presentasi.
-            </p>
-            <v-btn>Lihat</v-btn>
-          </v-card-text>
-        </v-card> -->
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   computed: {
-    ...mapState(["auth"])
+    ...mapState(["auth"]),
+    ...mapState("tutorialjurikaryatulis", ["jurikaryatulisData"]),
+    ...mapState("tutorialjurifgd", ["jurifgdData"])
+  },
+
+  async mounted() {
+    await this.getJuriKaryaTulisList();
+    await this.getJuriFgdList();
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Setting", route: "alert" },
+      { title: this.title }
+    ]);
+  },
+  methods: {
+    ...mapActions("tutorialjurikaryatulis", ["getJuriKaryaTulisList"]),
+    ...mapActions("tutorialjurifgd", ["getJuriFgdList"]),
+    async onFetchData() {
+      await this.getJuriKaryaTulisList();
+      await this.getJuriFgdList();
+    }
+    // onDeleteService(id) {}
   }
 };
 </script>

@@ -5,7 +5,6 @@
         <v-card-title>DATA MAHASISWA</v-card-title>
         <v-card-text>
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
-          <!-- {{ student.profile.prodi }} -->
           <p>
             Program Studi : {{ uploadscholarshipData.student.profile.prodi }}
           </p>
@@ -20,7 +19,7 @@
         <v-card-text>
           <p>PENILAIAN KARYA TULIS :{{ paperassessmentReport.papers_score }}</p>
           <p>KOMENTAR JURI :{{ paperassessmentReport.comment }}</p>
-          <p>PENILAIAN FGD :</p>
+          <p>PENILAIAN FGD :{{ fgdassessmentReport.final_score }}</p>
         </v-card-text>
       </v-card>
     </div>
@@ -77,8 +76,8 @@ export default {
   },
   computed: {
     ...mapState("uploadscholarship", ["uploadscholarshipData"]),
-    ...mapState("paperassessment", ["paperassessmentReport"])
-    // ...mapState("fgdassessment", ["fgdassessmentData"])
+    ...mapState("paperassessment", ["paperassessmentReport"]),
+    ...mapState("fgdassessment", ["fgdassessmentReport"])
   },
   components: {},
   mounted() {
@@ -93,12 +92,16 @@ export default {
   methods: {
     ...mapActions("uploadscholarship", ["getUploadScholarship", "FinalStage"]),
     ...mapActions("paperassessment", ["report"]),
-    // ...mapActions("fgdassessment", ["getFgdAssessment"]),
+    ...mapActions("fgdassessment", ["reportFgd"]),
     // code 1
     async onFetchData() {
       await this.getUploadScholarship({ id: this.id });
       await this.report({
-        student_id: this.id,
+        student_id: this.uploadscholarshipData.student_id,
+        period_id: this.$route.params.period
+      });
+      await this.reportFgd({
+        student_id: this.uploadscholarshipData.student_id,
         period_id: this.$route.params.period
       });
       //   await this.getFgdAssessment({ id: this.id });

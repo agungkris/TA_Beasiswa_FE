@@ -1,7 +1,8 @@
 import ApiService from "../../api.service";
 const state = {
   fgdassessmentList: [],
-  fgdassessmentData: {}
+  fgdassessmentData: {},
+  fgdassessmentReport: {}
 };
 const mutations = {
   setFgdAssessmentList(state, payload) {
@@ -9,9 +10,30 @@ const mutations = {
   },
   setFgdAssessmentData(state, payload) {
     state.fgdassessmentData = payload;
+  },
+  setFgdAssessmentReport(state, payload) {
+    state.fgdassessmentReport = payload;
   }
 };
 const actions = {
+  async reportFgd(context, { student_id, period_id }) {
+    try {
+      var searchParams = new URLSearchParams();
+      if (student_id != null) {
+        searchParams.append("student_id", student_id);
+      }
+      if (period_id != null) {
+        searchParams.append("period_id", period_id);
+      }
+      let response = await ApiService.query(
+        "api/scholarship/scholarshippresentationassessments/report?" +
+          searchParams
+      );
+      context.commit("setFgdAssessmentReport", response.data);
+    } catch (error) {
+      throw error;
+    }
+  },
   async getFgdAssessmentList(context) {
     try {
       let response = await ApiService.query(

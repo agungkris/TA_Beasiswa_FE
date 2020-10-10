@@ -21,6 +21,20 @@ import fgdassessment from "./scholarship/fgdassessment.module";
 import categoryjury from "./scholarship/categoryjury.module";
 import paperjury from "./scholarship/paperjury.module";
 
+import tutoriallaporanbeasiswa from "./scholarship/tutorial/laporanbeasiswa.module";
+import tutorialakunmahasiswa from "./scholarship/tutorial/akunmahasiswa.module";
+import tutorialakunjuri from "./scholarship/tutorial/akunjuri.module";
+import tutorialgrupfgd from "./scholarship/tutorial/grupfgd.module";
+import tutorialpemberitahuanadmin from "./scholarship/tutorial/pemberitahuanadmin.module";
+import tutorialperiode from "./scholarship/tutorial/periode.module";
+import tutorialseleksibeasiswa from "./scholarship/tutorial/seleksibeasiswa.module";
+import tutorialketentuanbeasiswaadmin from "./scholarship/tutorial/ketentuanbeasiswaadmin.module";
+import tutorialjurifgd from "./scholarship/tutorial/jurifgd.module";
+import tutorialjurikaryatulis from "./scholarship/tutorial/jurikaryatulis.module";
+import tutorialpemberitahuanmahasiswa from "./scholarship/tutorial/pemberitahuanmahasiswa.module";
+import tutorialketentuanbeasiswamahasiswa from "./scholarship/tutorial/ketentuanbeasiswamahasiswa.module";
+import tutorialpengumpulandokumenmahasiswa from "./scholarship/tutorial/pengumpulandokumenmahasiswa.module";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -43,7 +57,21 @@ export default new Vuex.Store({
     paperassessment,
     fgdassessment,
     categoryjury,
-    paperjury
+    paperjury,
+
+    tutoriallaporanbeasiswa,
+    tutorialakunmahasiswa,
+    tutorialakunjuri,
+    tutorialgrupfgd,
+    tutorialpemberitahuanadmin,
+    tutorialperiode,
+    tutorialseleksibeasiswa,
+    tutorialketentuanbeasiswaadmin,
+    tutorialjurifgd,
+    tutorialjurikaryatulis,
+    tutorialpemberitahuanmahasiswa,
+    tutorialketentuanbeasiswamahasiswa,
+    tutorialpengumpulandokumenmahasiswa
     //#endregion
   }
 });

@@ -22,15 +22,26 @@ const actions = {
       throw error;
     }
   },
-  async getSubmissionMember(context, { id }) {
+  async getSubmissionMember(context, { id, period_id }) {
     try {
+      var searchParams = new URLSearchParams();
+
+      if (period_id != null) {
+        searchParams.append("period_id", period_id);
+      }
       let response = await ApiService.query(
-        `api/auth/users/submission-member/${id}`
+        `api/auth/users/submission-member/${id}?` + searchParams
       );
       context.commit("setPaperJuryList", response.data);
     } catch (error) {
       throw error;
     }
+  },
+  resetPaperJury(context) {
+    let payload = {
+      submission_id: []
+    };
+    context.commit("setPaperJuryData", payload);
   },
   async createPaperJury(context, { id, payload }) {
     try {

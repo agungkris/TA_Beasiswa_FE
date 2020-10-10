@@ -64,7 +64,10 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
-                  :to="{ name: 'JuryPaperCreate', params: { id: item.id } }"
+                  :to="{
+                    name: 'JuryPaperCreate',
+                    params: { id: item.id }
+                  }"
                   v-bind="attrs"
                   v-on="on"
                   v-if="item.category_jury.karya_tulis != null"

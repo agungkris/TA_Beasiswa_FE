@@ -93,6 +93,7 @@ export default {
       id: this.$route.params.id,
       valid: false,
       search: "",
+      selectedPeriod: "",
       headers: [
         {
           text: "Nama Mahasiswa",
@@ -143,9 +144,11 @@ export default {
     ...mapActions("paperjury", [
       "createPaperJury",
       "getSubmissionMember",
+      "resetPaperJury",
       "deletePaperJury"
     ]),
     async onFetchData() {
+      this.resetPaperJury();
       await this.getCreateJury({ id: this.id });
       await this.getUploadScholarshipList({
         period_id: null,
@@ -153,7 +156,10 @@ export default {
         submission_member: true
       });
       await this.getPeriodList();
-      await this.getSubmissionMember({ id: this.id });
+      await this.getSubmissionMember({
+        id: this.id,
+        period_id: this.selectedPeriod
+      });
     },
 
     async onChangeFilter() {
@@ -161,6 +167,11 @@ export default {
         period_id: this.selectedPeriod,
         next_stage: null,
         submission_member: true
+      });
+
+      await this.getSubmissionMember({
+        id: this.id,
+        period_id: this.selectedPeriod
       });
     },
 

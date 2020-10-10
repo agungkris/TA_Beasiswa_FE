@@ -180,7 +180,7 @@ export default new Router({
                 import("@/view/pages/admin/users/students/StudentsEdit.vue")
             },
             {
-              path: "students/fgd/:id",
+              path: "students/fgd/:id/period/:period",
               name: "StudentsFgd",
               component: () =>
                 import("@/view/pages/admin/users/students/StudentsFgd.vue")
