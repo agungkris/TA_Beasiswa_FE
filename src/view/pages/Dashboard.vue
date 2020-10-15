@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Ngetes</h1>
-    <!-- <h1 class="text-center">TUTORIAL PENGGUNAAN WEBSITE BEASISWA UPJ</h1> -->
+    <h1 class="text-center">TUTORIAL PENGGUNAAN WEBSITE BEASISWA UPJ</h1>
 
     <v-row v-if="auth.user.level == 'admin'">
       <v-col class="md-6">
