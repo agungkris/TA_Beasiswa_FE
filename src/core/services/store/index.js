@@ -35,6 +35,14 @@ import tutorialpemberitahuanmahasiswa from "./scholarship/tutorial/pemberitahuan
 import tutorialketentuanbeasiswamahasiswa from "./scholarship/tutorial/ketentuanbeasiswamahasiswa.module";
 import tutorialpengumpulandokumenmahasiswa from "./scholarship/tutorial/pengumpulandokumenmahasiswa.module";
 
+import semester from "./scholarship/anotherscholarship/semester.module";
+import academic from "./scholarship/anotherscholarship/academic.module";
+import competition from "./scholarship/anotherscholarship/competition.module";
+import event from "./scholarship/anotherscholarship/event.module";
+import organization from "./scholarship/anotherscholarship/organization.module";
+import paper from "./scholarship/anotherscholarship/paper.module";
+import financial from "./scholarship/anotherscholarship/financial.module";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -71,7 +79,15 @@ export default new Vuex.Store({
     tutorialjurikaryatulis,
     tutorialpemberitahuanmahasiswa,
     tutorialketentuanbeasiswamahasiswa,
-    tutorialpengumpulandokumenmahasiswa
+    tutorialpengumpulandokumenmahasiswa,
+
+    semester,
+    academic,
+    competition,
+    event,
+    organization,
+    paper,
+    financial
     //#endregion
   }
 });

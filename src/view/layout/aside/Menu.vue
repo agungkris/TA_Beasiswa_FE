@@ -268,7 +268,7 @@
               </a>
             </li>
           </router-link>
-          <!-- <router-link
+          <router-link
             :to="{ name: 'OthersScholarshipList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
           >
@@ -288,7 +288,7 @@
                 <span class="menu-text">Beasiswa Lainnya</span>
               </a>
             </li>
-          </router-link> -->
+          </router-link>
         </ul>
       </div>
     </li>
@@ -445,6 +445,27 @@
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon flaticon2-expand"></i>
           <span class="menu-text">Pengumpulan Dokumen Beasiswa</span>
+        </a>
+      </li>
+    </router-link>
+
+     <router-link
+      v-if="auth.user.level == 'student'"
+      :to="{ name: 'AnotherScholarshipRequirementList' }"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Pelaporan Beasiswa Lainnya</span>
         </a>
       </li>
     </router-link>

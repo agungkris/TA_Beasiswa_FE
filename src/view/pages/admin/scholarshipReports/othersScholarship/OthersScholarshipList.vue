@@ -1,32 +1,39 @@
 <template>
   <div>
-    <v-card>
+    <v-card class="mb-6">
       <v-card-title
-        >{{ title }}
-        <v-btn icon :to="{ name: 'KategoriLingkupCreate' }">
-          <v-icon>
-            mdi mdi-database-plus
-          </v-icon>
-        </v-btn>
-      </v-card-title>
+        >Laporan Mahasiswa Bidikmisi/ASAK/Dikti
+        <v-spacer></v-spacer>
+        <v-select
+          class="my-2"
+          label="Periode Pengajuan Beasiswa"
+          target="#dropdown-example"
+          v-model="selectedPeriod"
+          :items="periodList"
+          item-value="id"
+          @change="onChangeFilter"
+          item-text="name"
+        ></v-select>
+        <v-spacer></v-spacer>
+        <v-text-field
+          class="my-2"
+          v-model="searchfinal"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field
+      ></v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers" :items="kategorilingkupList">
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
-          <template v-slot:item.action="{ item }">
-            <!-- {{ item }} -->
-            <v-btn icon @click="onEditService(item.service_no)">
-              <v-icon>
-                mdi mdi-database-edit
-              </v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>
-                mdi mdi-database-remove
-              </v-icon>
-            </v-btn>
-          </template>
+        <v-data-table
+          :headers="headers"
+          :items="uploadscholarshipFgd"
+          :search="searchfinal"
+          :footer-props="{
+            'items-per-page-options': [5, 10, 25, 50]
+          }"
+          :items-per-page="5"
+        >
         </v-data-table>
       </v-card-text>
     </v-card>
@@ -38,18 +45,25 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      title: "Others Scholarship List",
       headers: [
         {
-          text: "ID",
+          text: "Semester",
           value: "id"
         },
         {
-          text: "Name",
+          text: "NIM",
+          value: "id"
+        },
+        {
+          text: "Nama Mahasiswa",
           value: "name"
         },
         {
-          text: "Description",
+          text: "Program Studi",
+          value: "description"
+        },
+        {
+          text: "Angkatan",
           value: "description"
         },
         {
