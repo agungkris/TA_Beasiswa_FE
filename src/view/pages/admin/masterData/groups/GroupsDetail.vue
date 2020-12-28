@@ -4,9 +4,9 @@
       <v-card-title>Anggota {{ this.groupData.group_name }}</v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="groupData.member">
-          <template v-slot:item.action="{ item }">
+          <!-- <template v-slot:[`item.action`]="{ item }"> -->
             <!-- {{ item }} -->
-          </template>
+          <!-- </template> -->
         </v-data-table>
       </v-card-text>
     </v-card>

@@ -14,7 +14,7 @@
           item-text="name"
         ></v-select>
         <v-data-table :headers="headers" :items="uploadscholarshipList">
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a :href="item.papers" v-bind="attrs" v-on="on">
@@ -26,6 +26,19 @@
                 </a>
               </template>
               <span>Unduh dokumen karya tulis</span>
+            </v-tooltip>
+
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <a href="https://smallseotools.com/plagiarism-checker/" v-bind="attrs" v-on="on">
+                  <v-btn icon>
+                    <v-icon>
+                      mdi-find-replace
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Pengecekan Plagiat</span>
             </v-tooltip>
 
             <v-tooltip right>
@@ -61,11 +74,11 @@ export default {
       headers: [
         {
           text: "Angkatan",
-          value: "student.profile.generation"
+          value: "student.profile.generation.name"
         },
         {
           text: "Program Studi",
-          value: "student.profile.prodi"
+          value: "student.profile.prodi.name"
         },
         {
           text: "NIM",

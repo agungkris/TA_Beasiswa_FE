@@ -21,10 +21,7 @@
       </v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="periodList">
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn

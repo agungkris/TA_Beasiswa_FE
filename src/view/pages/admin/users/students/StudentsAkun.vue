@@ -25,10 +25,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -44,6 +41,43 @@
               </template>
               <span>Edit Akun</span>
             </v-tooltip>
+
+            <v-dialog
+              v-model="dialogAkun"
+              persistent
+              max-width="290"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon v-bind="attrs" v-on="on">
+                  <v-icon color="red darken-4">
+                    mdi-account-remove
+                  </v-icon>
+                </v-btn>
+              </template>
+
+              <v-card>
+                <v-card-title class="headline"
+                  >Hapus</v-card-title
+                >
+                <v-card-text
+                  >Apakah Anda yakin ingin menghapus akun ini?</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="disable" text @click="dialogAkun = false"
+                    >Kembali</v-btn
+                  >
+                  <v-btn
+                    color="red darken-4"
+                    text
+                    icon
+                    @click="onDeleteAkun(item.id)"
+                    class="mr-2"
+                    >Hapus</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </template>
         </v-data-table>
       </v-card-text>
@@ -58,6 +92,7 @@ export default {
   data() {
     return {
       searchakun: "",
+      dialogAkun: false,
       headers: [
         {
           text: "NIM",
@@ -65,11 +100,11 @@ export default {
         },
         {
           text: "Program Studi",
-          value: "profile.prodi"
+          value: "profile.prodi_id"
         },
         {
           text: "Angkatan",
-          value: "profile.generation"
+          value: "profile.generation_id"
         },
         {
           text: "Nama Lengkap",
@@ -95,7 +130,7 @@ export default {
     await this.onFetchData();
   },
   methods: {
-    ...mapActions("users", ["getUsersList"]),
+    ...mapActions("users", ["getUsersList","deleteUsers"]),
     async onFetchData() {
       await this.getUsersList();
     },
@@ -104,6 +139,16 @@ export default {
         name: "usersDetail",
         params: { id: id }
       });
+    },
+    async onDeleteAkun(id) {
+      try {
+        this.dialogAkun = true;
+        await this.deleteUsers({ id: id });
+        await this.onFetchData();
+        this.dialogAkun = false;
+      } catch (error) {
+        alert(error);
+      }
     }
   }
 };

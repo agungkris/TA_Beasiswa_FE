@@ -12,12 +12,17 @@ const mutations = {
   }
 };
 const actions = {
-  async getEventList(context) {
+  async getEventList(context,{student_id}) {
     try {
-        let response = await ApiService.query(
-          "api/scholarship/eventachievement"
-        );
-        context.commit("setEventList", response.data.data);
+      var searchParams = new URLSearchParams();
+
+      if (student_id != null) {
+        searchParams.append("student_id", student_id);
+      }
+      let response = await ApiService.query(
+        `api/scholarship/eventachievement?` + searchParams
+      );
+      context.commit("setEventList", response.data.data);
       } catch (error) {
         throw error;
       }

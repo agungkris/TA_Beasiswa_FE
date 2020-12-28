@@ -20,6 +20,26 @@
       </li>
     </router-link>
 
+    <li
+      v-if="auth.user.level == 'admin'"
+     aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item">
+      <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
+        <i class="menu-icon flaticon2-expand"></i>
+      <span class="menu-text">Pengecekan Plagiarisme</span></a>
+    </li>
+
+    <li
+      v-if="auth.user.level == 'student'"
+     aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item">
+      <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
+        <i class="menu-icon flaticon2-expand"></i>
+      <span class="menu-text">Pengecekan Plagiarisme</span></a>
+    </li>
+
     <router-link
       v-if="auth.user.level == 'admin'"
       :to="{ name: 'AnnouncementList' }"
@@ -40,6 +60,40 @@
         </a>
       </li>
     </router-link>
+
+    <!-- <router-link
+      to="https://smallseotools.com/plagiarism-checker/"
+      v-slot="{ href, navigate, isActive, isExactActive }"
+    >
+      <li
+        aria-haspopup="true"
+        data-menu-toggle="hover"
+        class="menu-item"
+        :class="[
+          isActive && 'menu-item-active',
+          isExactActive && 'menu-item-active'
+        ]"
+      >
+        <a :href="href" class="menu-link" @click="navigate">
+          <i class="menu-icon flaticon2-expand"></i>
+          <span class="menu-text">Pengecekan Plagiat</span>
+        </a>
+      </li>
+    </router-link> -->
+    
+    <!-- <li
+      aria-haspopup="true"
+      data-menu-toggle="hover"
+      class="menu-item"
+      :class="[
+        isActive && 'menu-item-active',
+        isExactActive && 'menu-item-active'
+      ]">
+      <a href="https://smallseotools.com/plagiarism-checker/" >
+        <i class="menu-icon flaticon2-expand"></i>
+        Pengecekan Plagiat
+      </a>
+    </li> -->
 
     <li class="menu-section">
       <h4 class="menu-text">Layanan Beasiswa</h4>
@@ -285,7 +339,7 @@
                 <i class="menu-bullet menu-bullet-dot">
                   <span></span>
                 </i>
-                <span class="menu-text">Beasiswa Lainnya</span>
+                <span class="menu-text">Beasiswa ASAK/DIKTI/BIDIKMISI</span>
               </a>
             </li>
           </router-link>
@@ -444,7 +498,7 @@
       >
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon flaticon2-expand"></i>
-          <span class="menu-text">Pengumpulan Dokumen Beasiswa</span>
+          <span class="menu-text">Beasiswa Pembangunan Jaya</span>
         </a>
       </li>
     </router-link>
@@ -465,7 +519,7 @@
       >
         <a :href="href" class="menu-link" @click="navigate">
           <i class="menu-icon flaticon2-expand"></i>
-          <span class="menu-text">Pelaporan Beasiswa Lainnya</span>
+          <span class="menu-text">Beasiswa ASAK/DIKTI/BIDIKMISI</span>
         </a>
       </li>
     </router-link>

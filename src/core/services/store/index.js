@@ -20,6 +20,10 @@ import paperassessment from "./scholarship/paperassessment.module";
 import fgdassessment from "./scholarship/fgdassessment.module";
 import categoryjury from "./scholarship/categoryjury.module";
 import paperjury from "./scholarship/paperjury.module";
+import prodi from "./scholarship/prodi.module";
+import generations from "./scholarship/generations.module";
+
+
 
 import tutoriallaporanbeasiswa from "./scholarship/tutorial/laporanbeasiswa.module";
 import tutorialakunmahasiswa from "./scholarship/tutorial/akunmahasiswa.module";
@@ -66,6 +70,8 @@ export default new Vuex.Store({
     fgdassessment,
     categoryjury,
     paperjury,
+    prodi,
+    generations,
 
     tutoriallaporanbeasiswa,
     tutorialakunmahasiswa,

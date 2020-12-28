@@ -17,7 +17,6 @@ export default new Router({
           component: () => import("@/view/pages/Dashboard.vue")
         },
 
-        // AWAL ADMIN
         {
           path: "/scholarship-announcement",
           name: "ScholarshipAnnouncement",

@@ -1,7 +1,13 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>{{ title }} </v-card-title>
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Format</span>
+        <span class="title font-weight-light" style="padding-right:5px;">CV</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light">Jaya</span>
+      </v-card-title>
       <v-card-text>
         <v-data-table
           :headers="headers"
@@ -11,17 +17,17 @@
           disable-sort=""
           hide-default-header=""
         >
-          <template v-slot:item.cv_templete="{ item }">
+          <template v-slot:[`item.cv_templete`]="{ item }">
             <a :href="item.cv_templete"
               >UNDUH FILE KETENTUAN CV BEASISWA PEMBANGUNAN JAYA</a
             >
           </template>
-          <template v-slot:item.total="{ item }">
+          <!-- <template v-slot:[`item.total`]="{ item }">
             {{ formatRupiah(item.total) }}
           </template>
-          <template v-slot:item.action="{ item }">
-            <!-- {{ item }} -->
-          </template>
+          <template v-slot:[`item.action`]="{ item }">
+            {{ item }}
+          </template> -->
         </v-data-table>
       </v-card-text>
     </v-card>
@@ -33,7 +39,6 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      title: "Format CV Beasiswa Pembangunan Jaya",
       headers: [
         {
           value: "cv_templete"

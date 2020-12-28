@@ -4,16 +4,6 @@
       <v-card-title
         >Laporan Mahasiswa Bidikmisi/ASAK/Dikti
         <v-spacer></v-spacer>
-        <v-select
-          class="my-2"
-          label="Periode Pengajuan Beasiswa"
-          target="#dropdown-example"
-          v-model="selectedPeriod"
-          :items="periodList"
-          item-value="id"
-          @change="onChangeFilter"
-          item-text="name"
-        ></v-select>
         <v-spacer></v-spacer>
         <v-text-field
           class="my-2"
@@ -91,7 +81,6 @@ export default {
         params: { id: id }
       });
     }
-    // onDeleteService(id) {}
   }
 };
 </script>

@@ -52,7 +52,7 @@
           <!-- <template v-slot:item.total="{ item }">
             {{ formatRupiah(item.total) }}
           </template> -->
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
               v-if="

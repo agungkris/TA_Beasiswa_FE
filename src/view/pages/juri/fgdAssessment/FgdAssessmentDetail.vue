@@ -4,7 +4,7 @@
       <v-card-title>Anggota {{ this.groupData.group_name }}</v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="groupData.member">
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -46,11 +46,11 @@ export default {
         },
         {
           text: "Program Studi",
-          value: "profile.prodi"
+          value: "profile.prodi_id"
         },
         {
           text: "Angkatan",
-          value: "profile.generation"
+          value: "profile.generation_id"
         },
         {
           text: "Action",

@@ -1,8 +1,12 @@
 <template>
   <div>
     <v-card class="mb-6">
-      <v-card-title
-        >Mahasiswa Pendaftar Beasiswa Pembangunan Jaya
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Mahasiswa</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Pendaftar</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light">Jaya</span>
         <v-spacer></v-spacer>
         <v-select
           class="my-2"
@@ -34,7 +38,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <!-- {{ item }} -->
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
@@ -83,7 +87,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -124,11 +128,11 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "student.profile.generation"
+          value: "student.profile.generation.name"
         },
         {
           text: "Program Studi",
-          value: "student.profile.prodi"
+          value: "student.profile.prodi.name"
         },
         {
           text: "NIM",
@@ -152,11 +156,11 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "student.profile.generation"
+          value: "student.profile.generation.name"
         },
         {
           text: "Program Studi",
-          value: "student.profile.prodi"
+          value: "student.profile.prodi.name"
         },
         {
           text: "NIM",

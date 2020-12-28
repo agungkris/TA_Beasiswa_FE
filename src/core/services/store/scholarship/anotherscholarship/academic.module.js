@@ -12,12 +12,17 @@ const mutations = {
   }
 };
 const actions = {
-  async getAcademicList(context) {
+  async getAcademicList(context, {student_id}) {
     try {
-        let response = await ApiService.query(
-          "api/scholarship/academicachievement"
-        );
-        context.commit("setAcademicList", response.data.data);
+      var searchParams = new URLSearchParams();
+
+      if (student_id != null) {
+        searchParams.append("student_id", student_id);
+      }
+      let response = await ApiService.query(
+        `api/scholarship/academicachievement?` + searchParams
+      );
+      context.commit("setAcademicList", response.data.data);
       } catch (error) {
         throw error;
       }

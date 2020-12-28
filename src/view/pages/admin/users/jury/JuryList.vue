@@ -1,8 +1,12 @@
 <template>
   <div>
     <v-card>
-      <v-card-title
-        >Daftar Juri Beasiswa Pembangunan Jaya
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Daftar</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Juri</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light">Jaya</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn icon :to="{ name: 'JuryCreate' }" v-bind="attrs" v-on="on">

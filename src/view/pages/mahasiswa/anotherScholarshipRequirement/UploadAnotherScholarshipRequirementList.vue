@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3 style="text-align:center; padding-bottom:5px;">Laporan Beasiswa ASAK/DIKTI/BIDIKMISI</h3>
     <!-- AKADEMIK -->
     <v-card class="mb-6">
       <v-card-title
@@ -29,7 +30,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
             >
@@ -61,7 +62,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogAcademic"
               persistent
               max-width="290"
             >
@@ -83,7 +84,7 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogAcademic = false"
                     >Kembali</v-btn
                   >
                   <v-btn
@@ -104,8 +105,11 @@
 
     <!-- NON AKADEMIK/KOMPETISI -->
     <v-card class="mb-6">
-      <v-card-title
-        >Laporan Prestasi Non Akademik
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Prestasi</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Non</span>
+        <span class="title font-weight-light">Akademik</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -131,7 +135,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
             >
@@ -163,7 +167,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogCompetition"
               persistent
               max-width="290"
             >
@@ -185,7 +189,7 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogCompetition = false"
                     >Kembali</v-btn
                   >
                   <v-btn
@@ -206,8 +210,12 @@
 
     <!-- ORGANISASI -->
     <v-card class="mb-6">
-      <v-card-title
-        >Laporan Kegiatan Organisasi Kemahasiswaan
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Kegiatan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Organisasi</span>
+        <span class="title font-weight-light">Kemahasiswaan</span>
+
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -233,7 +241,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
             >
@@ -265,7 +273,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogOrganization"
               persistent
               max-width="290"
             >
@@ -287,14 +295,14 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogOrganization = false"
                     >Kembali</v-btn
                   >
                   <v-btn
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteCompetition(item.id)"
+                    @click="onDeleteOrganization(item.id)"
                     class="mr-2"
                     >Hapus</v-btn
                   >
@@ -308,8 +316,10 @@
 
     <!-- ACARA/EVENT -->
     <v-card class="mb-6">
-      <v-card-title
-        >Laporan Keikutsertaan Kepanitiaan
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Keikutsertaan</span>
+        <span class="title font-weight-light">Kepanitiaan</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -335,7 +345,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
             >
@@ -367,7 +377,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogEvent"
               persistent
               max-width="290"
             >
@@ -389,14 +399,14 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogEvent = false"
                     >Kembali</v-btn
                   >
                   <v-btn
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteCompetition(item.id)"
+                    @click="onDeleteEvent(item.id)"
                     class="mr-2"
                     >Hapus</v-btn
                   >
@@ -410,8 +420,10 @@
 
     <!-- PAPER/KARYA TULIS -->
     <v-card class="mb-6">
-      <v-card-title
-        >Laporan Publikasi Ilmiah/Karya Tulis/PKM
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Publikasi</span>
+        <span class="title font-weight-light">Ilmiah/Karya Tulis/PKM</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -437,7 +449,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               right
             >
@@ -469,7 +481,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogPaper"
               persistent
               max-width="290"
             >
@@ -491,14 +503,14 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogPaper = false"
                     >Kembali</v-btn
                   >
                   <v-btn
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteCompetition(item.id)"
+                    @click="onDeletePaper(item.id)"
                     class="mr-2"
                     >Hapus</v-btn
                   >
@@ -512,8 +524,11 @@
 
     <!-- LAPORAN KEUANGAN -->
     <v-card class="mb-6">
-      <v-card-title
-        >Laporan Keuangan Biaya Pendidikan
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Keuangan</span>
+        <span class="title font-weight-light" style="padding-right:5px;">Biaya</span>
+        <span class="title font-weight-light">Pendidikan</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -539,7 +554,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:item.action="{ item }">
+          <template v-slot:[`item.action`]="{ item }">
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -557,7 +572,7 @@
             </v-tooltip>
 
             <v-dialog
-              v-model="dialog"
+              v-model="dialogFinancial"
               persistent
               max-width="290"
             >
@@ -579,14 +594,14 @@
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
+                  <v-btn color="disable" text @click="dialogFinancial = false"
                     >Kembali</v-btn
                   >
                   <v-btn
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteCompetition(item.id)"
+                    @click="onDeleteFinancial(item.id)"
                     class="mr-2"
                     >Hapus</v-btn
                   >
@@ -606,7 +621,12 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      dialog: false,
+      dialogAcademic: false,
+      dialogCompetition: false,
+      dialogOrganization: false,
+      dialogEvent: false,
+      dialogPaper: false,
+      dialogFinancial: false,
       academic: [
         {
           text: "Semester",
@@ -748,6 +768,7 @@ export default {
     ...mapState("event", ["eventList"]),
     ...mapState("paper", ["paperList"]),
     ...mapState("financial", ["financialList"]),
+    ...mapState(["auth"])
   },
 
   async mounted() {
@@ -777,20 +798,20 @@ export default {
       "getFinancialList","deleteFinancial"
     ]),
     async onFetchData() {
-      await this.getAcademicList();
-      await this.getCompetitionList();
-      await this.getOrganizationList();
-      await this.getEventList();
-      await this.getPaperList();
-      await this.getFinancialList();
+      await this.getAcademicList({student_id: this.auth.user.id});
+      await this.getCompetitionList({student_id: this.auth.user.id});
+      await this.getOrganizationList({student_id: this.auth.user.id});
+      await this.getEventList({student_id: this.auth.user.id});
+      await this.getPaperList({student_id: this.auth.user.id});
+      await this.getFinancialList({student_id: this.auth.user.id});
     },
     
     async onDeleteAcademic(id) {
       try {
-        this.dialog = true;
+        this.dialogAcademic = true;
         await this.deleteAcademic({ id: id });
         await this.onFetchData();
-        this.dialog = false;
+        this.dialogAcademic = false;
       } catch (error) {
         alert(error);
       }
@@ -798,10 +819,54 @@ export default {
 
     async onDeleteCompetition(id) {
       try {
-        this.dialog = true;
+        this.dialogCompetition = true;
         await this.deleteCompetition({ id: id });
         await this.onFetchData();
-        this.dialog = false;
+        this.dialogCompetition = false;
+      } catch (error) {
+        alert(error);
+      }
+    },
+
+    async onDeleteOrganization(id) {
+      try {
+        this.dialogOrganization = true;
+        await this.deleteOrganization({ id: id });
+        await this.onFetchData();
+        this.dialogOrganization = false;
+      } catch (error) {
+        alert(error);
+      }
+    },
+
+    async onDeleteEvent(id) {
+      try {
+        this.dialogEvent = true;
+        await this.deleteEvent({ id: id });
+        await this.onFetchData();
+        this.dialogEvent = false;
+      } catch (error) {
+        alert(error);
+      }
+    },
+
+    async onDeletePaper(id) {
+      try {
+        this.dialogPaper = true;
+        await this.deletePaper({ id: id });
+        await this.onFetchData();
+        this.dialogPaper = false;
+      } catch (error) {
+        alert(error);
+      }
+    },
+
+    async onDeleteFinancial(id) {
+      try {
+        this.dialogFinancial = true;
+        await this.deleteFinancial({ id: id });
+        await this.onFetchData();
+        this.dialogFinancial = false;
       } catch (error) {
         alert(error);
       }

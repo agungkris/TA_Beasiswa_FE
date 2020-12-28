@@ -1,7 +1,7 @@
 <template>
   <div class="topbar-item">
     <div
-      class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
+      class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" style="margin-right:2px;"
       id="kt_quick_user_toggle"
     >
       <span

@@ -12,12 +12,17 @@ const mutations = {
   }
 };
 const actions = {
-  async getFinancialList(context) {
+  async getFinancialList(context, {student_id}) {
     try {
-        let response = await ApiService.query(
-          "api/scholarship/financialreport"
-        );
-        context.commit("setFinancialList", response.data);
+      var searchParams = new URLSearchParams();
+
+      if (student_id != null) {
+        searchParams.append("student_id", student_id);
+      }
+      let response = await ApiService.query(
+        `api/scholarship/financialreport?` + searchParams
+      );
+      context.commit("setFinancialList", response.data);
       } catch (error) {
         throw error;
       }
