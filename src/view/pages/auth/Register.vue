@@ -30,17 +30,17 @@
       </div>
 
       <!--begin::Form-->
-      <b-form class="usersData" ref="usersData" @submit.stop.prevent="onSubmit">
+      <b-form ref="usersData" class="usersData" @submit.stop.prevent="onSubmit">
         <b-form-group
           id="example-input-group-0"
           label=""
           label-for="example-input-0"
         >
           <b-form-input
-            class="form-control form-control-solid h-auto py-5 px-6"
             id="example-input-0"
-            name="example-input-0"
             v-model="usersData.name"
+            class="form-control form-control-solid h-auto py-5 px-6"
+            name="example-input-0"
             :state="validateState('name')"
             aria-describedby="input-0-live-feedback"
             placeholder="Nama Lengkap"
@@ -57,10 +57,10 @@
           label-for="example-input-1"
         >
           <b-form-input
-            class="form-control form-control-solid h-auto py-5 px-6"
             id="example-input-1"
-            name="example-input-1"
             v-model="usersData.username"
+            class="form-control form-control-solid h-auto py-5 px-6"
+            name="example-input-1"
             :state="validateState('username')"
             aria-describedby="input-1-live-feedback"
             placeholder="NIM"
@@ -97,10 +97,10 @@
           label-for="example-input-5"
         >
           <b-form-input
-            class="form-control form-control-solid h-auto py-5 px-6"
             id="example-input-5"
-            name="example-input-5"
             v-model="usersData.generation"
+            class="form-control form-control-solid h-auto py-5 px-6"
+            name="example-input-5"
             :state="validateState('generation')"
             aria-describedby="input-5-live-feedback"
             placeholder="Tahun Angkatan"
@@ -117,10 +117,10 @@
           label-for="example-input-2"
         >
           <b-form-input
-            class="form-control form-control-solid h-auto py-5 px-6"
             id="example-input-2"
-            name="example-input-2"
             v-model="usersData.email"
+            class="form-control form-control-solid h-auto py-5 px-6"
+            name="example-input-2"
             :state="validateState('email')"
             aria-describedby="input-2-live-feedback"
             placeholder="Email (Username)"
@@ -137,11 +137,11 @@
           label-for="example-input-3"
         >
           <b-form-input
+            id="example-input-3"
+            v-model="usersData.password"
             class="form-control form-control-solid h-auto py-5 px-6"
             type="password"
-            id="example-input-3"
             name="example-input-3"
-            v-model="usersData.password"
             :state="validateState('password')"
             aria-describedby="input-3-live-feedback"
             placeholder="Password"
@@ -155,15 +155,15 @@
         <!--begin::Action-->
         <div class="form-group d-flex flex-wrap flex-center">
           <button
-            type="submit"
             ref="kt_login_signup_submit"
+            type="submit"
             class="btn btn-outline-success font-weight-bold px-9 py-4 my-3 font-size-3 mx-4"
           >
             Daftar
           </button>
           <button
-            v-on:click="$router.push('login')"
             class="btn btn-outline-secondary font-weight-bold px-9 py-4 my-3 font-size-3 mx-4"
+            @click="$router.push('login')"
           >
             Batal
           </button>
@@ -183,25 +183,25 @@
 </style>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 // import { REGISTER } from "@/core/services/store/auth.module";
-import { LOGOUT } from '@/core/services/store/auth.module'
+import { LOGOUT } from "@/core/services/store/auth.module";
 
-import { validationMixin } from 'vuelidate'
-import { email, required, minLength } from 'vuelidate/lib/validators'
-import { SET_BREADCRUMB } from '@/core/services/store/breadcrumbs.module'
+import { validationMixin } from "vuelidate";
+import { email, required, minLength } from "vuelidate/lib/validators";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  name: "Register",
   mixins: [validationMixin],
-  name: 'register',
   data() {
     return {
       // Remove this dummy login info
       form: {
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       }
-    }
+    };
   },
   validations: {
     usersData: {
@@ -231,9 +231,30 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    }),
+    ...mapState("users", ["usersData"]),
+    ...mapState("prodi", ["prodiList"]),
+    ...mapState("generations", ["generationsList"])
+  },
+
+  async mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      {
+        title: "Setting",
+        route: "alert"
+      },
+      {
+        title: this.title
+      }
+    ]);
+    await this.getProdiList();
+  },
   methods: {
-    ...mapActions('users', ['createUsers']),
-    ...mapActions('prodi', ['getProdiList']),
+    ...mapActions("users", ["createUsers"]),
+    ...mapActions("prodi", ["getProdiList"]),
     // code 1
     async validate() {
       if (
@@ -242,20 +263,20 @@ export default {
       ) {
         await this.createUsers({
           payload: this.usersData
-        })
+        });
         await this.createProfiles({
           payload: this.profilesData
-        })
-        this.usersData = {}
-        this.profilesData = {}
+        });
+        this.usersData = {};
+        this.profilesData = {};
         this.$router.push({
-          name: 'Login'
-        })
+          name: "Login"
+        });
       }
     },
     validateState(name) {
-      const { $dirty, $error } = this.$v.usersData[name]
-      return $dirty ? !$error : null
+      const { $dirty, $error } = this.$v.usersData[name];
+      return $dirty ? !$error : null;
     },
     resetusersData() {
       this.usersData = {
@@ -265,17 +286,17 @@ export default {
         generation: null,
         email: null,
         password: null
-      }
+      };
 
       this.$nextTick(() => {
-        this.$v.$reset()
-      })
+        this.$v.$reset();
+      });
     },
     onSubmit() {
-      this.$v.usersData.$touch()
+      this.$v.usersData.$touch();
       if (this.$v.usersData.$anyError) {
-        console.log('asdasd')
-        return
+        console.log("asdasd");
+        return;
       }
 
       // const name = this.usersData.name;
@@ -283,19 +304,23 @@ export default {
       // const password = this.usersData.password;
 
       // clear existing errors
-      this.$store.dispatch(LOGOUT)
+      this.$store.dispatch(LOGOUT);
 
       // set spinner to submit button
-      const submitButton = this.$refs['kt_login_signup_submit']
-      submitButton.classList.add('spinner', 'spinner-light', 'spinner-right')
+      const submitButton = this.$refs["kt_login_signup_submit"];
+      submitButton.classList.add("spinner", "spinner-light", "spinner-right");
       this.createUsers({
         payload: this.usersData
       }).then(() => {
         this.$router.push({
-          name: 'login'
-        })
-      })
-      submitButton.classList.remove('spinner', 'spinner-light', 'spinner-right')
+          name: "login"
+        });
+      });
+      submitButton.classList.remove(
+        "spinner",
+        "spinner-light",
+        "spinner-right"
+      );
 
       // dummy delay
       // setTimeout(() => {
@@ -315,27 +340,6 @@ export default {
       //   );
       // }, 2000);
     }
-  },
-  computed: {
-    ...mapState({
-      errors: (state) => state.auth.errors
-    }),
-    ...mapState('users', ['usersData']),
-    ...mapState('prodi', ['prodiList']),
-    ...mapState('generations', ['generationsList'])
-  },
-
-  async mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      {
-        title: 'Setting',
-        route: 'alert'
-      },
-      {
-        title: this.title
-      }
-    ])
-    await this.getProdiList()
   }
-}
+};
 </script>

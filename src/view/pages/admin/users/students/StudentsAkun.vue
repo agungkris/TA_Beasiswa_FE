@@ -61,8 +61,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteUsers(item.id)"
                     class="mr-2"
+                    @click="onDeleteUsers(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>
@@ -76,70 +76,70 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import { SET_BREADCRUMB } from '@/core/services/store/breadcrumbs.module'
+import { mapState, mapActions } from "vuex";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      searchakun: '',
+      searchakun: "",
       dialogAkun: false,
       header: [
         {
-          text: 'NIM',
-          value: 'username'
+          text: "NIM",
+          value: "username"
         },
         {
-          text: 'Program Studi',
-          value: 'profile.prodi.name'
+          text: "Program Studi",
+          value: "profile.prodi.name"
         },
         {
-          text: 'Angkatan',
-          value: 'profile.generation'
+          text: "Angkatan",
+          value: "profile.generation"
         },
         {
-          text: 'Nama Lengkap',
-          value: 'name'
+          text: "Nama Lengkap",
+          value: "name"
         },
         {
-          text: 'Action',
-          value: 'action'
+          text: "Action",
+          value: "action"
         }
       ]
-    }
+    };
   },
   computed: {
-    ...mapState('users', ['usersList'])
+    ...mapState("users", ["usersList"])
   },
 
   async mounted() {
     // await this.getCreateJuryList();
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: 'Setting', route: 'alert' },
+      { title: "Setting", route: "alert" },
       { title: this.title }
-    ])
-    await this.onFetchData()
+    ]);
+    await this.onFetchData();
   },
   methods: {
-    ...mapActions('users', ['getUsersList', 'deleteUsers']),
+    ...mapActions("users", ["getUsersList", "deleteUsers"]),
     async onFetchData() {
-      await this.getUsersList()
+      await this.getUsersList();
     },
     onEditUsers(id) {
       this.$router.push({
-        name: 'usersDetail',
+        name: "usersDetail",
         params: { id: id }
-      })
+      });
     },
     async onDeleteUsers(id) {
       try {
-        this.dialogAkun = true
-        await this.deleteUsers({ id: id })
-        await this.onFetchData()
-        this.dialogAkun = false
+        this.dialogAkun = true;
+        await this.deleteUsers({ id: id });
+        await this.onFetchData();
+        this.dialogAkun = false;
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     }
   }
-}
+};
 </script>
