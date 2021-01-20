@@ -34,31 +34,21 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  <v-icon>
-                    mdi-account-edit
-                  </v-icon>
+                  <v-icon> mdi-account-edit </v-icon>
                 </v-btn>
               </template>
               <span>Edit Akun</span>
             </v-tooltip>
 
-            <v-dialog
-              v-model="dialogAkun"
-              persistent
-              max-width="290"
-            >
+            <v-dialog v-model="dialogAkun" persistent max-width="290">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4">
-                    mdi-account-remove
-                  </v-icon>
+                  <v-icon color="red darken-4"> mdi-account-remove </v-icon>
                 </v-btn>
               </template>
 
               <v-card>
-                <v-card-title class="headline"
-                  >Hapus</v-card-title
-                >
+                <v-card-title class="headline">Hapus</v-card-title>
                 <v-card-text
                   >Apakah Anda yakin ingin menghapus akun ini?</v-card-text
                 >
@@ -86,70 +76,70 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+import { mapState, mapActions } from 'vuex'
+import { SET_BREADCRUMB } from '@/core/services/store/breadcrumbs.module'
 export default {
   data() {
     return {
-      searchakun: "",
+      searchakun: '',
       dialogAkun: false,
       header: [
         {
-          text: "NIM",
-          value: "username"
+          text: 'NIM',
+          value: 'username'
         },
         {
-          text: "Program Studi",
-          value: "profile.prodi_id"
+          text: 'Program Studi',
+          value: 'profile.prodi.name'
         },
         {
-          text: "Angkatan",
-          value: "profile.generation"
+          text: 'Angkatan',
+          value: 'profile.generation'
         },
         {
-          text: "Nama Lengkap",
-          value: "name"
+          text: 'Nama Lengkap',
+          value: 'name'
         },
         {
-          text: "Action",
-          value: "action"
+          text: 'Action',
+          value: 'action'
         }
       ]
-    };
+    }
   },
   computed: {
-    ...mapState("users", ["usersList"])
+    ...mapState('users', ['usersList'])
   },
 
   async mounted() {
     // await this.getCreateJuryList();
     this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Setting", route: "alert" },
+      { title: 'Setting', route: 'alert' },
       { title: this.title }
-    ]);
-    await this.onFetchData();
+    ])
+    await this.onFetchData()
   },
   methods: {
-    ...mapActions("users", ["getUsersList","deleteUsers"]),
+    ...mapActions('users', ['getUsersList', 'deleteUsers']),
     async onFetchData() {
-      await this.getUsersList();
+      await this.getUsersList()
     },
     onEditUsers(id) {
       this.$router.push({
-        name: "usersDetail",
+        name: 'usersDetail',
         params: { id: id }
-      });
+      })
     },
     async onDeleteUsers(id) {
       try {
-        this.dialogAkun = true;
-        await this.deleteUsers({ id: id });
-        await this.onFetchData();
-        this.dialogAkun = false;
+        this.dialogAkun = true
+        await this.deleteUsers({ id: id })
+        await this.onFetchData()
+        this.dialogAkun = false
       } catch (error) {
-        alert(error);
+        alert(error)
       }
     }
   }
-};
+}
 </script>

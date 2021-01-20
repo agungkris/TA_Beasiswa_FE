@@ -77,10 +77,11 @@
           label-for="example-input-4"
         >
           <b-form-select
-            v-model="usersData.prodi"
+            v-model="usersData.prodi_id"
             :options="prodiList"
             value-field="id"
             text-field="name"
+            placeholder="Program Studi"
           ></b-form-select>
           <!-- <b-form-input class="form-control form-control-solid h-auto py-5 px-6" id="example-input-4"
             name="example-input-4" v-model="usersData.prodi" :state="validateState('prodi')"
@@ -212,7 +213,7 @@ export default {
         required,
         minLength: minLength(3)
       },
-      prodi: {
+      prodi_id: {
         required
         // value: "student.profile.prodi"
       },
@@ -260,7 +261,7 @@ export default {
       this.usersData = {
         name: null,
         username: null,
-        prodi: null,
+        prodi_id: null,
         generation: null,
         email: null,
         password: null
@@ -273,6 +274,7 @@ export default {
     onSubmit() {
       this.$v.usersData.$touch()
       if (this.$v.usersData.$anyError) {
+        console.log('asdasd')
         return
       }
 
