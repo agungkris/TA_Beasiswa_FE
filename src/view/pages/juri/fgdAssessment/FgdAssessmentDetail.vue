@@ -50,7 +50,7 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "profile.generation_id"
+          value: "profile.generation"
         },
         {
           text: "Action",

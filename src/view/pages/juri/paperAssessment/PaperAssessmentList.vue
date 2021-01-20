@@ -74,7 +74,7 @@ export default {
       headers: [
         {
           text: "Angkatan",
-          value: "student.profile.generation.name"
+          value: "student.profile.generation"
         },
         {
           text: "Program Studi",

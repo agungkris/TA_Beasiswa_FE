@@ -128,7 +128,7 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "student.profile.generation.name"
+          value: "student.profile.generation"
         },
         {
           text: "Program Studi",
@@ -156,7 +156,7 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "student.profile.generation.name"
+          value: "student.profile.generation"
         },
         {
           text: "Program Studi",

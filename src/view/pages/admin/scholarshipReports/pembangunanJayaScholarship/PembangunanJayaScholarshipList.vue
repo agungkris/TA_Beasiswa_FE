@@ -87,72 +87,6 @@
         </v-flex>
       </v-layout>
       </v-container>
-      
-      
-      <!-- <v-row>
-        <v-col class="md-4 mb-6">
-          <v-card>
-          <v-card-title>
-            <span class="title font-weight-light" style="padding-right:5px;">Fakultas</span>
-            <span class="title font-weight-light" style="padding-right:5px;">Humaniora</span>
-            <span class="title font-weight-light" style="padding-right:5px;">dan</span>
-            <span class="title font-weight-light">Bisnis</span>
-          </v-card-title>
-          <v-card-text>
-            <p>Akuntansi: {{ reportData.prodiAkun }} Orang</p>
-            <p>Manajemen: {{ reportData.prodiMene }} Orang</p>
-            <p>Ilmu Komunikasi: {{ reportData.prodiIlkom }} Orang</p>
-            <p>Psikologi: {{ reportData.prodiPsi }} Orang</p>
-            <b>Total FHB: {{ reportData.totalfhb }} Orang</b>
-          </v-card-text>
-        </v-card>
-        </v-col>
-
-        <v-col class="md-4 mb-6">
-          <v-card>
-          <v-card-title>
-            <span class="title font-weight-light" style="padding-right:5px;">Fakultas</span>
-            <span class="title font-weight-light" style="padding-right:5px;">Teknologi</span>
-            <span class="title font-weight-light" style="padding-right:5px;">dan</span>
-            <span class="title font-weight-light">Desain</span>
-          </v-card-title>
-          <v-card-text>
-            <p>
-              Desain Komunikasi Visual: {{ reportData.prodiDkv }} Orang
-            </p>
-            <p>Desain Produk: {{ reportData.prodiDp }} Orang</p>
-            <p>Informatika: {{ reportData.prodiInformatika }} Orang</p>
-            <p>Sistem Informasi: {{ reportData.prodiSif }} Orang</p>
-            <p>Arsitektur: {{ reportData.prodiArsi }} Orang</p>
-            <p>Teknik Sipil: {{ reportData.prodiTeksip }} Orang</p>
-            <b>Total FTD: {{ reportData.totalftd }} Orang</b>
-          </v-card-text>
-        </v-card>
-        </v-col>
-
-        <v-col class="md-4 mb-6">
-          <v-card>
-          <v-card-title>
-            <span class="title font-weight-light" style="padding-right:5px;">Daftar</span>
-            <span class="title font-weight-light" style="padding-right:5px;">Mahasiswa</span>
-            <span class="title font-weight-light" style="padding-right:5px;">Per</span>
-            <span class="title font-weight-light">Angkatan</span>
-          </v-card-title>
-          <v-card-text>
-            <p>Angkatan 2017: {{ reportData.angkatan17 }} Orang</p>
-            <p>Angkatan 2018: {{ reportData.angkatan18 }} Orang</p>
-            <p>Angkatan 2019: {{ reportData.angkatan19 }} Orang</p>
-            <p>Angkatan 2020: {{ reportData.angkatan20 }} Orang</p>
-            <b>Total Keseluruhan: {{ reportData.total }} Orang</b>
-            <p>
-              Jumlah dana beasiswa yang dikeluarkan: {{ reportData.total }} x
-              3.500.000 =
-              {{ reportData.hasil }}
-            </p>
-          </v-card-text>
-        </v-card>
-        </v-col>
-      </v-row>  -->
   </div>
 </template>
 <script>
@@ -174,7 +108,7 @@
           },
           {
             text: "Angkatan",
-            value: "student.profile.generation.name"
+            value: "student.profile.generation"
           },
           {
             text: "Program Studi",
@@ -189,107 +123,6 @@
             value: "student.name"
           }
         ],
-
-        ilkom: [{
-          id: 1,
-          name: "PRODI ILMU KOMUNIKASI : 10 ORANG",
-          children: [{
-              id: 2,
-              name: "Angkatan 2017: 3 Orang",
-              value: "student.name"
-            },
-            {
-              id: 3,
-              name: "Angkatan 2018: 5 Orang",
-              value: "student.username"
-            },
-            {
-              id: 4,
-              name: "Angkatan 2019: 1 Orang",
-              value: "student.prodi"
-            },
-            {
-              id: 5,
-              name: "Angkatan 2020 : 1 Orang",
-              value: "student.generation"
-            }
-          ]
-        }],
-        dkv: [{
-          id: 1,
-          name: "PRODI DESAIN KOMUNIKASI VISUAL : 10 ORANG",
-          children: [{
-              id: 2,
-              name: "Angkatan 2017: 3 Orang",
-              value: "student.name"
-            },
-            {
-              id: 3,
-              name: "Angkatan 2018: 5 Orang",
-              value: "student.username"
-            },
-            {
-              id: 4,
-              name: "Angkatan 2019: 1 Orang",
-              value: "student.prodi"
-            },
-            {
-              id: 5,
-              name: "Angkatan 2020 : 1 Orang",
-              value: "student.generation"
-            }
-          ]
-        }],
-        inf: [{
-          id: 1,
-          name: "PRODI INFORMATIKA : 10 ORANG",
-          children: [{
-              id: 2,
-              name: "Angkatan 2017: 3 Orang",
-              value: "student.name"
-            },
-            {
-              id: 3,
-              name: "Angkatan 2018: 5 Orang",
-              value: "student.username"
-            },
-            {
-              id: 4,
-              name: "Angkatan 2019: 1 Orang",
-              value: "student.prodi"
-            },
-            {
-              id: 5,
-              name: "Angkatan 2020 : 1 Orang",
-              value: "student.generation"
-            }
-          ]
-        }],
-        sipil: [{
-          id: 1,
-          name: "PRODI TEKNIK SIPIL : 10 ORANG",
-          children: [{
-              id: 2,
-              name: "Angkatan 2017: 3 Orang",
-              value: "student.name"
-            },
-            {
-              id: 3,
-              name: "Angkatan 2018: 5 Orang",
-              value: "student.username"
-            },
-            {
-              id: 4,
-              name: "Angkatan 2019: 1 Orang",
-              value: "student.prodi"
-            },
-            {
-              id: 5,
-              name: "Angkatan 2020 : 1 Orang",
-              value: "student.generation"
-            }
-          ]
-        }]
       };
     },
     computed: {

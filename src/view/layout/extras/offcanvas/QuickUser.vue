@@ -85,7 +85,7 @@
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
           <router-link
-            to="/builder"
+            :to="{ name: 'ProfileEdit' }"
             @click.native="closeOffcanvas"
             href="#"
             class="navi-item"

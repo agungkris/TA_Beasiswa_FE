@@ -6,7 +6,7 @@
         <v-card-text>
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
           <p>
-            Program Studi : {{ uploadscholarshipData.student.profile.prodi }}
+            Program Studi : {{ uploadscholarshipData.student.profile.prodi.name }}
           </p>
           <p>
             Angkatan : {{ uploadscholarshipData.student.profile.generation }}

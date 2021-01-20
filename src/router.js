@@ -483,6 +483,22 @@ export default new Router({
           ]
         },
         // AKHIR MAHASISWA
+        
+        {
+          path: "/profile",
+          name: "Profile",
+          component: () => import("@/view/pages/vuetify/Vuetify.vue"),
+          children: [
+            {
+              path: "profile/edit",
+              name: "ProfileEdit",
+              component: () =>
+                import(
+                  "@/view/pages/Profile.vue"
+                )
+            },
+          ]
+        },
 
         {
           path: "/wizard",

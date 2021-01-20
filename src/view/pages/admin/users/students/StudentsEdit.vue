@@ -10,7 +10,7 @@
             Program Studi : {{ uploadscholarshipData.student.profile.prodi.name }}
           </p>
           <p>
-            Angkatan : {{ uploadscholarshipData.student.profile.generation.name }}
+            Angkatan : {{ uploadscholarshipData.student.profile.generation }}
           </p>
         </v-card-text>
       </v-card>

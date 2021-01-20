@@ -94,7 +94,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      title: "Periode List",
+      title: "Periode Beasiswa Pembangunan Jaya",
       isLoading: false,
       dialog: false,
       headers: [

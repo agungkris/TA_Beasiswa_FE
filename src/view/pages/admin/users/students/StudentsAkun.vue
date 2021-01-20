@@ -17,7 +17,7 @@
       </v-card-title>
       <v-card-text>
         <v-data-table
-          :headers="headers"
+          :headers="header"
           :items="usersList"
           :search="searchakun"
           :footer-props="{
@@ -71,7 +71,7 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteAkun(item.id)"
+                    @click="onDeleteUsers(item.id)"
                     class="mr-2"
                     >Hapus</v-btn
                   >
@@ -93,7 +93,7 @@ export default {
     return {
       searchakun: "",
       dialogAkun: false,
-      headers: [
+      header: [
         {
           text: "NIM",
           value: "username"
@@ -104,7 +104,7 @@ export default {
         },
         {
           text: "Angkatan",
-          value: "profile.generation_id"
+          value: "profile.generation"
         },
         {
           text: "Nama Lengkap",
@@ -140,7 +140,7 @@ export default {
         params: { id: id }
       });
     },
-    async onDeleteAkun(id) {
+    async onDeleteUsers(id) {
       try {
         this.dialogAkun = true;
         await this.deleteUsers({ id: id });
