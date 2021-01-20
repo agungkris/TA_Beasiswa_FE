@@ -19,7 +19,9 @@
     <!--begin::Signin-->
     <div class="login-form login-signin">
       <div class="text-center">
-        <h3 class="font-size-h1">MASUK</h3>
+        <h3 class="font-size-h1">
+          MASUK
+        </h3>
         <p class="text-muted font-weight-semi-bold">
           Masukan Nama Pengguna dan Kata Sandi
         </p>
@@ -34,16 +36,16 @@
           </div>
         </div> -->
 
-        <b-alert variant="danger" v-if="loginError" show
-          >Username atau Password yang dimasukkan salah</b-alert
-        >
+        <b-alert v-if="loginError" variant="danger" show>
+          Username atau Password yang dimasukkan salah
+        </b-alert>
 
         <div
           role="alert"
-          v-bind:class="{ show: errors.length }"
+          :class="{ show: errors.length }"
           class="alert fade alert-danger"
         >
-          <div class="alert-text" v-for="(error, i) in errors" :key="i">
+          <div v-for="(error, i) in errors" :key="i" class="alert-text">
             {{ error }}
           </div>
         </div>
@@ -54,14 +56,14 @@
           label-for="example-input-1"
         >
           <b-form-input
-            class="form-control form-control-solid h-auto py-5 px-6"
             id="example-input-1"
-            name="example-input-1"
             v-model="$v.form.username.$model"
+            class="form-control form-control-solid h-auto py-5 px-6"
+            name="example-input-1"
             :state="validateState('username')"
             aria-describedby="input-1-live-feedback"
             placeholder="Email"
-          ></b-form-input>
+          />
 
           <b-form-invalid-feedback id="input-1-live-feedback">
             username wajib diisi dan menggunakan format username.
@@ -74,15 +76,15 @@
           label-for="example-input-2"
         >
           <b-form-input
+            id="example-input-2"
+            v-model="$v.form.password.$model"
             class="form-control form-control-solid h-auto py-5 px-6"
             type="password"
-            id="example-input-2"
             name="example-input-2"
-            v-model="$v.form.password.$model"
             :state="validateState('password')"
             aria-describedby="input-2-live-feedback"
             placeholder="Password"
-          ></b-form-input>
+          />
 
           <b-form-invalid-feedback id="input-2-live-feedback">
             Password wajib diisi.
@@ -122,8 +124,8 @@ import { validationMixin } from "vuelidate";
 import { minLength, required } from "vuelidate/lib/validators";
 
 export default {
+  name: "Login",
   mixins: [validationMixin],
-  name: "login",
   data() {
     return {
       // Remove this dummy login info
@@ -145,6 +147,11 @@ export default {
         minLength: minLength(3)
       }
     }
+  },
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    })
   },
   methods: {
     validateState(name) {
@@ -205,11 +212,6 @@ export default {
 
       // }, 2000);
     }
-  },
-  computed: {
-    ...mapState({
-      errors: state => state.auth.errors
-    })
   }
 };
 </script>

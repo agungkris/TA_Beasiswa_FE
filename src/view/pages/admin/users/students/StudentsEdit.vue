@@ -7,7 +7,8 @@
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
           <!-- {{ student.profile.prodi }} -->
           <p>
-            Program Studi : {{ uploadscholarshipData.student.profile.prodi.name }}
+            Program Studi :
+            {{ uploadscholarshipData.student.profile.prodi.name }}
           </p>
           <p>
             Angkatan : {{ uploadscholarshipData.student.profile.generation }}
@@ -54,7 +55,7 @@
       </v-card>
     </div>
 
-    <v-card-text class="text-center">   
+    <v-card-text class="text-center">
       <v-btn color="success" class="mr-4" @click="validate(1)"
         >Lolos Administrasi</v-btn
       >

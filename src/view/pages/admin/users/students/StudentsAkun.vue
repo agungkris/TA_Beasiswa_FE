@@ -42,11 +42,7 @@
               <span>Edit Akun</span>
             </v-tooltip>
 
-            <v-dialog
-              v-model="dialogAkun"
-              persistent
-              max-width="290"
-            >
+            <v-dialog v-model="dialogAkun" persistent max-width="290">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon color="red darken-4">
@@ -56,9 +52,7 @@
               </template>
 
               <v-card>
-                <v-card-title class="headline"
-                  >Hapus</v-card-title
-                >
+                <v-card-title class="headline">Hapus</v-card-title>
                 <v-card-text
                   >Apakah Anda yakin ingin menghapus akun ini?</v-card-text
                 >
@@ -71,8 +65,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDeleteUsers(item.id)"
                     class="mr-2"
+                    @click="onDeleteUsers(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>
@@ -130,7 +124,7 @@ export default {
     await this.onFetchData();
   },
   methods: {
-    ...mapActions("users", ["getUsersList","deleteUsers"]),
+    ...mapActions("users", ["getUsersList", "deleteUsers"]),
     async onFetchData() {
       await this.getUsersList();
     },
