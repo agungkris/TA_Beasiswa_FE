@@ -2,26 +2,34 @@
   <div>
     <v-card class="mb-6">
       <v-card-title>
-        <span class="title font-weight-light" style="padding-right:5px;">Mahasiswa</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Pendaftar</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Mahasiswa</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Pendaftar</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Beasiswa</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Pembangunan</span
+        >
         <span class="title font-weight-light">Jaya</span>
         <v-spacer></v-spacer>
         <v-select
+          v-model="selectedPeriod"
           class="my-2"
           label="Periode Pengajuan Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-select>
         <v-spacer></v-spacer>
         <v-text-field
-          class="my-2"
           v-model="searchpendaftar"
+          class="my-2"
           append-icon="mdi-magnify"
           label="Search"
           single-line
@@ -93,11 +101,11 @@
                 <v-btn
                   icon
                   v-bind="attrs"
-                  v-on="on"
                   :to="{
                     name: 'StudentsFgd',
                     params: { id: item.id, period: item.period_id }
                   }"
+                  v-on="on"
                 >
                   <v-icon>
                     mdi-file-find

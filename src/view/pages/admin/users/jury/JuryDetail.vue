@@ -5,19 +5,19 @@
         >Detail mahasiswa
         <v-spacer></v-spacer>
         <v-select
+          v-model="selectedPeriod"
           class="my-2"
           label="Periode Pengajuan Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-select>
         <v-spacer></v-spacer>
         <v-text-field
-          class="my-2"
           v-model="searchpendaftar"
+          class="my-2"
           append-icon="mdi-magnify"
           label="Search"
           single-line
