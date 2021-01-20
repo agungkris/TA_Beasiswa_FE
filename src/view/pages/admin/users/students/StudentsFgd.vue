@@ -6,7 +6,8 @@
         <v-card-text>
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
           <p>
-            Program Studi : {{ uploadscholarshipData.student.profile.prodi.name }}
+            Program Studi :
+            {{ uploadscholarshipData.student.profile.prodi.name }}
           </p>
           <p>
             Angkatan : {{ uploadscholarshipData.student.profile.generation }}
@@ -71,6 +72,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 import { mapState, mapActions } from "vuex";
 
 export default {
+  components: {},
   data() {
     return { id: this.$route.params.id };
   },
@@ -79,7 +81,7 @@ export default {
     ...mapState("paperassessment", ["paperassessmentReport"]),
     ...mapState("fgdassessment", ["fgdassessmentReport"])
   },
-  components: {},
+
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vuetify", route: "alerts" },

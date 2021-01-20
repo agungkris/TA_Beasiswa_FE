@@ -2,10 +2,18 @@
   <div>
     <v-card>
       <v-card-title>
-        <span class="title font-weight-light" style="padding-right:5px;">Daftar</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Juri</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Daftar</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Juri</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Beasiswa</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Pembangunan</span
+        >
         <span class="title font-weight-light">Jaya</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
@@ -67,6 +75,7 @@
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
+                  v-if="item.category_jury.karya_tulis != null"
                   icon
                   :to="{
                     name: 'JuryPaperCreate',
@@ -74,7 +83,6 @@
                   }"
                   v-bind="attrs"
                   v-on="on"
-                  v-if="item.category_jury.karya_tulis != null"
                 >
                   <v-icon>
                     mdi-account-multiple-plus
@@ -110,8 +118,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDelete(item.id)"
                     class="mr-2"
+                    @click="onDelete(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>
