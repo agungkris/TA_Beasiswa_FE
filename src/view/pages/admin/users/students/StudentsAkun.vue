@@ -34,9 +34,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  <v-icon>
-                    mdi-account-edit
-                  </v-icon>
+                  <v-icon> mdi-account-edit </v-icon>
                 </v-btn>
               </template>
               <span>Edit Akun</span>
@@ -45,9 +43,7 @@
             <v-dialog v-model="dialogAkun" persistent max-width="290">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4">
-                    mdi-account-remove
-                  </v-icon>
+                  <v-icon color="red darken-4"> mdi-account-remove </v-icon>
                 </v-btn>
               </template>
 
@@ -94,7 +90,7 @@ export default {
         },
         {
           text: "Program Studi",
-          value: "profile.prodi_id"
+          value: "profile.prodi.name"
         },
         {
           text: "Angkatan",
