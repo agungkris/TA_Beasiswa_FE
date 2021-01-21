@@ -28,7 +28,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Individual radios'">
+        <KTCodePreview :title="'Individual radios'">
           <template v-slot:preview>
             <div>
               <b-form-group label="Individual radios">
@@ -61,7 +61,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Grouped radios'">
+        <KTCodePreview :title="'Grouped radios'">
           <template v-slot:preview>
             <p>
               The individual radio inputs in
@@ -121,7 +121,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Inline or stacked radios'">
+        <KTCodePreview :title="'Inline or stacked radios'">
           <template v-slot:preview>
             <p>
               By default <code>&lt;b-form-radio-group&gt;</code> generates
@@ -169,7 +169,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Control sizing'">
+        <KTCodePreview :title="'Control sizing'">
           <template v-slot:preview>
             <p>
               Use the <code>size</code> prop to control the size of the radio.
@@ -187,7 +187,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Button style radios'">
+        <KTCodePreview :title="'Button style radios'">
           <template v-slot:preview>
             <p>
               Render radios with the look of buttons by setting the prop
@@ -252,6 +252,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -427,9 +430,6 @@ export default {
         ]
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

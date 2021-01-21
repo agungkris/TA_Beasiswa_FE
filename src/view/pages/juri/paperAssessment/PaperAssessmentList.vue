@@ -4,14 +4,14 @@
       <v-card-title>Daftar Karya Tulis Mahasiswa</v-card-title>
       <v-card-text>
         <v-select
+          v-model="selectedPeriod"
           class="my-2"
           label="Periode Pengajuan Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-select>
         <v-data-table :headers="headers" :items="uploadscholarshipList">
           <template v-slot:[`item.action`]="{ item }">
@@ -30,7 +30,11 @@
 
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a href="https://smallseotools.com/plagiarism-checker/" v-bind="attrs" v-on="on">
+                <a
+                  href="https://smallseotools.com/plagiarism-checker/"
+                  v-bind="attrs"
+                  v-on="on"
+                >
                   <v-btn icon>
                     <v-icon>
                       mdi-find-replace
@@ -46,11 +50,11 @@
                 <v-btn
                   icon
                   v-bind="attrs"
-                  v-on="on"
                   :to="{
                     name: 'PaperAssessmentCreate',
                     params: { id: item.student_id, period: item.period_id }
                   }"
+                  v-on="on"
                 >
                   <v-icon>
                     mdi-file-find

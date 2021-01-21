@@ -3,14 +3,16 @@
     <div class="row">
       <div class="col-md-12">
         <v-card>
-          <v-card-title>Edit Laporan Publikasi Ilmiah/Karya Tulis/PKM</v-card-title>
+          <v-card-title
+            >Edit Laporan Publikasi Ilmiah/Karya Tulis/PKM</v-card-title
+          >
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="paperData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="paperData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -72,7 +74,7 @@ export default {
       titleRules: [v => !!v || "Judul Karya Tulis/Ilmiah wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen wajib diisi",
+        v => !!v || "Dokumen wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -82,7 +84,7 @@ export default {
   },
   computed: {
     ...mapState("paper", ["paperData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -96,7 +98,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("paper", ["updatePaper","getPaper"]),
+    ...mapActions("paper", ["updatePaper", "getPaper"]),
     ...mapActions("semester", ["getSemesterList"]),
     async onFetchData() {
       await this.getPaper({ id: this.id });
@@ -111,13 +113,13 @@ export default {
         if (this.paperData.document != null) {
           formData.append("document", this.paperData.document);
         }
-        await this.updatePaper({id: this.id, payload: formData });
+        await this.updatePaper({ id: this.id, payload: formData });
         this.$router.push({ name: "AnotherScholarshipRequirementList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex flex-column flex-root">
     <div
-      class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white"
       id="kt_login"
+      class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white"
     >
       <!--begin::Aside-->
       <div
@@ -54,15 +54,15 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "auth",
-  methods: {},
+  name: "Auth",
   computed: {
     ...mapState({
-      errors: (state) => state.auth.errors,
+      errors: state => state.auth.errors
     }),
     backgroundImage() {
       return process.env.BASE_URL + "media/bg/gedungUPJ.jpg";
-    },
+    }
   },
+  methods: {}
 };
 </script>

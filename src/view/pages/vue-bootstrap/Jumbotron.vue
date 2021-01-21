@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Usage with props'">
+        <KTCodePreview :title="'Usage with props'">
           <template v-slot:preview>
             <p>
               You can set the heading and lead text via the
@@ -49,7 +49,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Usage with slots'">
+        <KTCodePreview :title="'Usage with slots'">
           <template v-slot:preview>
             <div>
               <b-jumbotron>
@@ -82,7 +82,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Variants'">
+        <KTCodePreview :title="'Variants'">
           <template v-slot:preview>
             <p>
               Control the overall background variant with the
@@ -131,6 +131,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -185,9 +188,6 @@ export default {
 </div>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

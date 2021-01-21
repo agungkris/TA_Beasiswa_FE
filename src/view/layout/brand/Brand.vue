@@ -1,6 +1,6 @@
 <template>
   <!-- begin:: Aside -->
-  <div class="brand flex-column-auto" id="kt_brand" ref="kt_brand">
+  <div id="kt_brand" ref="kt_brand" class="brand flex-column-auto">
     <div class="brand-logo">
       <router-link to="/">
         <img :src="siteLogo()" alt="Logo" />
@@ -38,6 +38,13 @@ import KTLayoutAsideToggle from "@/assets/js/layout/base/aside-toggle.js";
 
 export default {
   name: "KTBrand",
+  computed: {
+    ...mapGetters(["layoutConfig"]),
+
+    allowMinimize() {
+      return !!this.layoutConfig("aside.self.minimize.toggle");
+    }
+  },
   mounted() {
     // Init Brand Panel For Logo
     KTLayoutBrand.init(this.$refs["kt_brand"]);
@@ -45,6 +52,7 @@ export default {
     // Init Aside Menu Toggle
     KTLayoutAsideToggle.init(this.$refs["kt_aside_toggle"]);
   },
+
   methods: {
     siteLogo() {
       const menuAsideLeftSkin = this.layoutConfig("brand.self.theme");
@@ -63,13 +71,6 @@ export default {
         logo = logos[Object.keys(logos)[0]];
       }
       return process.env.BASE_URL + logo;
-    }
-  },
-  computed: {
-    ...mapGetters(["layoutConfig"]),
-
-    allowMinimize() {
-      return !!this.layoutConfig("aside.self.minimize.toggle");
     }
   }
 };

@@ -3,7 +3,7 @@
     size="sm"
     variant="link"
     toggle-class="custom-v-dropdown btn btn-sm font-weight-bolder px-5 py-3"
-    v-bind:class="btnClass ? btnClass : 'btn-light'"
+    :class="btnClass ? btnClass : 'btn-light'"
     no-caret
     right
     no-flip
@@ -89,11 +89,11 @@
 
 <script>
 export default {
-  name: "dropdown-4",
+  name: "Dropdown4",
+  components: {},
   props: {
     btnClass: String
   },
-  components: {},
   mounted() {}
 };
 </script>

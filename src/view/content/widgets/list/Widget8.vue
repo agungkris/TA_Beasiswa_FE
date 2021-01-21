@@ -13,7 +13,7 @@
     <div class="card-body pt-0">
       <template v-for="(item, i) in list">
         <!--begin::Item-->
-        <div class="mb-10" v-bind:key="i">
+        <div :key="i" class="mb-10">
           <!--begin::Section-->
           <div class="d-flex align-items-center">
             <!--begin::Symbol-->
@@ -60,7 +60,10 @@ import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-8",
+  name: "Widget8",
+  components: {
+    Dropdown2
+  },
   data() {
     return {
       list: [
@@ -87,9 +90,6 @@ export default {
         }
       ]
     };
-  },
-  components: {
-    Dropdown2
   },
   computed: {
     ...mapGetters(["layoutConfig"])

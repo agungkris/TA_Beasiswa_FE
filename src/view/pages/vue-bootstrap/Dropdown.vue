@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Dropdowns'">
+        <KTCodePreview :title="'Dropdowns'">
           <template v-slot:preview>
             <div>
               <b-dropdown id="dropdown-1" text="Dropdown Button">
@@ -45,7 +45,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Button content'">
+        <KTCodePreview :title="'Button content'">
           <template v-slot:preview>
             <p>
               You can customize the text of the dropdown button by using either
@@ -76,7 +76,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Menu alignment'">
+        <KTCodePreview :title="'Menu alignment'">
           <template v-slot:preview>
             <div>
               <b-dropdown
@@ -110,7 +110,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Sizing'">
+        <KTCodePreview :title="'Sizing'">
           <template v-slot:preview>
             <p>
               Dropdowns work with trigger buttons of all sizes, including
@@ -172,7 +172,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Dropup'">
+        <KTCodePreview :title="'Dropup'">
           <template v-slot:preview>
             <p>
               Turn your dropdown menu into a drop-up menu by setting the
@@ -199,7 +199,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Drop right or left'">
+        <KTCodePreview :title="'Drop right or left'">
           <template v-slot:preview>
             <p>
               Turn your dropdown menu into a drop-right menu by setting the
@@ -239,7 +239,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Split button support'">
+        <KTCodePreview :title="'Split button support'">
           <template v-slot:preview>
             <div>
               <b-dropdown split text="Split Dropdown" class="m-2">
@@ -267,6 +267,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -368,9 +371,6 @@ export default {
   </div>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

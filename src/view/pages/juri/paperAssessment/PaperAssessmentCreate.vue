@@ -88,8 +88,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="paperassessmentReport.format_papers"
+                label="Skor"
                 required
                 :rules="papers"
                 type="number"
@@ -105,8 +105,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="paperassessmentReport.creativity"
+                label="Skor"
                 required
                 :rules="creativity"
                 type="number"
@@ -119,8 +119,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="paperassessmentReport.contribution"
+                label="Skor"
                 required
                 :rules="contribution"
                 type="number"
@@ -133,8 +133,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="paperassessmentReport.information"
+                label="Skor"
                 required
                 :rules="information"
                 type="number"
@@ -147,8 +147,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="paperassessmentReport.conclusion"
+                label="Skor"
                 required
                 :rules="conclusion"
                 type="number"
@@ -158,10 +158,10 @@
           <v-row>
             <v-col cols="12">
               <v-textarea
+                v-model="paperassessmentReport.comment"
                 outlined
                 name="input-7-4"
                 label="Komentar"
-                v-model="paperassessmentReport.comment"
               ></v-textarea>
               <v-btn :disabled="!valid" color="success" @click="validate">
                 Selesai

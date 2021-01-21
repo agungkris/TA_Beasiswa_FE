@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Form textarea'">
+        <KTCodePreview :title="'Form textarea'">
           <template v-slot:preview>
             <div>
               <b-form-textarea
@@ -48,7 +48,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Control sizing'">
+        <KTCodePreview :title="'Control sizing'">
           <template v-slot:preview>
             <p>
               Set text height using the size prop to <code>sm</code> or
@@ -100,7 +100,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Displayed rows'">
+        <KTCodePreview :title="'Displayed rows'">
           <template v-slot:preview>
             <p>
               To set the height of <code>&lt;b-form-textarea&gt;</code>, set the
@@ -123,7 +123,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Auto height'">
+        <KTCodePreview :title="'Auto height'">
           <template v-slot:preview>
             <p>
               <code>&lt;b-form-textarea&gt;</code> can also automatically adjust
@@ -178,6 +178,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -287,9 +290,6 @@ export default {
 </b-container>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

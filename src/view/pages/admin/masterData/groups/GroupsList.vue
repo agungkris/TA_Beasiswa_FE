@@ -15,7 +15,7 @@
         </v-tooltip>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn icon @click="onRandom()" v-bind="attrs" v-on="on">
+            <v-btn icon v-bind="attrs" @click="onRandom()" v-on="on">
               <v-icon>
                 mdi-reload
               </v-icon>
@@ -25,14 +25,14 @@
         </v-tooltip>
         <v-spacer></v-spacer>
         <v-overflow-btn
+          v-model="selectedPeriod"
           class="mt-6"
           label="Periode Pengajuan Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-overflow-btn>
         <v-spacer></v-spacer>
       </v-card-title>
@@ -101,8 +101,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDelete(item.id)"
                     class="mr-2"
+                    @click="onDelete(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>

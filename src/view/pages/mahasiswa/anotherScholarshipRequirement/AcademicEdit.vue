@@ -5,12 +5,12 @@
         <v-card>
           <v-card-title>Edit Laporan Prestasi Akademik</v-card-title>
           <v-card-text>
-           <v-form ref="form" v-model="valid" lazy-validation>
+            <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="academicData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="academicData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -107,7 +107,7 @@ export default {
       keteranganRules: [v => !!v || "Keterangan wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen KHS wajib diisi",
+        v => !!v || "Dokumen KHS wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -117,7 +117,7 @@ export default {
   },
   computed: {
     ...mapState("academic", ["academicData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

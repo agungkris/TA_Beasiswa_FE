@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'List group'">
+        <KTCodePreview :title="'List group'">
           <template v-slot:preview>
             <b-list-group>
               <b-list-group-item>Cras justo odio</b-list-group-item>
@@ -42,7 +42,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Active items'">
+        <KTCodePreview :title="'Active items'">
           <template v-slot:preview>
             <p>
               Set the <code>active</code> prop on a
@@ -64,7 +64,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Disabled items'">
+        <KTCodePreview :title="'Disabled items'">
           <template v-slot:preview>
             <p>
               Set the <code>disabled</code> prop on a
@@ -88,7 +88,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Actionable list group items'">
+        <KTCodePreview :title="'Actionable list group items'">
           <template v-slot:preview>
             <p>
               Turn a <code>&lt;b-list-group-item&gt;</code> into an actionable
@@ -116,7 +116,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Contextual variants'">
+        <KTCodePreview :title="'Contextual variants'">
           <template v-slot:preview>
             <p>
               Use contextual variants to style list items with a stateful
@@ -157,7 +157,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'With badges'">
+        <KTCodePreview :title="'With badges'">
           <template v-slot:preview>
             <p>
               Add <code>badges</code> to any list group item to show unread
@@ -205,6 +205,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -279,9 +282,6 @@ export default {
 </b-list-group>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

@@ -12,8 +12,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_A"
+                label="Skor"
                 required
                 :rules="score_A"
                 type="number"
@@ -26,8 +26,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_B"
+                label="Skor"
                 required
                 :rules="score_B"
                 type="number"
@@ -42,8 +42,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_C"
+                label="Skor"
                 required
                 :rules="score_C"
                 type="number"
@@ -56,8 +56,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_D"
+                label="Skor"
                 required
                 :rules="score_D"
                 type="number"
@@ -73,8 +73,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_E"
+                label="Skor"
                 required
                 :rules="score_E"
                 type="number"
@@ -90,8 +90,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_F"
+                label="Skor"
                 required
                 :rules="score_F"
                 type="number"
@@ -104,8 +104,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_G"
+                label="Skor"
                 required
                 :rules="score_G"
                 type="number"
@@ -118,8 +118,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_H"
+                label="Skor"
                 required
                 :rules="score_H"
                 type="number"
@@ -134,8 +134,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_I"
+                label="Skor"
                 required
                 :rules="score_I"
                 type="number"
@@ -150,8 +150,8 @@
             </v-col>
             <v-col cols="3">
               <v-text-field
-                label="Skor"
                 v-model="fgdassessmentData.score_J"
+                label="Skor"
                 required
                 :rules="score_J"
                 type="number"

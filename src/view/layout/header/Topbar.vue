@@ -40,25 +40,25 @@ import i18nService from "@/core/services/i18n.service.js";
 
 export default {
   name: "KTTopbar",
+  components: {
+    KTQuickUser
+  },
   data() {
     return {
       languageFlag: "",
       languages: i18nService.languages
     };
   },
-  components: {
-    KTQuickUser
+  computed: {
+    getLanguageFlag() {
+      return this.onLanguageChanged();
+    }
   },
   methods: {
     onLanguageChanged() {
       this.languageFlag = this.languages.find(val => {
         return val.lang === i18nService.getActiveLanguage();
       }).flag;
-    }
-  },
-  computed: {
-    getLanguageFlag() {
-      return this.onLanguageChanged();
     }
   }
 };

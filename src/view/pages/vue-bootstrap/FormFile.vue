@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Form File Input'">
+        <KTCodePreview :title="'Form File Input'">
           <template v-slot:preview>
             <div>
               <!-- Styled -->
@@ -53,7 +53,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'File name formatting via scoped slot'">
+        <KTCodePreview :title="'File name formatting via scoped slot'">
           <template v-slot:preview>
             <p>
               Alternatively, you can use the scoped slot
@@ -75,7 +75,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Control sizing'">
+        <KTCodePreview :title="'Control sizing'">
           <template v-slot:preview>
             <p>
               Use the <code>size</code> prop to control the visual size of the
@@ -126,6 +126,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -175,9 +178,6 @@ export default {
    </template>
   </b-form-file>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

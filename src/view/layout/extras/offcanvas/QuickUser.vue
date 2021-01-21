@@ -1,8 +1,9 @@
 <template>
   <div class="topbar-item">
     <div
-      class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" style="margin-right:2px;"
       id="kt_quick_user_toggle"
+      class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2"
+      style="margin-right:2px;"
     >
       <span
         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
@@ -30,9 +31,9 @@
           {{ auth.user.name }}
         </h3>
         <a
+          id="kt_quick_user_close"
           href="#"
           class="btn btn-xs btn-icon btn-light btn-hover-danger"
-          id="kt_quick_user_close"
         >
           <i class="ki ki-close icon-xs text-muted"></i>
         </a>
@@ -86,9 +87,9 @@
           <!--begin::Item-->
           <router-link
             :to="{ name: 'ProfileEdit' }"
-            @click.native="closeOffcanvas"
             href="#"
             class="navi-item"
+            @click.native="closeOffcanvas"
           >
             <div class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
@@ -119,11 +120,11 @@
 
           <router-link
             :to="{ name: 'AnnouncementList' }"
-            @click.native="closeOffcanvas"
             href="#"
             class="navi-item"
+            @click.native="closeOffcanvas"
           >
-            <div class="navi-link" v-if="auth.user.level == 'student'">
+            <div v-if="auth.user.level == 'student'" class="navi-link">
               <div class="symbol symbol-40 bg-light mr-3">
                 <div class="symbol-label">
                   <span class="svg-icon svg-icon-md svg-icon-success">

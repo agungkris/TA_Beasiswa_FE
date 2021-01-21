@@ -19,36 +19,36 @@
       >
         <li class="nav-item">
           <a
-            v-on:click="setActiveTab"
             data-tab="0"
             class="nav-link active"
             data-toggle="tab"
             href="#"
             role="tab"
+            @click="setActiveTab"
           >
             Alerts
           </a>
         </li>
         <li class="nav-item">
           <a
-            v-on:click="setActiveTab"
             data-tab="1"
             class="nav-link"
             data-toggle="tab"
             href="#"
             role="tab"
+            @click="setActiveTab"
           >
             Events
           </a>
         </li>
         <li class="nav-item">
           <a
-            v-on:click="setActiveTab"
             data-tab="2"
             class="nav-link"
             data-toggle="tab"
             href="#"
             role="tab"
+            @click="setActiveTab"
           >
             Logs
           </a>
@@ -56,7 +56,7 @@
       </ul>
     </div>
 
-    <b-tabs class="hide-tabs" v-model="tabIndex">
+    <b-tabs v-model="tabIndex" class="hide-tabs">
       <b-tab active class="p-8">
         <perfect-scrollbar
           class="scroll pr-7 mr-n7"
@@ -64,16 +64,16 @@
         >
           <template v-for="(item, i) in list1">
             <!--begin::Item-->
-            <div class="d-flex align-items-center mb-6" v-bind:key="i">
+            <div :key="i" class="d-flex align-items-center mb-6">
               <!--begin::Symbol-->
               <div
                 class="symbol symbol-40 mr-5"
-                v-bind:class="`symbol-light-${item.color}`"
+                :class="`symbol-light-${item.color}`"
               >
                 <span class="symbol-label">
                   <span
                     class="svg-icon svg-icon-lg"
-                    v-bind:class="`svg-icon-${item.color}`"
+                    :class="`svg-icon-${item.color}`"
                   >
                     <!--begin::Svg Icon-->
                     <inline-svg :src="item.svg" />
@@ -107,10 +107,10 @@
           style="max-height: 40vh; position: relative;"
         >
           <template v-for="(item, i) in list2">
-            <a href="#" class="navi-item" v-bind:key="i">
+            <a :key="i" href="#" class="navi-item">
               <div class="navi-link">
                 <div class="navi-icon mr-2">
-                  <i v-bind:class="item.icon"></i>
+                  <i :class="item.icon"></i>
                 </div>
                 <div class="navi-text">
                   <div class="font-weight-bold">
@@ -262,6 +262,11 @@ export default {
       ]
     };
   },
+  computed: {
+    backgroundImage() {
+      return process.env.BASE_URL + "media/misc/bg-1.jpg";
+    }
+  },
   methods: {
     setActiveTab(event) {
       const tab = event.target.closest('[role="tablist"]');
@@ -276,11 +281,6 @@ export default {
 
       // set current active tab
       event.target.classList.add("active");
-    }
-  },
-  computed: {
-    backgroundImage() {
-      return process.env.BASE_URL + "media/misc/bg-1.jpg";
     }
   }
 };

@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Badges'">
+        <KTCodePreview :title="'Badges'">
           <template v-slot:preview>
             <p>
               Badges scale to match the size of the immediate parent element by
@@ -59,7 +59,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Actionable badges'">
+        <KTCodePreview :title="'Actionable badges'">
           <template v-slot:preview>
             <p>
               Quickly provide actionable badges with hover and focus states by
@@ -85,7 +85,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Contextual variations'">
+        <KTCodePreview :title="'Contextual variations'">
           <template v-slot:preview>
             <p>
               Add any of the following <code>variants</code> via the variant
@@ -110,7 +110,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Pill badges'">
+        <KTCodePreview :title="'Pill badges'">
           <template v-slot:preview>
             <p>
               Use the <code>pill</code> prop to make badges more rounded (with a
@@ -142,6 +142,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -195,9 +198,6 @@ export default {
     <b-badge href="#" variant="dark">Dark</b-badge>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

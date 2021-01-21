@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Toasts'">
+        <KTCodePreview :title="'Toasts'">
           <template v-slot:preview>
             <p>
               Toasts are slightly translucent, too, so they blend over whatever
@@ -60,7 +60,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Toasts on demand'">
+        <KTCodePreview :title="'Toasts on demand'">
           <template v-slot:preview>
             <p>
               Generate a dynamic toast from anywhere in your app via the
@@ -85,7 +85,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Variants'">
+        <KTCodePreview :title="'Variants'">
           <template v-slot:preview>
             <p>
               BootstrapVue toasts provide custom CSS to define color variants.
@@ -102,48 +102,48 @@
               reference section).
             </p>
             <div>
-              <b-button @click="makeToastVariant()" class="mb-2 mr-3">
+              <b-button class="mb-2 mr-3" @click="makeToastVariant()">
                 Default
               </b-button>
               <b-button
                 variant="primary"
-                @click="makeToastVariant('primary')"
                 class="mb-2 mr-3"
+                @click="makeToastVariant('primary')"
               >
                 Primary
               </b-button>
               <b-button
                 variant="secondary"
-                @click="makeToastVariant('secondary')"
                 class="mb-2 mr-3"
+                @click="makeToastVariant('secondary')"
               >
                 Secondary
               </b-button>
               <b-button
                 variant="danger"
-                @click="makeToastVariant('danger')"
                 class="mb-2 mr-3"
+                @click="makeToastVariant('danger')"
               >
                 Danger
               </b-button>
               <b-button
                 variant="warning"
-                @click="makeToastVariant('warning')"
                 class="mb-2 mr-3"
+                @click="makeToastVariant('warning')"
               >
                 Warning
               </b-button>
               <b-button
                 variant="success"
-                @click="makeToastVariant('success')"
                 class="mb-2 mr-3"
+                @click="makeToastVariant('success')"
               >
                 Success
               </b-button>
               <b-button
                 variant="info"
-                @click="makeToastVariant('info')"
                 class="mb-2"
+                @click="makeToastVariant('info')"
               >
                 Info
               </b-button>
@@ -157,7 +157,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Toaster target'">
+        <KTCodePreview :title="'Toaster target'">
           <template v-slot:preview>
             <p>
               The below toasters place the toasts in a stacked (columnar
@@ -167,42 +167,42 @@
               hidden offscreen until other toasts are closed/hidden.
             </p>
             <div>
-              <b-button @click="toast('b-toaster-top-right')" class="mb-2 mr-3">
+              <b-button class="mb-2 mr-3" @click="toast('b-toaster-top-right')">
                 b-toaster-top-right
               </b-button>
-              <b-button @click="toast('b-toaster-top-left')" class="mb-2 mr-3">
+              <b-button class="mb-2 mr-3" @click="toast('b-toaster-top-left')">
                 b-toaster-top-left
               </b-button>
               <b-button
-                @click="toast('b-toaster-top-center')"
                 class="mb-2 mr-3"
+                @click="toast('b-toaster-top-center')"
               >
                 b-toaster-top-center
               </b-button>
-              <b-button @click="toast('b-toaster-top-full')" class="mb-2 mr-3">
+              <b-button class="mb-2 mr-3" @click="toast('b-toaster-top-full')">
                 b-toaster-top-full
               </b-button>
               <b-button
-                @click="toast('b-toaster-bottom-right', true)"
                 class="mb-2 mr-3"
+                @click="toast('b-toaster-bottom-right', true)"
               >
                 b-toaster-bottom-right
               </b-button>
               <b-button
-                @click="toast('b-toaster-bottom-left', true)"
                 class="mb-2 mr-3"
+                @click="toast('b-toaster-bottom-left', true)"
               >
                 b-toaster-bottom-left
               </b-button>
               <b-button
-                @click="toast('b-toaster-bottom-center', true)"
                 class="mb-2 mr-3"
+                @click="toast('b-toaster-bottom-center', true)"
               >
                 b-toaster-bottom-center
               </b-button>
               <b-button
-                @click="toast('b-toaster-bottom-full', true)"
                 class="mb-2"
+                @click="toast('b-toaster-bottom-full', true)"
               >
                 b-toaster-bottom-full
               </b-button>
@@ -225,6 +225,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -321,8 +324,12 @@ export default {
       counter: 0
     };
   },
-  components: {
-    KTCodePreview
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Vue Bootstrap", route: "alert" },
+      { title: "Notify", route: "popover" },
+      { title: "Toasts" }
+    ]);
   },
   methods: {
     makeToast(append = false) {
@@ -349,13 +356,6 @@ export default {
         solid: true
       });
     }
-  },
-  mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Vue Bootstrap", route: "alert" },
-      { title: "Notify", route: "popover" },
-      { title: "Toasts" }
-    ]);
   }
 };
 </script>

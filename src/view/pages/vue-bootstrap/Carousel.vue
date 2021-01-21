@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Carousel'">
+        <KTCodePreview :title="'Carousel'">
           <template v-slot:preview>
             <div>
               <b-carousel
@@ -113,6 +113,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       slide: 0,
@@ -192,9 +195,6 @@ export default {
     }
   }`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

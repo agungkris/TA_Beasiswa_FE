@@ -13,11 +13,11 @@
     <div class="card-body pt-2">
       <template v-for="(item, i) in list">
         <!--begin::Item-->
-        <div class="d-flex align-items-center mb-10" v-bind:key="i">
+        <div :key="i" class="d-flex align-items-center mb-10">
           <!--begin::Symbol-->
           <div class="symbol symbol-40 symbol-light-primary mr-5">
             <span class="symbol-label">
-              <span class="svg-icon svg-icon-lg" v-bind:class="item.style">
+              <span class="svg-icon svg-icon-lg" :class="item.style">
                 <!--begin::Svg Icon-->
                 <inline-svg :src="item.svg"></inline-svg>
                 <!--end::Svg Icon-->
@@ -49,7 +49,10 @@ import Dropdown3 from "@/view/content/dropdown/Dropdown3.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-1",
+  name: "Widget1",
+  components: {
+    Dropdown3
+  },
   data() {
     return {
       list: [
@@ -85,9 +88,6 @@ export default {
         }
       ]
     };
-  },
-  components: {
-    Dropdown3
   },
   computed: {
     ...mapGetters(["layoutConfig"])

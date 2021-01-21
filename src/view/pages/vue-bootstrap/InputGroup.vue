@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Input Groups'">
+        <KTCodePreview :title="'Input Groups'">
           <template v-slot:preview>
             <div>
               <!-- Using props -->
@@ -58,7 +58,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Using prepend and append props'">
+        <KTCodePreview :title="'Using prepend and append props'">
           <template v-slot:preview>
             <p>
               Values will be internally wrapped by a
@@ -80,7 +80,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Using named slots'">
+        <KTCodePreview :title="'Using named slots'">
           <template v-slot:preview>
             <p>
               if you want better control over addons, you can use
@@ -107,7 +107,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Using sub-components'">
+        <KTCodePreview :title="'Using sub-components'">
           <template v-slot:preview>
             <p>
               Use the <code>&lt;b-input-group-prepend&gt;</code> or
@@ -136,9 +136,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview
-          v-bind:title="'Custom radio, checkbox, and switch addons'"
-        >
+        <KTCodePreview :title="'Custom radio, checkbox, and switch addons'">
           <template v-slot:preview>
             <p>
               Using <code>&lt;b-form-checkbox&gt;</code> and
@@ -203,6 +201,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -309,9 +310,6 @@ export default {
 </div>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

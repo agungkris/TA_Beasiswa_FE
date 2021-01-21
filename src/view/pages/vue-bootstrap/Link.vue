@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Link'">
+        <KTCodePreview :title="'Link'">
           <template v-slot:preview>
             <p>
               <code>&lt;b-link&gt;</code> is the building block for most
@@ -42,7 +42,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Link disabled state'">
+        <KTCodePreview :title="'Link disabled state'">
           <template v-slot:preview>
             <p>
               Disable link functionality by setting the
@@ -66,6 +66,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -80,9 +83,6 @@ export default {
 </div>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

@@ -12,7 +12,7 @@ const mutations = {
   }
 };
 const actions = {
-  async getFinancialList(context, {student_id}) {
+  async getFinancialList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
@@ -23,16 +23,13 @@ const actions = {
         `api/scholarship/financialreport?` + searchParams
       );
       context.commit("setFinancialList", response.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createFinancial(context, { payload }) {
     try {
-      await ApiService.post(
-        "api/scholarship/financialreport/create",
-        payload
-      );
+      await ApiService.post("api/scholarship/financialreport/create", payload);
       context.commit("setFinancialData", {});
     } catch (error) {
       throw Error(error);
@@ -61,9 +58,7 @@ const actions = {
   },
   async deleteFinancial(context, { id }) {
     try {
-      await ApiService.delete(
-        `api/scholarship/financialreport/delete/${id}`
-      );
+      await ApiService.delete(`api/scholarship/financialreport/delete/${id}`);
     } catch (error) {
       throw Error(error);
     }

@@ -2,15 +2,15 @@
   <ul class="navi navi-hover py-4">
     <template v-for="(item, i) in languages">
       <li
+        :key="i"
         class="navi-item"
         :class="{ 'navi-item-active': isActiveLanguage(item.lang) }"
-        :key="i"
       >
         <a
           href="#"
           class="navi-link"
-          v-bind:data-lang="item.lang"
-          v-on:click="selectedLanguage"
+          :data-lang="item.lang"
+          @click="selectedLanguage"
         >
           <span class="symbol symbol-20 mr-3">
             <img :src="item.flag" alt="" />
@@ -32,6 +32,11 @@ export default {
       languages: i18nService.languages
     };
   },
+  computed: {
+    activeLanguage() {
+      return i18nService.getActiveLanguage();
+    }
+  },
   methods: {
     selectedLanguage(e) {
       const el = e.target.closest(".navi-link");
@@ -50,11 +55,6 @@ export default {
     },
     isActiveLanguage(current) {
       return this.activeLanguage === current;
-    }
-  },
-  computed: {
-    activeLanguage() {
-      return i18nService.getActiveLanguage();
     }
   }
 };

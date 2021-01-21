@@ -23,8 +23,6 @@ import paperjury from "./scholarship/paperjury.module";
 import prodi from "./scholarship/prodi.module";
 import generations from "./scholarship/generations.module";
 
-
-
 import tutoriallaporanbeasiswa from "./scholarship/tutorial/laporanbeasiswa.module";
 import tutorialakunmahasiswa from "./scholarship/tutorial/akunmahasiswa.module";
 import tutorialakunjuri from "./scholarship/tutorial/akunjuri.module";

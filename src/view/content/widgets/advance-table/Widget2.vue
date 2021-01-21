@@ -61,7 +61,7 @@
           </thead>
           <tbody>
             <template v-for="(item, i) in list">
-              <tr v-bind:key="i">
+              <tr :key="i">
                 <td class="pl-0 py-4">
                   <div class="symbol symbol-50 symbol-light mr-1">
                     <span class="symbol-label">
@@ -153,7 +153,8 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-2",
+  name: "Widget2",
+  components: {},
   data() {
     return {
       list: [
@@ -200,7 +201,6 @@ export default {
       ]
     };
   },
-  components: {},
   computed: {
     ...mapGetters(["layoutConfig"])
   }

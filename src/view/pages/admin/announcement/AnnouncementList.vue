@@ -3,7 +3,7 @@
     <v-card class="mb-6">
       <v-card-title
         >Daftar Pengumuman
-        <v-tooltip right v-if="auth.user.level == 'admin'">
+        <v-tooltip v-if="auth.user.level == 'admin'" right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
@@ -20,14 +20,14 @@
         </v-tooltip>
         <v-spacer></v-spacer>
         <v-overflow-btn
+          v-model="selectedPeriod"
           class="mt-6"
           label="Periode Pengumuman Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-overflow-btn>
 
         <v-spacer></v-spacer>
@@ -54,14 +54,14 @@
           </template> -->
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
-              right
               v-if="
                 (auth.user.level == 'student' || 'admin') &&
                   item.document !== null
               "
+              right
             >
               <template v-slot:activator="{ on, attrs }">
-                <a :href="item.document" v-if="item.document != null">
+                <a v-if="item.document != null" :href="item.document">
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon>
                       mdi-download
@@ -71,7 +71,7 @@
               </template>
               <span>Unduh Pengumuman</span>
             </v-tooltip>
-            <v-tooltip right v-if="auth.user.level == 'admin'">
+            <v-tooltip v-if="auth.user.level == 'admin'" right>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -88,10 +88,10 @@
             </v-tooltip>
 
             <v-dialog
+              v-if="auth.user.level == 'admin'"
               v-model="dialog"
               persistent
               max-width="290"
-              v-if="auth.user.level == 'admin'"
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
@@ -118,8 +118,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDelete(item.id)"
                     class="mr-2"
+                    @click="onDelete(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>

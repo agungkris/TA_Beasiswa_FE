@@ -35,12 +35,12 @@
 
 <script>
 export default {
-  name: "Error-4",
-  mounted() {},
+  name: "Error4",
   computed: {
     backgroundImage() {
       return process.env.BASE_URL + "media/error/bg4.jpg";
     }
-  }
+  },
+  mounted() {}
 };
 </script>

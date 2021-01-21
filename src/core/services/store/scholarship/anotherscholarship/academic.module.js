@@ -12,7 +12,7 @@ const mutations = {
   }
 };
 const actions = {
-  async getAcademicList(context, {student_id}) {
+  async getAcademicList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
@@ -23,9 +23,9 @@ const actions = {
         `api/scholarship/academicachievement?` + searchParams
       );
       context.commit("setAcademicList", response.data.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createAcademic(context, { payload }) {
     try {

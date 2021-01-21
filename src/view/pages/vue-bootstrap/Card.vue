@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Cards'">
+        <KTCodePreview :title="'Cards'">
           <template v-slot:preview>
             <p>
               Cards are built with as little markup and styles as possible, but
@@ -60,7 +60,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Background variants'">
+        <KTCodePreview :title="'Background variants'">
           <template v-slot:preview>
             <p>
               Cards include their own variant style for quickly changing the
@@ -185,7 +185,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Bordered variants'">
+        <KTCodePreview :title="'Bordered variants'">
           <template v-slot:preview>
             <div>
               <div>
@@ -293,7 +293,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Titles, text, and links'">
+        <KTCodePreview :title="'Titles, text, and links'">
           <template v-slot:preview>
             <div>
               <b-card title="Card title" sub-title="Card subtitle">
@@ -319,7 +319,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Header and footer'">
+        <KTCodePreview :title="'Header and footer'">
           <template v-slot:preview>
             <div>
               <b-card-group deck>
@@ -354,7 +354,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Horizontal card layout'">
+        <KTCodePreview :title="'Horizontal card layout'">
           <template v-slot:preview>
             <p>
               Using a combination of grid components, utility classes and
@@ -390,7 +390,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Overlay image'">
+        <KTCodePreview :title="'Overlay image'">
           <template v-slot:preview>
             <p>
               Place the image in the background of the card by setting the
@@ -428,6 +428,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -644,9 +647,6 @@ export default {
   </b-card>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

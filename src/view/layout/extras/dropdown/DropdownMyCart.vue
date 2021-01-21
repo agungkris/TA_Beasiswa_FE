@@ -21,8 +21,8 @@
         <!--begin::Item-->
         <template v-for="(item, i) in list">
           <div
+            :key="i"
             class="d-flex align-items-center justify-content-between p-8"
-            v-bind:key="i"
           >
             <div class="d-flex flex-column mr-2">
               <a

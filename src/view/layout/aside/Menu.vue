@@ -1,8 +1,8 @@
 <template>
   <ul class="menu-nav">
     <router-link
-      to="/dashboard"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      to="/dashboard"
     >
       <li
         aria-haspopup="true"
@@ -22,28 +22,32 @@
 
     <li
       v-if="auth.user.level == 'admin'"
-     aria-haspopup="true"
-        data-menu-toggle="hover"
-        class="menu-item">
+      aria-haspopup="true"
+      data-menu-toggle="hover"
+      class="menu-item"
+    >
       <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
         <i class="menu-icon flaticon2-expand"></i>
-      <span class="menu-text">Pengecekan Plagiarisme</span></a>
+        <span class="menu-text">Pengecekan Plagiarisme</span></a
+      >
     </li>
 
     <li
       v-if="auth.user.level == 'student'"
-     aria-haspopup="true"
-        data-menu-toggle="hover"
-        class="menu-item">
+      aria-haspopup="true"
+      data-menu-toggle="hover"
+      class="menu-item"
+    >
       <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
         <i class="menu-icon flaticon2-expand"></i>
-      <span class="menu-text">Pengecekan Plagiarisme</span></a>
+        <span class="menu-text">Pengecekan Plagiarisme</span></a
+      >
     </li>
 
     <router-link
       v-if="auth.user.level == 'admin'"
-      :to="{ name: 'AnnouncementList' }"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      :to="{ name: 'AnnouncementList' }"
     >
       <li
         aria-haspopup="true"
@@ -80,7 +84,7 @@
         </a>
       </li>
     </router-link> -->
-    
+
     <!-- <li
       aria-haspopup="true"
       data-menu-toggle="hover"
@@ -105,7 +109,7 @@
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -122,8 +126,8 @@
           </li>
 
           <router-link
-            :to="{ name: 'TermConditionCreate' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'TermConditionCreate' }"
           >
             <li
               aria-haspopup="true"
@@ -143,8 +147,8 @@
             </li>
           </router-link>
           <router-link
-            :to="{ name: 'ScholarshipFormCreate' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'ScholarshipFormCreate' }"
           >
             <li
               aria-haspopup="true"
@@ -164,8 +168,8 @@
             </li>
           </router-link>
           <router-link
-            :to="{ name: 'TempleteCVCreate' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'TempleteCVCreate' }"
           >
             <li
               aria-haspopup="true"
@@ -193,7 +197,7 @@
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -210,9 +214,9 @@
           </li>
 
           <router-link
+            v-slot="{ href, navigate, isActive, isExactActive }"
             :to="{ name: 'StudentsAkun' }"
             :exact="true"
-            v-slot="{ href, navigate, isActive, isExactActive }"
           >
             <li
               aria-haspopup="true"
@@ -233,9 +237,9 @@
           </router-link>
 
           <router-link
+            v-slot="{ href, navigate, isActive, isExactActive }"
             :to="{ name: 'StudentsList' }"
             :exact="true"
-            v-slot="{ href, navigate, isActive, isExactActive }"
           >
             <li
               aria-haspopup="true"
@@ -256,8 +260,8 @@
           </router-link>
 
           <router-link
-            :to="{ name: 'JuryList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'JuryList' }"
           >
             <li
               aria-haspopup="true"
@@ -285,7 +289,7 @@
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -302,8 +306,8 @@
           </li>
 
           <router-link
-            :to="{ name: 'PembangunanJayaScholarshipList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'PembangunanJayaScholarshipList' }"
           >
             <li
               aria-haspopup="true"
@@ -323,8 +327,8 @@
             </li>
           </router-link>
           <router-link
-            :to="{ name: 'OthersScholarshipList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'OthersScholarshipList' }"
           >
             <li
               aria-haspopup="true"
@@ -350,8 +354,8 @@
     <!-- AWAL BAGIAN JURI -->
     <router-link
       v-if="auth.user.level == 'juri'"
-      :to="{ name: 'PaperAssessmentList' }"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      :to="{ name: 'PaperAssessmentList' }"
     >
       <li
         aria-haspopup="true"
@@ -370,8 +374,8 @@
     </router-link>
     <router-link
       v-if="auth.user.level == 'juri'"
-      :to="{ name: 'FgdAssessmentList' }"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      :to="{ name: 'FgdAssessmentList' }"
     >
       <li
         aria-haspopup="true"
@@ -397,7 +401,7 @@
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -415,8 +419,8 @@
 
           <router-link
             v-if="auth.user.level == 'student'"
-            :to="{ name: 'TermConditionStudentsList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'TermConditionStudentsList' }"
           >
             <li
               aria-haspopup="true"
@@ -437,8 +441,8 @@
           </router-link>
           <router-link
             v-if="auth.user.level == 'student'"
-            :to="{ name: 'ScholarshipFormStudentsList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'ScholarshipFormStudentsList' }"
           >
             <li
               aria-haspopup="true"
@@ -459,8 +463,8 @@
           </router-link>
           <router-link
             v-if="auth.user.level == 'student'"
-            :to="{ name: 'TempleteCVStudentsList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'TempleteCVStudentsList' }"
           >
             <li
               aria-haspopup="true"
@@ -484,8 +488,8 @@
     </li>
     <router-link
       v-if="auth.user.level == 'student'"
-      :to="{ name: 'UploadScholarshipRequirementList' }"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      :to="{ name: 'UploadScholarshipRequirementList' }"
     >
       <li
         aria-haspopup="true"
@@ -503,10 +507,10 @@
       </li>
     </router-link>
 
-     <router-link
+    <router-link
       v-if="auth.user.level == 'student'"
-      :to="{ name: 'AnotherScholarshipRequirementList' }"
       v-slot="{ href, navigate, isActive, isExactActive }"
+      :to="{ name: 'AnotherScholarshipRequirementList' }"
     >
       <li
         aria-haspopup="true"
@@ -525,7 +529,7 @@
     </router-link>
     <!-- AKHIR BAGIAN MAHASISWA -->
 
-    <li class="menu-section" v-if="auth.user.level == 'admin'">
+    <li v-if="auth.user.level == 'admin'" class="menu-section">
       <h4 class="menu-text">Table of Master Data</h4>
       <i class="menu-icon flaticon-more-v2"></i>
     </li>
@@ -535,7 +539,7 @@
       aria-haspopup="true"
       data-menu-toggle="hover"
       class="menu-item menu-item-submenu"
-      v-bind:class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
       <a href="#" class="menu-link menu-toggle">
         <i class="menu-icon flaticon-web"></i>
@@ -553,8 +557,8 @@
 
           <router-link
             v-if="auth.user.level == 'admin'"
-            :to="{ name: 'GroupsList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'GroupsList' }"
           >
             <li
               aria-haspopup="true"
@@ -576,8 +580,8 @@
 
           <router-link
             v-if="auth.user.level == 'admin'"
-            :to="{ name: 'PeriodsList' }"
             v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'PeriodsList' }"
           >
             <li
               aria-haspopup="true"
@@ -606,14 +610,14 @@
 import { mapState } from "vuex";
 export default {
   name: "KTMenu",
+  computed: {
+    ...mapState(["auth"])
+  },
   methods: {
     hasActiveChildren(match) {
       return this.$route["path"].indexOf(match) !== -1;
     }
-  },
-  // buat multi user
-  computed: {
-    ...mapState(["auth"])
   }
+  // buat multi user
 };
 </script>

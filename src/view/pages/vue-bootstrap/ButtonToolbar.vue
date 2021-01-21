@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Button toolbar'">
+        <KTCodePreview :title="'Button toolbar'">
           <template v-slot:preview>
             <p>With button groups & Keyboard navigation</p>
             <div>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Button toolbar'">
+        <KTCodePreview :title="'Button toolbar'">
           <template v-slot:preview>
             <p>With mixture of small button group and small input group</p>
             <div>
@@ -78,7 +78,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Button toolbar'">
+        <KTCodePreview :title="'Button toolbar'">
           <template v-slot:preview>
             <p>With button groups and dropdown menu</p>
             <div>
@@ -116,6 +116,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -167,9 +170,6 @@ export default {
   </b-button-toolbar>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

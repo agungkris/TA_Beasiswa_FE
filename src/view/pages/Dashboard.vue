@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h2 class="text-center">SELAMAT DATANG DI WEBSITE BEASISWA PEMBANGUNAN JAYA</h2>
+    <h2 class="text-center">
+      SELAMAT DATANG DI WEBSITE BEASISWA PEMBANGUNAN JAYA
+    </h2>
     <h3 class="text-center" style="font-style:italic;">{{ auth.user.name }}</h3>
 
     <!-- Awal Admin -->
-    <v-container grid-list-md v-if="auth.user.level == 'admin'">
+    <v-container v-if="auth.user.level == 'admin'" grid-list-md>
       <v-layout row wrap>
         <v-flex lg4 sm4 xs12 md6 style="display:flex;" class="justify-center">
           <v-card shaped>
@@ -12,18 +14,26 @@
               <v-icon large left>
                 mdi-help-circle-outline
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Pedoman</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pedoman</span
+              >
               <span class="title font-weight-light">Penggunaan</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Pedoman atau tata cara dalam menggunakan website beasiswa pembangunan jaya dijelaskan pada bagian ini.
-              <br> <br>
-              <a :href="ketentuanbeasiswaadminData.ketentuan_beasiswa_admin" style="color: #757575;">
+              Pedoman atau tata cara dalam menggunakan website beasiswa
+              pembangunan jaya dijelaskan pada bagian ini.
+              <br />
+              <br />
+              <a
+                :href="ketentuanbeasiswaadminData.ketentuan_beasiswa_admin"
+                style="color: #757575;"
+              >
                 <v-icon>
                   mdi-file-pdf
                 </v-icon>
                 <b>Dokumen Pedoman Penggunaan</b>
-              </a> <br>
+              </a>
+              <br />
               <v-icon>
                 mdi-video
               </v-icon>
@@ -34,22 +44,27 @@
 
         <v-flex lg4 sm4 xs12 md6 style="display:flex;" class="justify-center">
           <!-- <v-hover v-slot:default="{ hover }" value:false> -->
-            <v-card shaped :to="{ name: 'AnnouncementList' }">
-              <v-card-title>
-                <v-icon large left>
-                  mdi-information-outline
-                </v-icon>
-                <span class="title font-weight-light" style="padding-right:5px;">Pemberitahuan</span>
-              </v-card-title>
-              <v-card-text class="headline font-weight-bold">
-                Halaman Pemberitahuan merupakan halaman yang berisikan informasi mengenai segala hal seputar beasiswa di
-                Universitas Pembangunan Jaya. <br>
-                <b>
-                  <a :to="{ name: 'AnnouncementList' }" style="color: #757575;">Halaman Pemberitahuan
-                    <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
-                </b>
-              </v-card-text>
-            </v-card>
+          <v-card shaped :to="{ name: 'AnnouncementList' }">
+            <v-card-title>
+              <v-icon large left>
+                mdi-information-outline
+              </v-icon>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pemberitahuan</span
+              >
+            </v-card-title>
+            <v-card-text class="headline font-weight-bold">
+              Halaman Pemberitahuan merupakan halaman yang berisikan informasi
+              mengenai segala hal seputar beasiswa di Universitas Pembangunan
+              Jaya. <br />
+              <b>
+                <a :to="{ name: 'AnnouncementList' }" style="color: #757575;"
+                  >Halaman Pemberitahuan
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
+              </b>
+            </v-card-text>
+          </v-card>
           <!-- </v-hover> -->
         </v-flex>
 
@@ -59,33 +74,51 @@
               <v-icon large left>
                 mdi-file-multiple
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Ketentuan</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Ketentuan</span
+              >
               <span class="title font-weight-light">Beasiswa</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br> <br>
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
+              <br />
 
-              <router-link :to="{ name: 'TermConditionCreate' }" v-slot="{ href}">
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'TermConditionCreate' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Syarat dan Ketentuan
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Syarat
+                    dan Ketentuan
                   </a>
                 </b>
-              </router-link> <br>
+              </router-link>
+              <br />
 
-              <router-link :to="{ name: 'ScholarshipFormCreate' }" v-slot="{ href}">
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'ScholarshipFormCreate' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Formulir Beasiswa
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon>
+                    Formulir Beasiswa
                   </a>
                 </b>
-              </router-link> <br>
+              </router-link>
+              <br />
 
-              <router-link :to="{ name: 'TempleteCVCreate' }" v-slot="{ href}">
+              <router-link v-slot="{ href }" :to="{ name: 'TempleteCVCreate' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Format CV
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Format
+                    CV
                   </a>
                 </b>
-              </router-link>              
+              </router-link>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -99,26 +132,36 @@
               <span class="title font-weight-light">Pengguna</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br> <br>
-              <router-link :to="{ name: 'StudentsAkun' }" v-slot="{ href}">
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
+              <br />
+              <router-link v-slot="{ href }" :to="{ name: 'StudentsAkun' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-account</v-icon> Daftar Akun Mahasiswa
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-account</v-icon> Daftar
+                    Akun Mahasiswa
                   </a>
                 </b>
-              </router-link> <br>
-              <router-link :to="{ name: 'StudentsList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link v-slot="{ href }" :to="{ name: 'StudentsList' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-document</v-icon> Daftar Mahasiswa
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-document</v-icon>
+                    Daftar Mahasiswa
                   </a>
                 </b>
-              </router-link> <br>     
-              <router-link :to="{ name: 'JuryList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link v-slot="{ href }" :to="{ name: 'JuryList' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-account</v-icon> Daftar Juri
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-account</v-icon> Daftar
+                    Juri
                   </a>
                 </b>
-              </router-link>     
+              </router-link>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -129,21 +172,36 @@
               <v-icon large left>
                 mdi-folder-multiple-outline
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Laporan</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Laporan</span
+              >
               <span class="title font-weight-light">Beasiswa</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br> <br>
-              <router-link :to="{ name: 'PembangunanJayaScholarshipList' }" v-slot="{ href}">
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
+              <br />
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'PembangunanJayaScholarshipList' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-folder-outline</v-icon> Beasiswa Pembangunan Jaya
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-folder-outline</v-icon>
+                    Beasiswa Pembangunan Jaya
                   </a>
                 </b>
-              </router-link> <br>
-              <router-link :to="{ name: 'OthersScholarshipList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'OthersScholarshipList' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-folder-outline</v-icon> Beasiswa ASAK/DIKTI/BIDIKMISI
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-folder-outline</v-icon>
+                    Beasiswa ASAK/DIKTI/BIDIKMISI
                   </a>
                 </b>
               </router-link>
@@ -157,21 +215,29 @@
               <v-icon large left>
                 mdi-alert-octagon
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Master</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Master</span
+              >
               <span class="title font-weight-light">Data</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br> <br>
-              <router-link :to="{ name: 'PeriodsList' }" v-slot="{ href}">
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
+              <br />
+              <router-link v-slot="{ href }" :to="{ name: 'PeriodsList' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-calendar</v-icon> Periode
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-calendar</v-icon>
+                    Periode
                   </a>
                 </b>
-              </router-link> <br>
-              <router-link :to="{ name: 'GroupsList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link v-slot="{ href }" :to="{ name: 'GroupsList' }">
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-group</v-icon> Grup
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-group</v-icon> Grup
                   </a>
                 </b>
               </router-link>
@@ -300,7 +366,7 @@
 
     <!-- awal mahasiswa -->
 
-    <v-container grid-list-md v-if="auth.user.level == 'student'">
+    <v-container v-if="auth.user.level == 'student'" grid-list-md>
       <v-layout row wrap>
         <v-flex lg4 sm4 xs12 md6 style="display:flex;" class="justify-center">
           <v-card shaped>
@@ -308,16 +374,20 @@
               <v-icon large left>
                 mdi-help-circle-outline
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Pedoman</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pedoman</span
+              >
               <span class="title font-weight-light">Penggunaan</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Pedoman atau tata cara dalam menggunakan website beasiswa pembangunan jaya dijelaskan pada bagian ini.
-              <br> <br>
+              Pedoman atau tata cara dalam menggunakan website beasiswa
+              pembangunan jaya dijelaskan pada bagian ini.
+              <br />
+              <br />
               <v-icon>
                 mdi-file-pdf
               </v-icon>
-              <b>Dokumen Pedoman Penggunaan</b> <br>
+              <b>Dokumen Pedoman Penggunaan</b> <br />
               <v-icon>
                 mdi-video
               </v-icon>
@@ -332,14 +402,19 @@
               <v-icon large left>
                 mdi-information-outline
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Pemberitahuan</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pemberitahuan</span
+              >
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Halaman Pemberitahuan merupakan halaman yang berisikan informasi mengenai segala hal seputar beasiswa di
-              Universitas Pembangunan Jaya. <br>
+              Halaman Pemberitahuan merupakan halaman yang berisikan informasi
+              mengenai segala hal seputar beasiswa di Universitas Pembangunan
+              Jaya. <br />
               <b>
-                <a :to="{ name: 'AnnouncementList' }" style="color: #757575;">Halaman Pemberitahuan
-                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
+                <a :to="{ name: 'AnnouncementList' }" style="color: #757575;"
+                  >Halaman Pemberitahuan
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
               </b>
             </v-card-text>
           </v-card>
@@ -351,27 +426,48 @@
               <v-icon large left>
                 mdi-file-multiple
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Ketentuan</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Ketentuan</span
+              >
               <span class="title font-weight-light">Beasiswa</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br> <br>
-              <router-link :to="{ name: 'TermConditionStudentsList' }" v-slot="{ href}">
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
+              <br />
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'TermConditionStudentsList' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Syarat dan Ketentuan
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Syarat
+                    dan Ketentuan
                   </a>
                 </b>
-              </router-link> <br>
-              <router-link :to="{ name: 'ScholarshipFormStudentsList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'ScholarshipFormStudentsList' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Formulir Beasiswa
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon>
+                    Formulir Beasiswa
                   </a>
                 </b>
-              </router-link> <br>
-              <router-link :to="{ name: 'TempleteCVStudentsList' }" v-slot="{ href}">
+              </router-link>
+              <br />
+              <router-link
+                v-slot="{ href }"
+                :to="{ name: 'TempleteCVStudentsList' }"
+              >
                 <b>
-                  <a :href="href" style="color: #757575;"> <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Format CV
+                  <a :href="href" style="color: #757575;">
+                    <v-icon style="color: #757575;">mdi-file-pdf</v-icon> Format
+                    CV
                   </a>
                 </b>
               </router-link>
@@ -385,17 +481,25 @@
               <v-icon large left>
                 mdi-school
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
-              <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Beasiswa</span
+              >
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pembangunan</span
+              >
               <span class="title font-weight-light">Jaya</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Halaman ini merupakan halaman yang digunakan untuk mengumpulkan seluruh berkas beasiswa yang diperlukan
-              sebagai syarat wajib dalam pengajuan Beasiswa Pembangunan Jaya. <br>
+              Halaman ini merupakan halaman yang digunakan untuk mengumpulkan
+              seluruh berkas beasiswa yang diperlukan sebagai syarat wajib dalam
+              pengajuan Beasiswa Pembangunan Jaya. <br />
               <b>
-                <a :to="{ name: 'UploadScholarshipRequirementList' }" style="color: #757575;">Halaman Beasiswa
-                  Pembangunan Jaya
-                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
+                <a
+                  :to="{ name: 'UploadScholarshipRequirementList' }"
+                  style="color: #757575;"
+                  >Halaman Beasiswa Pembangunan Jaya
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
               </b>
             </v-card-text>
           </v-card>
@@ -407,16 +511,22 @@
               <v-icon large left>
                 mdi-school
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Beasiswa</span
+              >
               <span class="title font-weight-light">ASAK/DIKTI/BIDIKMISI</span>
             </v-card-title>
             <v-card-text>
-              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat Syarat Ketentuan, Formulir Beasiswa dan
-              Ketentuan CV untuk nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br>
+              Sebelum mengajukan Beasiswa Pembangunan Jaya, Anda harus melihat
+              Syarat Ketentuan, Formulir Beasiswa dan Ketentuan CV untuk
+              nantinya sebagai salah satu syarat dalam pengajuan beasiswa <br />
               <b>
-                <a :to="{ name: 'AnotherScholarshipRequirementList' }" style="color: #757575;">Halaman Beasiswa
-                  ASAK/DIKTI/BIDIKMISI
-                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
+                <a
+                  :to="{ name: 'AnotherScholarshipRequirementList' }"
+                  style="color: #757575;"
+                  >Halaman Beasiswa ASAK/DIKTI/BIDIKMISI
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
               </b>
             </v-card-text>
           </v-card>
@@ -507,7 +617,7 @@
     <!-- Akhir Mahasiswa -->
 
     <!-- Awal Juri -->
-    <v-container grid-list-md v-if="auth.user.level == 'juri'">
+    <v-container v-if="auth.user.level == 'juri'" grid-list-md>
       <v-layout row wrap>
         <v-flex lg4 sm4 xs12 md4 style="display:flex;" class="justify-center">
           <v-card shaped>
@@ -515,16 +625,20 @@
               <v-icon large left>
                 mdi-help-circle-outline
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Pedoman</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Pedoman</span
+              >
               <span class="title font-weight-light">Penggunaan</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Pedoman atau tata cara dalam menggunakan website beasiswa pembangunan jaya dijelaskan pada bagian ini.
-              <br> <br>
+              Pedoman atau tata cara dalam menggunakan website beasiswa
+              pembangunan jaya dijelaskan pada bagian ini.
+              <br />
+              <br />
               <v-icon>
                 mdi-file-pdf
               </v-icon>
-              <b>Dokumen Pedoman Penggunaan</b> <br>
+              <b>Dokumen Pedoman Penggunaan</b> <br />
               <v-icon>
                 mdi-video
               </v-icon>
@@ -539,16 +653,22 @@
               <v-icon large left>
                 mdi-file-find
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Penilaian</span>
-              <span class="title font-weight-light" style="padding-right:5px;">Karya</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Penilaian</span
+              >
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Karya</span
+              >
               <span class="title font-weight-light">Tulis</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Halaman Penilaian Karya Tulis merupakan halaman yang digunakan untuk menilai karya tulis mahasiswa yang
-              telah dikumpulkan. <br>
+              Halaman Penilaian Karya Tulis merupakan halaman yang digunakan
+              untuk menilai karya tulis mahasiswa yang telah dikumpulkan. <br />
               <b>
-                <a :to="{ name: 'PaperAssessmentList' }" style="color: #757575;">Halaman Penilaian Karya Tulis
-                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
+                <a :to="{ name: 'PaperAssessmentList' }" style="color: #757575;"
+                  >Halaman Penilaian Karya Tulis
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
               </b>
             </v-card-text>
           </v-card>
@@ -560,15 +680,20 @@
               <v-icon large left>
                 mdi-file-find
               </v-icon>
-              <span class="title font-weight-light" style="padding-right:5px;">Penilaian</span>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Penilaian</span
+              >
               <span class="title font-weight-light">FGD</span>
             </v-card-title>
             <v-card-text class="headline font-weight-bold">
-              Pada sesi presentasi Forum Group Discussion, halaman ini digunakan untuk memberikan penilaian kepada
-              mahasiswa yang sedang melakukan presentasi. <br>
+              Pada sesi presentasi Forum Group Discussion, halaman ini digunakan
+              untuk memberikan penilaian kepada mahasiswa yang sedang melakukan
+              presentasi. <br />
               <b>
-                <a :to="{ name: 'FgdAssessmentList' }" style="color: #757575;">Halaman Penilaian FGD
-                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a>
+                <a :to="{ name: 'FgdAssessmentList' }" style="color: #757575;"
+                  >Halaman Penilaian FGD
+                  <v-icon style="color: #757575;">mdi-chevron-right</v-icon></a
+                >
               </b>
             </v-card-text>
           </v-card>
@@ -615,46 +740,91 @@
 </template>
 
 <script>
-  import {
-    mapState,
-    mapActions
-  } from "vuex";
-  import {
-    SET_BREADCRUMB
-  } from "@/core/services/store/breadcrumbs.module";
-  export default {
-    data(){
-      return{
-      };
-    },
-    computed: {
-      ...mapState(["auth"]),
-      ...mapState("tutorialjurikaryatulis", ["jurikaryatulisData"]),
-      ...mapState("tutorialjurifgd", ["jurifgdData"]),
+import { mapState, mapActions } from "vuex";
+import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(["auth"]),
+    ...mapState("tutorialjurikaryatulis", ["jurikaryatulisData"]),
+    ...mapState("tutorialjurifgd", ["jurifgdData"]),
 
-      ...mapState("tutorialketentuanbeasiswamahasiswa", [
-        "ketentuanbeasiswamahasiswaData"
-      ]),
-      ...mapState("tutorialpengumpulandokumenmahasiswa", [
-        "dokumenmahasiswaData"
-      ]),
-      ...mapState("tutorialpemberitahuanmahasiswa", [
-        "pemberitahuanmahasiswaData"
-      ]),
+    ...mapState("tutorialketentuanbeasiswamahasiswa", [
+      "ketentuanbeasiswamahasiswaData"
+    ]),
+    ...mapState("tutorialpengumpulandokumenmahasiswa", [
+      "dokumenmahasiswaData"
+    ]),
+    ...mapState("tutorialpemberitahuanmahasiswa", [
+      "pemberitahuanmahasiswaData"
+    ]),
 
-      ...mapState("tutorialperiode", ["periodeData"]),
-      ...mapState("tutorialketentuanbeasiswaadmin", [
-        "ketentuanbeasiswaadminData"
-      ]),
-      ...mapState("tutorialpemberitahuanadmin", ["pemberitahuanadminData"]),
-      ...mapState("tutorialakunmahasiswa", ["akunmahasiswaData"]),
-      ...mapState("tutorialseleksibeasiswa", ["seleksibeasiswaData"]),
-      ...mapState("tutorialakunjuri", ["akunjuriData"]),
-      ...mapState("tutorialgrupfgd", ["grupfgdData"]),
-      ...mapState("tutoriallaporanbeasiswa", ["laporanData"])
-    },
+    ...mapState("tutorialperiode", ["periodeData"]),
+    ...mapState("tutorialketentuanbeasiswaadmin", [
+      "ketentuanbeasiswaadminData"
+    ]),
+    ...mapState("tutorialpemberitahuanadmin", ["pemberitahuanadminData"]),
+    ...mapState("tutorialakunmahasiswa", ["akunmahasiswaData"]),
+    ...mapState("tutorialseleksibeasiswa", ["seleksibeasiswaData"]),
+    ...mapState("tutorialakunjuri", ["akunjuriData"]),
+    ...mapState("tutorialgrupfgd", ["grupfgdData"]),
+    ...mapState("tutoriallaporanbeasiswa", ["laporanData"])
+  },
 
-    async mounted() {
+  async mounted() {
+    await this.getJuriKaryaTulis();
+    await this.getJuriFgd();
+
+    await this.getKetentuanBeasiswaMahasiswa();
+    await this.getDokumenMahasiswa();
+    await this.getPemberitahuanMahasiswa();
+
+    await this.getPeriode();
+    await this.getKetentuanBeasiswaAdmin();
+    await this.getPemberitahuanAdmin();
+    await this.getAkunMahasiswa();
+    await this.getSeleksiBeasiswa();
+    await this.getAkunJuri();
+    await this.getGrupFgd();
+    await this.getLaporan();
+
+    this.$store.dispatch(SET_BREADCRUMB, [
+      {
+        title: "Setting",
+        route: "alert"
+      },
+      {
+        title: this.title
+      }
+    ]);
+  },
+  methods: {
+    ...mapActions("tutorialjurikaryatulis", ["getJuriKaryaTulis"]),
+    ...mapActions("tutorialjurifgd", ["getJuriFgd"]),
+    ...mapActions("tutorialketentuanbeasiswamahasiswa", [
+      "getKetentuanBeasiswaMahasiswa"
+    ]),
+    ...mapActions("tutorialpengumpulandokumenmahasiswa", [
+      "getDokumenMahasiswa"
+    ]),
+    ...mapActions("tutorialpemberitahuanmahasiswa", [
+      "getPemberitahuanMahasiswa"
+    ]),
+
+    ...mapActions("tutorialperiode", ["getPeriode"]),
+    ...mapActions("tutorialketentuanbeasiswaadmin", [
+      "getKetentuanBeasiswaAdmin"
+    ]),
+    ...mapActions("tutorialpemberitahuanadmin", ["getPemberitahuanAdmin"]),
+    ...mapActions("tutorialakunmahasiswa", ["getAkunMahasiswa"]),
+    ...mapActions("tutorialseleksibeasiswa", ["getSeleksiBeasiswa"]),
+    ...mapActions("tutorialakunjuri", ["getAkunJuri"]),
+    ...mapActions("tutorialgrupfgd", ["getGrupFgd"]),
+    ...mapActions("tutoriallaporanbeasiswa", ["getLaporan"]),
+
+    async onFetchData() {
       await this.getJuriKaryaTulis();
       await this.getJuriFgd();
 
@@ -670,58 +840,8 @@
       await this.getAkunJuri();
       await this.getGrupFgd();
       await this.getLaporan();
-
-      this.$store.dispatch(SET_BREADCRUMB, [{
-          title: "Setting",
-          route: "alert"
-        },
-        {
-          title: this.title
-        }
-      ]);
-    },
-    methods: {
-      ...mapActions("tutorialjurikaryatulis", ["getJuriKaryaTulis"]),
-      ...mapActions("tutorialjurifgd", ["getJuriFgd"]),
-      ...mapActions("tutorialketentuanbeasiswamahasiswa", [
-        "getKetentuanBeasiswaMahasiswa"
-      ]),
-      ...mapActions("tutorialpengumpulandokumenmahasiswa", [
-        "getDokumenMahasiswa"
-      ]),
-      ...mapActions("tutorialpemberitahuanmahasiswa", [
-        "getPemberitahuanMahasiswa"
-      ]),
-
-      ...mapActions("tutorialperiode", ["getPeriode"]),
-      ...mapActions("tutorialketentuanbeasiswaadmin", [
-        "getKetentuanBeasiswaAdmin"
-      ]),
-      ...mapActions("tutorialpemberitahuanadmin", ["getPemberitahuanAdmin"]),
-      ...mapActions("tutorialakunmahasiswa", ["getAkunMahasiswa"]),
-      ...mapActions("tutorialseleksibeasiswa", ["getSeleksiBeasiswa"]),
-      ...mapActions("tutorialakunjuri", ["getAkunJuri"]),
-      ...mapActions("tutorialgrupfgd", ["getGrupFgd"]),
-      ...mapActions("tutoriallaporanbeasiswa", ["getLaporan"]),
-
-      async onFetchData() {
-        await this.getJuriKaryaTulis();
-        await this.getJuriFgd();
-
-        await this.getKetentuanBeasiswaMahasiswa();
-        await this.getDokumenMahasiswa();
-        await this.getPemberitahuanMahasiswa();
-
-        await this.getPeriode();
-        await this.getKetentuanBeasiswaAdmin();
-        await this.getPemberitahuanAdmin();
-        await this.getAkunMahasiswa();
-        await this.getSeleksiBeasiswa();
-        await this.getAkunJuri();
-        await this.getGrupFgd();
-        await this.getLaporan();
-      }
-      // onDeleteService(id) {}
     }
-  };
+    // onDeleteService(id) {}
+  }
+};
 </script>

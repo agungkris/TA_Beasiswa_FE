@@ -76,7 +76,7 @@ import Dropdown1 from "@/view/content/dropdown/Dropdown1.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-1",
+  name: "Widget1",
   components: {
     Dropdown1
   },

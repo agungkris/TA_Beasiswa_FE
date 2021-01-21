@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="financialData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="financialData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -83,12 +83,12 @@ export default {
       result: "",
       resultRules: [v => !!v || "Total wajib diisi"],
       amount: "",
-      amountRules: [v => !!v || "Besaran Beasiswa wajib diisi"],
+      amountRules: [v => !!v || "Besaran Beasiswa wajib diisi"]
     };
   },
   computed: {
     ...mapState("financial", ["financialData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -113,7 +113,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

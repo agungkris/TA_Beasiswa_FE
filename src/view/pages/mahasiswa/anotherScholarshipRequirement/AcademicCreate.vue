@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="academicData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="academicData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -102,7 +102,7 @@ export default {
       keteranganRules: [v => !!v || "Keterangan wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen KHS wajib diisi",
+        v => !!v || "Dokumen KHS wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -146,7 +146,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

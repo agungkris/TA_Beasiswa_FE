@@ -17,8 +17,8 @@
           Choose Label:
         </span>
         <i
-          class="flaticon2-information icon-md text-muted"
           v-b-tooltip="'Click to learn more...'"
+          class="flaticon2-information icon-md text-muted"
         ></i>
       </b-dropdown-text>
       <b-dropdown-text
@@ -112,7 +112,7 @@
 
 <script>
 export default {
-  name: "dropdown-2",
+  name: "Dropdown2",
   components: {},
   mounted() {}
 };

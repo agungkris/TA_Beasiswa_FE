@@ -407,83 +407,107 @@ export default new Router({
               path: "academic/create",
               name: "AcademicCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/AcademicCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/AcademicCreate.vue"
+                )
             },
             {
               path: "academic/edit/:id",
               name: "AcademicEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/AcademicEdit.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/AcademicEdit.vue"
+                )
             },
 
             {
               path: "competition/create",
               name: "CompetitionCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/CompetitionCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/CompetitionCreate.vue"
+                )
             },
             {
               path: "competition/edit/:id",
               name: "CompetitionEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/CompetitionEdit.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/CompetitionEdit.vue"
+                )
             },
 
             {
               path: "event/create",
               name: "EventCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/EventCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/EventCreate.vue"
+                )
             },
             {
               path: "event/edit/:id",
               name: "EventEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/EventEdit.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/EventEdit.vue"
+                )
             },
 
             {
               path: "organization/create",
               name: "OrganizationCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/OrganizationCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/OrganizationCreate.vue"
+                )
             },
             {
               path: "organization/edit/:id",
               name: "OrganizationEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/OrganizationEdit.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/OrganizationEdit.vue"
+                )
             },
 
             {
               path: "paper/create",
               name: "PaperCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/PaperCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/PaperCreate.vue"
+                )
             },
             {
               path: "paper/edit/:id",
               name: "PaperEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/PaperEdit.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/PaperEdit.vue"
+                )
             },
 
             {
               path: "financial/create",
               name: "FinancialCreate",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/FinancialCreate.vue")
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/FinancialCreate.vue"
+                )
             },
             {
               path: "financial/edit/:id",
               name: "FinancialEdit",
               component: () =>
-                import("@/view/pages/mahasiswa/anotherScholarshipRequirement/FinancialEdit.vue")
-            },
+                import(
+                  "@/view/pages/mahasiswa/anotherScholarshipRequirement/FinancialEdit.vue"
+                )
+            }
           ]
         },
         // AKHIR MAHASISWA
-        
+
         {
           path: "/profile",
           name: "Profile",
@@ -492,11 +516,8 @@ export default new Router({
             {
               path: "profile/edit",
               name: "ProfileEdit",
-              component: () =>
-                import(
-                  "@/view/pages/Profile.vue"
-                )
-            },
+              component: () => import("@/view/pages/Profile.vue")
+            }
           ]
         },
 

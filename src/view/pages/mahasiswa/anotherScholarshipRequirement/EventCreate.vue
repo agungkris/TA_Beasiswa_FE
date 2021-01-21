@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="eventData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="eventData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -80,7 +80,7 @@ export default {
       realizationRules: [v => !!v || "Waktu pelaksanaan wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen wajib diisi",
+        v => !!v || "Dokumen wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     ...mapState("event", ["eventData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -121,7 +121,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

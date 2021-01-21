@@ -2,7 +2,7 @@
   <perfect-scrollbar
     class="quick-search-wrapper scroll"
     style="max-height: 40vh; position: relative;"
-    v-bind:options="{ suppressScrollX: true }"
+    :options="{ suppressScrollX: true }"
   >
     <div class="quick-search-result">
       <!--begin::Message-->
@@ -29,7 +29,7 @@
         >
           <div v-if="item.icon" class="symbol symbol-30 flex-shrink-0">
             <div class="symbol-label">
-              <i v-bind:class="item.icon"></i>
+              <i :class="item.icon"></i>
             </div>
           </div>
 
@@ -62,7 +62,10 @@
 export default {
   name: "KTSearchResult",
   props: {
-    data: Array
+    data: {
+      type: Array,
+      default: () => []
+    }
   }
 };
 </script>

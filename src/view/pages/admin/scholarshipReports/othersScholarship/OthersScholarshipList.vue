@@ -6,8 +6,8 @@
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
         <v-text-field
-          class="my-2"
           v-model="searchfinal"
+          class="my-2"
           append-icon="mdi-magnify"
           label="Search"
           single-line

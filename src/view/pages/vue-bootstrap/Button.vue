@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Buttons'">
+        <KTCodePreview :title="'Buttons'">
           <template v-slot:preview>
             <div>
               <b-button class="mr-3">Button</b-button>
@@ -40,7 +40,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Element type'">
+        <KTCodePreview :title="'Element type'">
           <template v-slot:preview>
             <div>
               <b-button class="mr-3">I am a Button</b-button>
@@ -52,7 +52,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Sizing'">
+        <KTCodePreview :title="'Sizing'">
           <template v-slot:preview>
             <p>
               Fancy larger or smaller buttons? Specify <code>lg</code> or
@@ -76,7 +76,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Pill style'">
+        <KTCodePreview :title="'Pill style'">
           <template v-slot:preview>
             <p>
               Prefer buttons with a more rounded-pill style? Just set the prop
@@ -100,7 +100,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Squared style'">
+        <KTCodePreview :title="'Squared style'">
           <template v-slot:preview>
             <p>
               Prefer buttons with a more square corner style? Just set the prop
@@ -124,7 +124,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Pressed state and toggling'">
+        <KTCodePreview :title="'Pressed state and toggling'">
           <template v-slot:preview>
             <p>
               Buttons will appear pressed (with a darker background, darker
@@ -151,9 +151,9 @@
               <h5>In a button group</h5>
               <b-button-group size="sm">
                 <b-button
-                  class="mr-3"
                   v-for="(btn, idx) in buttons"
                   :key="idx"
+                  class="mr-3"
                   :pressed.sync="btn.state"
                   variant="primary"
                 >
@@ -182,6 +182,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -275,19 +278,16 @@ export default {
       ]
     };
   },
-  components: {
-    KTCodePreview
+  computed: {
+    btnStates() {
+      return this.buttons.map(btn => btn.state);
+    }
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vue Bootstrap", route: "alert" },
       { title: "Buttons" }
     ]);
-  },
-  computed: {
-    btnStates() {
-      return this.buttons.map(btn => btn.state);
-    }
   }
 };
 </script>

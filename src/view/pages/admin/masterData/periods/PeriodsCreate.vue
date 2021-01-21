@@ -32,9 +32,9 @@
                         prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
-                        v-on="on"
                         required
                         :rules="startdate"
+                        v-on="on"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -60,9 +60,9 @@
                         prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
-                        v-on="on"
                         required
                         :rules="endfile"
+                        v-on="on"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -87,9 +87,9 @@
                         prepend-icon="mdi-calendar-today"
                         readonly
                         v-bind="attrs"
-                        v-on="on"
                         required
                         :rules="enddate"
+                        v-on="on"
                       ></v-text-field>
                     </template>
                     <v-date-picker
@@ -159,7 +159,6 @@ export default {
   computed: {
     ...mapState("period", ["periodData"])
   },
-  components: {},
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Vuetify", route: "alerts" },

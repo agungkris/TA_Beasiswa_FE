@@ -1,11 +1,11 @@
 import ApiService from "../../../api.service";
 const state = {
-  semesterList: [],
+  semesterList: []
 };
 const mutations = {
   setSemesterList(state, payload) {
     state.semesterList = payload;
-  },
+  }
 };
 const actions = {
   async getSemesterList(context) {
@@ -15,7 +15,7 @@ const actions = {
     } catch (error) {
       throw error;
     }
-  },
+  }
 };
 const getters = {};
 

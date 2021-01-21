@@ -14,9 +14,7 @@ const mutations = {
 const actions = {
   async getGenerationsList(context) {
     try {
-      let response = await ApiService.query(
-        "api/auth/generations"
-      );
+      let response = await ApiService.query("api/auth/generations");
       context.commit("setGenerationsList", response.data);
     } catch (error) {
       throw error;
@@ -24,19 +22,14 @@ const actions = {
   },
   async createGenerations(context, { payload }) {
     try {
-      await ApiService.post(
-        "api/auth/generations/create",
-        payload
-      );
+      await ApiService.post("api/auth/generations/create", payload);
     } catch (error) {
       throw Error(error);
     }
   },
   async getGenerations(context, { id }) {
     try {
-      let response = await ApiService.query(
-        `api/auth/generations/get/${id}`
-      );
+      let response = await ApiService.query(`api/auth/generations/get/${id}`);
       context.commit("setGenerationsData", response.data);
     } catch (error) {
       throw Error(error);
@@ -45,10 +38,7 @@ const actions = {
 
   async updateGenerations(context, { id, payload }) {
     try {
-      await ApiService.post(
-        `api/auth/generations/update/${id}`,
-        payload
-      );
+      await ApiService.post(`api/auth/generations/update/${id}`, payload);
     } catch (error) {
       throw Error(error);
     }

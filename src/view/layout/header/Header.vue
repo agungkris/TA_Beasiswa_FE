@@ -1,25 +1,20 @@
 <template>
   <!-- begin:: Header -->
-  <div
-    id="kt_header"
-    ref="kt_header"
-    class="header"
-    v-bind:class="headerClasses"
-  >
+  <div id="kt_header" ref="kt_header" class="header" :class="headerClasses">
     <div
       class="container-fluid d-flex align-items-center justify-content-between"
     >
       <!-- begin:: Header Menu -->
       <div
-        class="header-menu-wrapper header-menu-wrapper-left"
         ref="kt_header_menu_wrapper"
+        class="header-menu-wrapper header-menu-wrapper-left"
       >
         <div
           v-if="headerMenuEnabled"
           id="kt_header_menu"
           ref="kt_header_menu"
           class="header-menu header-menu-mobile"
-          v-bind:class="headerMenuClasses"
+          :class="headerMenuClasses"
         >
           <!-- example static menu here -->
           <KTMenu></KTMenu>
@@ -44,16 +39,6 @@ export default {
   components: {
     KTTopbar,
     KTMenu
-  },
-  mounted() {
-    // Init Desktop & Mobile Headers
-    KTLayoutHeader.init("kt_header", "kt_header_mobile");
-
-    // Init Header Menu
-    KTLayoutHeaderMenu.init(
-      this.$refs["kt_header_menu"],
-      this.$refs["kt_header_menu_wrapper"]
-    );
   },
   computed: {
     ...mapGetters(["layoutConfig", "getClasses"]),
@@ -89,6 +74,16 @@ export default {
       }
       return null;
     }
+  },
+  mounted() {
+    // Init Desktop & Mobile Headers
+    KTLayoutHeader.init("kt_header", "kt_header_mobile");
+
+    // Init Header Menu
+    KTLayoutHeaderMenu.init(
+      this.$refs["kt_header_menu"],
+      this.$refs["kt_header_menu_wrapper"]
+    );
   }
 };
 </script>

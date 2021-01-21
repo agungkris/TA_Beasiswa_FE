@@ -12,7 +12,7 @@ const mutations = {
   }
 };
 const actions = {
-  async getOrganizationList(context, {student_id}) {
+  async getOrganizationList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
@@ -23,9 +23,9 @@ const actions = {
         `api/scholarship/organizationachievement?` + searchParams
       );
       context.commit("setOrganizationList", response.data.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createOrganization(context, { payload }) {
     try {

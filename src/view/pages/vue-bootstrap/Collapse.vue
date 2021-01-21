@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Collapse'">
+        <KTCodePreview :title="'Collapse'">
           <template v-slot:preview>
             <div>
               <b-button v-b-toggle.collapse-1 variant="primary"
@@ -49,7 +49,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Trigger multiple collapse elements'">
+        <KTCodePreview :title="'Trigger multiple collapse elements'">
           <template v-slot:preview>
             <p>
               You can even collapse multiple
@@ -77,12 +77,12 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Accordion support'">
+        <KTCodePreview :title="'Accordion support'">
           <template v-slot:preview>
             <div role="tablist">
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                  <b-button block href="#" v-b-toggle.accordion-1 variant="info"
+                  <b-button v-b-toggle.accordion-1 block href="#" variant="info"
                     >Accordion 1</b-button
                   >
                 </b-card-header>
@@ -104,7 +104,7 @@
 
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                  <b-button block href="#" v-b-toggle.accordion-2 variant="info"
+                  <b-button v-b-toggle.accordion-2 block href="#" variant="info"
                     >Accordion 2</b-button
                   >
                 </b-card-header>
@@ -121,7 +121,7 @@
 
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-1" role="tab">
-                  <b-button block href="#" v-b-toggle.accordion-3 variant="info"
+                  <b-button v-b-toggle.accordion-3 block href="#" variant="info"
                     >Accordion 3</b-button
                   >
                 </b-card-header>
@@ -144,7 +144,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Usage'">
+        <KTCodePreview :title="'Usage'">
           <template v-slot:preview>
             <p>
               Other elements can easily toggle
@@ -173,7 +173,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Initial visibility'">
+        <KTCodePreview :title="'Initial visibility'">
           <template v-slot:preview>
             <p>
               To make the <code>&lt;b-collapse&gt;</code> show initially, set
@@ -183,7 +183,7 @@
               <b-button v-b-toggle.collapse-3 class="m-1"
                 >Toggle Collapse</b-button
               >
-              <b-collapse visible id="collapse-3">
+              <b-collapse id="collapse-3" visible>
                 <b-card>I should start open!</b-card>
               </b-collapse>
             </div>
@@ -202,6 +202,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -297,9 +300,6 @@ export default {
           synth nesciunt you probably haven't heard of them accusamus labore VHS.
         `
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

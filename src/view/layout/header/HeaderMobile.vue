@@ -2,7 +2,7 @@
   <div
     id="kt_header_mobile"
     class="header-mobile align-items-center"
-    v-bind:class="headerClasses"
+    :class="headerClasses"
   >
     <!--begin::Logo-->
     <!-- <a href="/">
@@ -14,8 +14,8 @@
       <!--begin::Aside Mobile Toggle-->
       <button
         v-if="asideEnabled"
-        class="btn p-0 burger-icon burger-icon-right "
         id="kt_aside_mobile_toggle"
+        class="btn p-0 burger-icon burger-icon-right "
       >
         <span></span>
       </button>
@@ -31,9 +31,9 @@
       <!--end::Header Menu Mobile Toggle-->
       <!--begin::Topbar Mobile Toggle-->
       <button
-        class="btn btn-hover-text-primary p-0 ml-2"
         id="kt_header_mobile_topbar_toggle"
         ref="kt_header_mobile_topbar_toggle"
+        class="btn btn-hover-text-primary p-0 ml-2"
       >
         <span class="svg-icon svg-icon-xl">
           <!--begin::Svg Icon | path:svg/icons/General/User.svg-->
@@ -54,10 +54,6 @@ import KTLayoutHeaderTopbar from "@/assets/js/layout/base/header-topbar.js";
 export default {
   name: "KTHeaderMobile",
   components: {},
-  mounted() {
-    // Init Header Topbar For Mobile Mode
-    KTLayoutHeaderTopbar.init(this.$refs["kt_header_mobile_topbar_toggle"]);
-  },
   computed: {
     ...mapGetters(["layoutConfig", "getClasses"]),
 
@@ -88,6 +84,10 @@ export default {
     asideEnabled() {
       return !!this.layoutConfig("aside.self.display");
     }
+  },
+  mounted() {
+    // Init Header Topbar For Mobile Mode
+    KTLayoutHeaderTopbar.init(this.$refs["kt_header_mobile_topbar_toggle"]);
   }
 };
 </script>

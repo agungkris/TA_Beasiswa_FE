@@ -6,14 +6,14 @@
 
         <v-spacer></v-spacer>
         <v-overflow-btn
+          v-model="selectedPeriod"
           class="mt-6"
           label="Periode Pengajuan Beasiswa"
           target="#dropdown-example"
-          v-model="selectedPeriod"
           :items="periodList"
           item-value="id"
-          @change="onChangeFilter"
           item-text="name"
+          @change="onChangeFilter"
         ></v-overflow-btn>
         <v-spacer></v-spacer>
       </v-card-title>

@@ -3,14 +3,16 @@
     <div class="row">
       <div class="col-md-12">
         <v-card>
-          <v-card-title>Edit Laporan Kegiatan Organisasi Kemahasiswaan</v-card-title>
+          <v-card-title
+            >Edit Laporan Kegiatan Organisasi Kemahasiswaan</v-card-title
+          >
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="organizationData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="organizationData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -90,7 +92,7 @@ export default {
       positionRules: [v => !!v || "Jabatan wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
+        v => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -100,7 +102,7 @@ export default {
   },
   computed: {
     ...mapState("organization", ["organizationData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -140,7 +142,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

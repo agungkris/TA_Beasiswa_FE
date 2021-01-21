@@ -3,8 +3,8 @@
     <div class="card-body p-0">
       <!--begin: Wizard-->
       <div
-        class="wizard wizard-1"
         id="kt_wizard_v1"
+        class="wizard wizard-1"
         data-wizard-state="step-first"
         data-wizard-clickable="true"
       >
@@ -58,7 +58,7 @@
         <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
           <div class="col-xl-12 col-xxl-7">
             <!--begin: Wizard Form-->
-            <form class="form" id="kt_form">
+            <form id="kt_form" class="form">
               <!--begin: Wizard Step 1-->
               <div
                 class="pb-5"
@@ -1016,9 +1016,9 @@
                 </div>
                 <div>
                   <button
-                    v-on:click="submit"
                     class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
                     data-wizard-type="action-submit"
+                    @click="submit"
                   >
                     Submit
                   </button>
@@ -1053,7 +1053,7 @@ import KTWizard from "@/assets/js/components/wizard";
 import Swal from "sweetalert2";
 
 export default {
-  name: "Wizard-1",
+  name: "Wizard1",
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Wizard" },

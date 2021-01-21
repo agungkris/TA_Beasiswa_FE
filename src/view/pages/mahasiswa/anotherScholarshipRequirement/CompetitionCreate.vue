@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="competitionData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="competitionData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -100,7 +100,7 @@ export default {
       resultRules: [v => !!v || "Hasil wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
+        v => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -144,7 +144,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

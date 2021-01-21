@@ -1,13 +1,9 @@
 <template>
-  <div class="card card-custom gutter-b" v-bind:class="classes">
-    <div
-      class="card-header"
-      v-bind:class="headClass"
-      v-if="hasTitleSlot || title"
-    >
+  <div class="card card-custom gutter-b" :class="classes">
+    <div v-if="hasTitleSlot || title" class="card-header" :class="headClass">
       <div class="card-title">
-        <slot name="title" v-if="hasTitleSlot"></slot>
-        <h3 class="card-label" v-if="!hasTitleSlot">
+        <slot v-if="hasTitleSlot" name="title"></slot>
+        <h3 v-if="!hasTitleSlot" class="card-label">
           {{ title }}
         </h3>
       </div>
@@ -17,7 +13,7 @@
     </div>
     <div
       class="card-body"
-      v-bind:class="{
+      :class="{
         bodyClass,
         'body-fit': bodyFit,
         'body-fluid': bodyFluid
@@ -25,7 +21,7 @@
     >
       <slot name="body"></slot>
     </div>
-    <div class="card-footer" v-if="hasFootSlot">
+    <div v-if="hasFootSlot" class="card-footer">
       <slot name="foot"></slot>
     </div>
   </div>
@@ -34,6 +30,7 @@
 <script>
 export default {
   name: "KTCard",
+  components: {},
   props: {
     /**
      * String title
@@ -80,8 +77,6 @@ export default {
      */
     example: Boolean
   },
-  components: {},
-  methods: {},
   computed: {
     classes() {
       const cls = {
@@ -112,6 +107,7 @@ export default {
       }
       return false;
     }
-  }
+  },
+  methods: {}
 };
 </script>

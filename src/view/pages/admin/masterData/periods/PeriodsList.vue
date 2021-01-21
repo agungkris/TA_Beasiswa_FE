@@ -62,8 +62,8 @@
                     color="red darken-4"
                     text
                     icon
-                    @click="onDelete(item.id)"
                     class="mr-2"
+                    @click="onDelete(item.id)"
                     >Hapus</v-btn
                   >
                 </v-card-actions>

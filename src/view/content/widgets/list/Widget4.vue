@@ -13,17 +13,17 @@
     <div class="card-body pt-2">
       <template v-for="(item, i) in list">
         <!--begin::Item-->
-        <div class="d-flex align-items-center mb-10" v-bind:key="i">
+        <div :key="i" class="d-flex align-items-center mb-10">
           <!--begin::Bullet-->
           <span
             class="bullet bullet-bar align-self-stretch"
-            v-bind:class="`bg-${item.style}`"
+            :class="`bg-${item.style}`"
           ></span>
           <!--end::Bullet-->
           <!--begin::Checkbox-->
           <label
             class="checkbox checkbox-lg checkbox-single flex-shrink-0 m-0 mx-4"
-            v-bind:class="`checkbox-light-${item.style}`"
+            :class="`checkbox-light-${item.style}`"
           >
             <input type="checkbox" name="" value="1" />
             <span></span>
@@ -60,7 +60,11 @@ import Dropdown4 from "@/view/content/dropdown/Dropdown4.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-4",
+  name: "Widget4",
+  components: {
+    Dropdown2,
+    Dropdown4
+  },
   data() {
     return {
       list: [
@@ -96,10 +100,6 @@ export default {
         }
       ]
     };
-  },
-  components: {
-    Dropdown2,
-    Dropdown4
   },
   computed: {
     ...mapGetters(["layoutConfig"])

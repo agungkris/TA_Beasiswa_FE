@@ -1,10 +1,10 @@
 <template>
-  <div class="d-flex flex-column flex-root" v-if="isAuthenticated">
+  <div v-if="isAuthenticated" class="d-flex flex-column flex-root">
     <!-- begin:: Header Mobile -->
     <KTHeaderMobile></KTHeaderMobile>
     <!-- end:: Header Mobile -->
 
-    <Loader v-if="loaderEnabled" v-bind:logo="loaderLogo"></Loader>
+    <Loader v-if="loaderEnabled" :logo="loaderLogo"></Loader>
 
     <!-- begin::Body -->
     <div class="d-flex flex-row flex-column-fluid page">
@@ -27,8 +27,8 @@
           <!-- begin:: Content Head -->
           <KTSubheader
             v-if="subheaderDisplay"
-            v-bind:breadcrumbs="breadcrumbs"
-            v-bind:title="pageTitle"
+            :breadcrumbs="breadcrumbs"
+            :title="pageTitle"
           />
           <!-- end:: Content Head -->
 
@@ -82,26 +82,6 @@ export default {
     KTScrollTop,
     Loader
   },
-  beforeMount() {
-    // show page loading
-    this.$store.dispatch(ADD_BODY_CLASSNAME, "page-loading");
-
-    // initialize html element classes
-    HtmlClass.init(this.layoutConfig());
-  },
-  mounted() {
-    // check if current user is authenticated
-    if (!this.isAuthenticated) {
-      this.$router.push({ name: "login" });
-    }
-
-    // Simulate the delay page loading
-    setTimeout(() => {
-      // Remove page loader after some time
-      this.$store.dispatch(REMOVE_BODY_CLASSNAME, "page-loading");
-    }, 2000);
-  },
-  methods: {},
   computed: {
     ...mapGetters([
       "isAuthenticated",
@@ -158,6 +138,26 @@ export default {
     subheaderDisplay() {
       return !!this.layoutConfig("subheader.display");
     }
-  }
+  },
+  beforeMount() {
+    // show page loading
+    this.$store.dispatch(ADD_BODY_CLASSNAME, "page-loading");
+
+    // initialize html element classes
+    HtmlClass.init(this.layoutConfig());
+  },
+  mounted() {
+    // check if current user is authenticated
+    if (!this.isAuthenticated) {
+      this.$router.push({ name: "login" });
+    }
+
+    // Simulate the delay page loading
+    setTimeout(() => {
+      // Remove page loader after some time
+      this.$store.dispatch(REMOVE_BODY_CLASSNAME, "page-loading");
+    }, 2000);
+  },
+  methods: {}
 };
 </script>

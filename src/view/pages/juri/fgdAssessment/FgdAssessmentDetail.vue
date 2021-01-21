@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="mb-6">
-      <v-card-title>Anggota {{ this.groupData.group_name }}</v-card-title>
+      <v-card-title>Anggota {{ groupData.group_name }}</v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="groupData.member">
           <template v-slot:[`item.action`]="{ item }">

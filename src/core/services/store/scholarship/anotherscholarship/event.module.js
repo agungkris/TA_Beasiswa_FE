@@ -12,7 +12,7 @@ const mutations = {
   }
 };
 const actions = {
-  async getEventList(context,{student_id}) {
+  async getEventList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
@@ -23,16 +23,13 @@ const actions = {
         `api/scholarship/eventachievement?` + searchParams
       );
       context.commit("setEventList", response.data.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createEvent(context, { payload }) {
     try {
-      await ApiService.post(
-        "api/scholarship/eventachievement/create",
-        payload
-      );
+      await ApiService.post("api/scholarship/eventachievement/create", payload);
       context.commit("setEventData", {});
     } catch (error) {
       throw Error(error);
@@ -61,9 +58,7 @@ const actions = {
   },
   async deleteEvent(context, { id }) {
     try {
-      await ApiService.delete(
-        `api/scholarship/eventachievement/delete/${id}`
-      );
+      await ApiService.delete(`api/scholarship/eventachievement/delete/${id}`);
     } catch (error) {
       throw Error(error);
     }

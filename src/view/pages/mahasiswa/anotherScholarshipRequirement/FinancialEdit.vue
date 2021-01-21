@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="financialData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="financialData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -84,12 +84,12 @@ export default {
       result: "",
       resultRules: [v => !!v || "Total wajib diisi"],
       amount: "",
-      amountRules: [v => !!v || "Besaran Beasiswa wajib diisi"],
+      amountRules: [v => !!v || "Besaran Beasiswa wajib diisi"]
     };
   },
   computed: {
     ...mapState("financial", ["financialData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -103,7 +103,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("financial", ["updateFinancial","getFinancial"]),
+    ...mapActions("financial", ["updateFinancial", "getFinancial"]),
     ...mapActions("semester", ["getSemesterList"]),
     async onFetchData() {
       await this.getFinancial({ id: this.id });
@@ -111,14 +111,17 @@ export default {
     async validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        await this.updateFinancial({ id: this.id, payload: this.financialData });
+        await this.updateFinancial({
+          id: this.id,
+          payload: this.financialData
+        });
         this.financialData = {};
         this.$router.push({ name: "AnotherScholarshipRequirementList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

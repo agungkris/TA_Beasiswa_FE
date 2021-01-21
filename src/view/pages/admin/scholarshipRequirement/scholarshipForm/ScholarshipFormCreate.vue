@@ -23,10 +23,10 @@
           <v-btn
             dark
             v-bind="attrs"
-            v-on="on"
             :disabled="!valid"
             color="success"
             class="mr-4"
+            v-on="on"
             @click="validate"
           >
             Unggah

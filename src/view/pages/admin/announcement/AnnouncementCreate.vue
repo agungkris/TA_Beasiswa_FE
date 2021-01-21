@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="announcementData.period_id"
                 class="my-2"
                 label="Periode Pemberitahuan"
                 target="#dropdown-example"
-                v-model="announcementData.period_id"
                 :items="periodList"
                 item-value="id"
                 item-text="name"

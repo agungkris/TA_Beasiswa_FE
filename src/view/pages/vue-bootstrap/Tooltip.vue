@@ -25,17 +25,17 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Tooltips'">
+        <KTCodePreview :title="'Tooltips'">
           <template v-slot:preview>
             <div class="text-center my-3">
               <b-button
-                class="mr-3"
                 v-b-tooltip.hover
+                class="mr-3"
                 title="Tooltip directive content"
               >
                 Hover Me
               </b-button>
-              <b-button class="mr-3" id="tooltip-target-1">
+              <b-button id="tooltip-target-1" class="mr-3">
                 Hover Me
               </b-button>
               <b-tooltip
@@ -52,7 +52,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Disabled elements'">
+        <KTCodePreview :title="'Disabled elements'">
           <template v-slot:preview>
             <p>
               Elements with the <code>disabled</code> attribute aren't
@@ -127,7 +127,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Programmatically show and hide tooltip'">
+        <KTCodePreview :title="'Programmatically show and hide tooltip'">
           <template v-slot:preview>
             <p>
               You can manually control the visibility of a tooltip via the
@@ -160,7 +160,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Programmatic control'">
+        <KTCodePreview :title="'Programmatic control'">
           <template v-slot:preview>
             <p>
               Programmatic control can also be affected by submitting
@@ -238,6 +238,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -361,8 +364,12 @@ export default {
       }
     };
   },
-  components: {
-    KTCodePreview
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Vue Bootstrap", route: "alert" },
+      { title: "Notify", route: "popover" },
+      { title: "Tooltip" }
+    ]);
   },
   methods: {
     onOpen() {
@@ -371,13 +378,6 @@ export default {
     onClose() {
       this.$refs.tooltip.$emit("close");
     }
-  },
-  mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Vue Bootstrap", route: "alert" },
-      { title: "Notify", route: "popover" },
-      { title: "Tooltip" }
-    ]);
   }
 };
 </script>

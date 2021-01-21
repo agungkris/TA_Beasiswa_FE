@@ -28,7 +28,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Single checkbox'">
+        <KTCodePreview :title="'Single checkbox'">
           <template v-slot:preview>
             <div>
               <b-form-checkbox
@@ -54,7 +54,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Multiple choice checkboxes'">
+        <KTCodePreview :title="'Multiple choice checkboxes'">
           <template v-slot:preview>
             <div>
               <b-form-group label="Using options array:">
@@ -96,7 +96,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Inline and stacked checkboxes'">
+        <KTCodePreview :title="'Inline and stacked checkboxes'">
           <template v-slot:preview>
             <p>
               <code>&lt;b-form-checkbox-group&gt;</code> components render
@@ -127,8 +127,8 @@
               <b-form-group label="Individual stacked checkboxes (default)">
                 <b-form-checkbox
                   v-for="option in code3.options"
-                  v-model="code3.selected3"
                   :key="option.value"
+                  v-model="code3.selected3"
                   :value="option.value"
                   name="flavour-3a"
                 >
@@ -139,8 +139,8 @@
               <b-form-group label="Individual inline checkboxes">
                 <b-form-checkbox
                   v-for="option in code3.options"
-                  v-model="code3.selected4"
                   :key="option.value"
+                  v-model="code3.selected4"
                   :value="option.value"
                   name="flavour-4a"
                   inline
@@ -159,7 +159,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Control sizing'">
+        <KTCodePreview :title="'Control sizing'">
           <template v-slot:preview>
             <p>
               Use the <code>size</code> prop to control the size of the
@@ -179,7 +179,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Grouped button style checkboxes'">
+        <KTCodePreview :title="'Grouped button style checkboxes'">
           <template v-slot:preview>
             <div>
               <b-form-group label="Button-group style checkboxes">
@@ -233,6 +233,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -437,9 +440,6 @@ export default {
         ]
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

@@ -78,7 +78,7 @@
 
 <script>
 export default {
-  name: "dropdown-1",
+  name: "Dropdown1",
   components: {},
   mounted() {}
 };

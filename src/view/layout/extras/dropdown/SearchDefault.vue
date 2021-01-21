@@ -1,13 +1,13 @@
 <template>
   <div
-    v-bind:class="{ 'quick-search-has-result': hasResult() }"
-    class="quick-search quick-search-dropdown quick-search-result-compact"
     id="kt_quick_search_dropdown"
+    :class="{ 'quick-search-has-result': hasResult() }"
+    class="quick-search quick-search-dropdown quick-search-result-compact"
   >
     <form method="get" class="quick-search-form">
       <div
         class="input-group spinner-input spinner-sm spinner-brand spinner-right"
-        v-bind:class="{ spinner: loading }"
+        :class="{ spinner: loading }"
       >
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -15,24 +15,24 @@
           </span>
         </div>
         <input
-          v-on:keyup="onSearch"
           type="text"
           class="form-control quick-search-input"
           placeholder="Search..."
+          @keyup="onSearch"
         />
         <div class="input-group-append">
           <span class="input-group-text">
             <i
               class="quick-search-close"
-              v-on:click="reset"
-              v-bind:style="{ display: hasResult() ? 'flex' : '' }"
+              :style="{ display: hasResult() ? 'flex' : '' }"
+              @click="reset"
             ></i>
           </span>
         </div>
       </div>
     </form>
 
-    <KTSearchResult v-bind:data="data"></KTSearchResult>
+    <KTSearchResult :data="data"></KTSearchResult>
   </div>
 </template>
 

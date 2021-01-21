@@ -1,6 +1,6 @@
 <template>
-  <div class="topbar-item" v-b-tooltip.hover.bottom="'Quick panel'">
-    <div class="btn btn-icon btn-clean btn-lg mr-1" id="kt_quick_panel_toggle">
+  <div v-b-tooltip.hover.bottom="'Quick panel'" class="topbar-item">
+    <div id="kt_quick_panel_toggle" class="btn btn-icon btn-clean btn-lg mr-1">
       <span class="svg-icon svg-icon-xl svg-icon-primary">
         <inline-svg src="media/svg/icons/Layout/Layout-4-blocks.svg" />
       </span>
@@ -24,12 +24,12 @@
           <li class="nav-item">
             <a
               class="nav-link active"
-              v-on:click="setActiveTab"
               data-tab="0"
               data-toggle="tab"
               href="#"
               role="tab"
               aria-selected="true"
+              @click="setActiveTab"
             >
               Audit Logs
             </a>
@@ -37,12 +37,12 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              v-on:click="setActiveTab"
               data-tab="1"
               data-toggle="tab"
               href="#"
               role="tab"
               aria-selected="false"
+              @click="setActiveTab"
             >
               Notifications
             </a>
@@ -50,12 +50,12 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              v-on:click="setActiveTab"
               data-tab="2"
               data-toggle="tab"
               href="#"
               role="tab"
               aria-selected="false"
+              @click="setActiveTab"
             >
               Settings
             </a>
@@ -63,9 +63,9 @@
         </ul>
         <div class="offcanvas-close mt-n1 pr-5">
           <a
+            id="kt_quick_panel_close"
             href="#"
             class="btn btn-xs btn-icon btn-light btn-hover-primary"
-            id="kt_quick_panel_close"
           >
             <i class="ki ki-close icon-xs text-muted"></i>
           </a>
@@ -75,16 +75,16 @@
 
       <div class="offcanvas-content px-10">
         <div class="tab-content">
-          <b-tabs class="hide-tabs" v-model="tabIndex">
+          <b-tabs v-model="tabIndex" class="hide-tabs">
             <b-tab active>
-              <div class="scroll pr-7 mr-n7" id="kt_quick_panel_logs">
+              <div id="kt_quick_panel_logs" class="scroll pr-7 mr-n7">
                 <div class="mb-15">
                   <h5 class="font-weight-bold mb-5">System Messages</h5>
                   <template v-for="(item, i) in list1">
                     <!--begin: Item -->
                     <div
+                      :key="i"
                       class="d-flex align-items-center flex-wrap mb-5"
-                      v-bind:key="i"
                     >
                       <div class="symbol symbol-50 symbol-light mr-5">
                         <span class="symbol-label">
@@ -120,13 +120,13 @@
                   <template v-for="(item, i) in list2">
                     <!--begin: Item -->
                     <div
+                      :key="i"
                       class="d-flex align-items-center rounded p-5 mb-5"
-                      v-bind:key="i"
-                      v-bind:class="`bg-light-${item.type}`"
+                      :class="`bg-light-${item.type}`"
                     >
                       <span
                         class="svg-icon mr-5"
-                        v-bind:class="`svg-icon-${item.type}`"
+                        :class="`svg-icon-${item.type}`"
                       >
                         <inline-svg
                           :src="item.svg"
@@ -148,7 +148,7 @@
 
                       <span
                         class="font-weight-bolder py-1 font-size-lg"
-                        v-bind:class="`text-${item.type}`"
+                        :class="`text-${item.type}`"
                       >
                         {{ item.alt }}
                       </span>
@@ -160,16 +160,16 @@
             </b-tab>
 
             <b-tab>
-              <div class="scroll pr-7 mr-n7" id="kt_quick_panel_notifications">
+              <div id="kt_quick_panel_notifications" class="scroll pr-7 mr-n7">
                 <!--begin::Nav-->
                 <div class="navi navi-icon-circle navi-spacer-x-0">
                   <template v-for="(item, i) in list3">
                     <!--begin::Item-->
-                    <a href="#" class="navi-item" v-bind:key="i">
+                    <a :key="i" href="#" class="navi-item">
                       <div class="navi-link rounded">
                         <div class="symbol symbol-50 mr-3">
                           <div class="symbol-label">
-                            <i class="icon-lg" v-bind:class="item.icon" />
+                            <i class="icon-lg" :class="item.icon" />
                           </div>
                         </div>
                         <div class="navi-text">
@@ -189,7 +189,7 @@
             </b-tab>
 
             <b-tab>
-              <div class="scroll pr-7 mr-n7" id="kt_quick_panel_settings">
+              <div id="kt_quick_panel_settings" class="scroll pr-7 mr-n7">
                 <form class="form">
                   <!--begin::Section-->
                   <div>

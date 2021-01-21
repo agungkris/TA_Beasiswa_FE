@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Button group'">
+        <KTCodePreview :title="'Button group'">
           <template v-slot:preview>
             <p>
               Default button group and button group using contextual variants.
@@ -50,7 +50,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Sizing'">
+        <KTCodePreview :title="'Sizing'">
           <template v-slot:preview>
             <p>
               Set the size prop to <code>lg</code> or <code>sm</code> to render
@@ -86,7 +86,7 @@
       </div>
 
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Vertical variation'">
+        <KTCodePreview :title="'Vertical variation'">
           <template v-slot:preview>
             <p>
               Make a set of buttons appear vertically stacked rather than
@@ -106,7 +106,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Dropdown menu support'">
+        <KTCodePreview :title="'Dropdown menu support'">
           <template v-slot:preview>
             <p>
               Add <code>&lt;b-dropdown&gt;</code> menus directly inside your
@@ -145,6 +145,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `
@@ -211,9 +214,6 @@ export default {
   </b-button-group>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

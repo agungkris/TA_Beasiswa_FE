@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Embed'">
+        <KTCodePreview :title="'Embed'">
           <template v-slot:preview>
             <p>
               Rules are directly applied to <code>&lt;iframe&gt;</code>,
@@ -58,6 +58,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -69,9 +72,6 @@ export default {
   ></b-embed>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

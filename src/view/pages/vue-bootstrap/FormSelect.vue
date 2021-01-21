@@ -26,7 +26,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Form Select'">
+        <KTCodePreview :title="'Form Select'">
           <template v-slot:preview>
             <p>
               Generate your select options by passing an array or object to the
@@ -62,7 +62,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Options and optgroups'">
+        <KTCodePreview :title="'Options and optgroups'">
           <template v-slot:preview>
             <div>
               <b-form-select v-model="code2.selected" class="mb-3">
@@ -93,7 +93,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Changing the option field names'">
+        <KTCodePreview :title="'Changing the option field names'">
           <template v-slot:preview>
             <p>
               If you want to customize the field property names (for example
@@ -125,7 +125,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Value in single mode'">
+        <KTCodePreview :title="'Value in single mode'">
           <template v-slot:preview>
             <p>
               In non <code>multiple</code> mode,
@@ -159,6 +159,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -279,9 +282,6 @@ export default {
         ]
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

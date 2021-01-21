@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Form group'">
+        <KTCodePreview :title="'Form group'">
           <template v-slot:preview>
             <div>
               <b-form-group
@@ -56,7 +56,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Horizontal layout'">
+        <KTCodePreview :title="'Horizontal layout'">
           <template v-slot:preview>
             <p>
               By default, the label appears above the input element(s), but you
@@ -82,7 +82,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Label size'">
+        <KTCodePreview :title="'Label size'">
           <template v-slot:preview>
             <p>
               You can control the label text size match the size of your form
@@ -127,7 +127,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Nested form groups'">
+        <KTCodePreview :title="'Nested form groups'">
           <template v-slot:preview>
             <p>
               Feel free to nest <code>&lt;b-form-group&gt;</code> components to
@@ -208,6 +208,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -335,9 +338,6 @@ export default {
   </b-card>
 </div>`
     };
-  },
-  components: {
-    KTCodePreview
   },
   computed: {
     state() {

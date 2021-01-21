@@ -41,7 +41,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-7",
+  name: "Widget7",
   data() {
     return {
       chartOptions: {},

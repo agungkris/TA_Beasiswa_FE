@@ -115,7 +115,7 @@
 
 <script>
 export default {
-  name: "dropdown-3",
+  name: "Dropdown3",
   components: {},
   mounted() {}
 };

@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Alerts'">
+        <KTCodePreview :title="'Alerts'">
           <template v-slot:preview>
             <p>
               Alerts are available for any length of text, as well as an
@@ -75,13 +75,13 @@
                 </template>
               </b-alert>
 
-              <b-button @click="showAlert1" variant="info" class="m-1">
+              <b-button variant="info" class="m-1" @click="showAlert1">
                 Show alert with count-down timer
               </b-button>
               <b-button
-                @click="code1.showDismissibleAlert = true"
                 variant="info"
                 class="m-1"
+                @click="code1.showDismissibleAlert = true"
               >
                 Show dismissible alert ({{
                   code1.showDismissibleAlert ? "visible" : "hidden"
@@ -97,7 +97,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Fading alerts'">
+        <KTCodePreview :title="'Fading alerts'">
           <template v-slot:preview>
             <p>
               Use the <code>fade</code> prop to enable animation. By default
@@ -144,13 +144,13 @@
                 </template>
               </b-alert>
 
-              <b-button @click="showAlert2" variant="info" class="m-1">
+              <b-button variant="info" class="m-1" @click="showAlert2">
                 Show alert with count-down timer
               </b-button>
               <b-button
-                @click="code2.showDismissibleAlert = true"
                 variant="info"
                 class="m-1"
+                @click="code2.showDismissibleAlert = true"
               >
                 Show dismissible alert ({{
                   code2.showDismissibleAlert ? "visible" : "hidden"
@@ -169,7 +169,7 @@
         </KTCodePreview>
       </div>
       <div class="col-md-6">
-        <KTCodePreview v-bind:title="'Contextual variants'">
+        <KTCodePreview :title="'Contextual variants'">
           <template v-slot:preview>
             <p>
               For proper styling of &lt;b-alert&gt;, use one of the four
@@ -203,6 +203,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       code1: {
@@ -309,9 +312,6 @@ export default {
 </div>`
       }
     };
-  },
-  components: {
-    KTCodePreview
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [

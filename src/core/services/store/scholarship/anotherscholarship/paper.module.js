@@ -12,7 +12,7 @@ const mutations = {
   }
 };
 const actions = {
-  async getPaperList(context, {student_id}) {
+  async getPaperList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
@@ -23,16 +23,13 @@ const actions = {
         `api/scholarship/paperachievement?` + searchParams
       );
       context.commit("setPaperList", response.data.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createPaper(context, { payload }) {
     try {
-      await ApiService.post(
-        "api/scholarship/paperachievement/create",
-        payload
-      );
+      await ApiService.post("api/scholarship/paperachievement/create", payload);
       context.commit("setPaperData", {});
     } catch (error) {
       throw Error(error);
@@ -61,9 +58,7 @@ const actions = {
   },
   async deletePaper(context, { id }) {
     try {
-      await ApiService.delete(
-        `api/scholarship/paperachievement/delete/${id}`
-      );
+      await ApiService.delete(`api/scholarship/paperachievement/delete/${id}`);
     } catch (error) {
       throw Error(error);
     }

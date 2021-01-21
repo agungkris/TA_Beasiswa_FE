@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <KTCodePreview v-bind:title="'Introduction to forms and controls'">
+        <KTCodePreview :title="'Introduction to forms and controls'">
           <template v-slot:preview>
             <p>
               Be sure to use an appropriate <code>type</code> on all inputs
@@ -37,7 +37,7 @@
               and more.
             </p>
             <div>
-              <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+              <b-form v-if="show" @submit="onSubmit" @reset="onReset">
                 <b-form-group
                   id="input-group-1"
                   label="Email address:"
@@ -81,8 +81,8 @@
 
                 <b-form-group id="input-group-4">
                   <b-form-checkbox-group
-                    v-model="form.checked"
                     id="checkboxes-4"
+                    v-model="form.checked"
                   >
                     <b-form-checkbox value="me">Check me out</b-form-checkbox>
                     <b-form-checkbox value="that">
@@ -109,7 +109,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Inline form'">
+        <KTCodePreview :title="'Inline form'">
           <template v-slot:preview>
             <p>
               Use the <code>inline</code> prop on <code>&lt;b-form&gt;</code> to
@@ -151,7 +151,7 @@
           </template>
         </KTCodePreview>
 
-        <KTCodePreview v-bind:title="'Custom form controls and selects'">
+        <KTCodePreview :title="'Custom form controls and selects'">
           <template v-slot:preview>
             <div>
               <b-form inline>
@@ -159,10 +159,10 @@
                   Preference
                 </label>
                 <b-form-select
+                  id="inline-form-custom-select-pref"
                   class="mb-2 mr-sm-2 mb-sm-0"
                   :value="null"
                   :options="{ '1': 'One', '2': 'Two', '3': 'Three' }"
-                  id="inline-form-custom-select-pref"
                 >
                   <template v-slot:first>
                     <option :value="null">Choose...</option>
@@ -193,6 +193,9 @@ import KTCodePreview from "@/view/content/CodePreview.vue";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 
 export default {
+  components: {
+    KTCodePreview
+  },
   data() {
     return {
       html1: `<div>
@@ -334,8 +337,11 @@ export default {
 </div>`
     };
   },
-  components: {
-    KTCodePreview
+  mounted() {
+    this.$store.dispatch(SET_BREADCRUMB, [
+      { title: "Vue Bootstrap", route: "alert" },
+      { title: "Form" }
+    ]);
   },
   methods: {
     onSubmit(evt) {
@@ -355,12 +361,6 @@ export default {
         this.show = true;
       });
     }
-  },
-  mounted() {
-    this.$store.dispatch(SET_BREADCRUMB, [
-      { title: "Vue Bootstrap", route: "alert" },
-      { title: "Form" }
-    ]);
   }
 };
 </script>

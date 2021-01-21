@@ -12,20 +12,20 @@ const mutations = {
   }
 };
 const actions = {
-  async getCompetitionList(context, {student_id}) {
+  async getCompetitionList(context, { student_id }) {
     try {
       var searchParams = new URLSearchParams();
 
       if (student_id != null) {
         searchParams.append("student_id", student_id);
-      }  
+      }
       let response = await ApiService.query(
         `api/scholarship/competitionachievement?` + searchParams
       );
       context.commit("setCompetitionList", response.data.data);
-      } catch (error) {
-        throw error;
-      }
+    } catch (error) {
+      throw error;
+    }
   },
   async createCompetition(context, { payload }) {
     try {

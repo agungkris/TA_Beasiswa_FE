@@ -2,10 +2,18 @@
   <div>
     <v-card>
       <v-card-title>
-        <span class="title font-weight-light" style="padding-right:5px;">Syarat</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Ketentuan</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Beasiswa</span>
-        <span class="title font-weight-light" style="padding-right:5px;">Pembangunan</span>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Syarat</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Ketentuan</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Beasiswa</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Pembangunan</span
+        >
         <span class="title font-weight-light">Jaya</span>
       </v-card-title>
       <v-card-text>

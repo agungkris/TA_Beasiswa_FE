@@ -7,10 +7,10 @@
           <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-overflow-btn
+                v-model="competitionData.semester_id"
                 class="my-2"
                 label="Semester"
                 target="#dropdown-example"
-                v-model="competitionData.semester_id"
                 :items="semesterList"
                 item-value="id"
                 item-text="semester"
@@ -101,7 +101,7 @@ export default {
       resultRules: [v => !!v || "Hasil wajib diisi"],
       dokumen: "",
       dokumenRules: [
-        (v) => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
+        v => !!v || "Dokumen Sertifikat/Piagam wajib diisi",
         value =>
           !value ||
           value.size < 500000 ||
@@ -111,7 +111,7 @@ export default {
   },
   computed: {
     ...mapState("competition", ["competitionData"]),
-    ...mapState("semester", ["semesterList"]),
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -125,7 +125,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("competition", ["getCompetition","updateCompetition"]),
+    ...mapActions("competition", ["getCompetition", "updateCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
     async onFetchData() {
       await this.getCompetition({ id: this.id });
@@ -141,7 +141,7 @@ export default {
         formData.append("realization", this.competitionData.realization);
         formData.append("result", this.competitionData.result);
         if (this.competitionData.document != null) {
-          formData.append("document", this.competitionData.document);;
+          formData.append("document", this.competitionData.document);
         }
         await this.updateCompetition({
           id: this.id,
@@ -152,7 +152,7 @@ export default {
     },
     reset() {
       this.$refs.form.reset();
-    },
+    }
   }
 };
 </script>

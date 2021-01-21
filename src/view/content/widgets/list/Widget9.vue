@@ -22,7 +22,7 @@
       <div class="timeline timeline-5 mt-3">
         <template v-for="(item, i) in list">
           <!--begin::Item-->
-          <div class="timeline-item align-items-start" v-bind:key="i">
+          <div :key="i" class="timeline-item align-items-start">
             <!--begin::Label-->
             <div
               class="timeline-label font-weight-bolder text-dark-75 font-size-lg"
@@ -33,7 +33,7 @@
 
             <!--begin::Badge-->
             <div class="timeline-badge">
-              <i class="icon-xxl" v-bind:class="item.badge"></i>
+              <i class="icon-xxl" :class="item.badge"></i>
             </div>
             <!--end::Badge-->
 
@@ -42,7 +42,7 @@
               class="font-weight-mormal font-size-sm timeline-content text-muted pl-3"
             >
               <span
-                v-bind:class="{
+                :class="{
                   'font-weight-bolder text-dark-75': item.bold,
                   'mr-4': item.images
                 }"
@@ -54,9 +54,9 @@
                 <template v-for="(image, i) in item.images">
                   <!--begin::Symbol-->
                   <a
+                    :key="i"
                     href="#"
                     class="symbol symbol-35 symbol-light-success mr-2"
-                    v-bind:key="i"
                   >
                     <span class="symbol-label">
                       <img
@@ -89,7 +89,10 @@ import Dropdown2 from "@/view/content/dropdown/Dropdown2.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "widget-9",
+  name: "Widget9",
+  components: {
+    Dropdown2
+  },
   data() {
     return {
       list: [
@@ -139,9 +142,6 @@ export default {
         }
       ]
     };
-  },
-  components: {
-    Dropdown2
   },
   computed: {
     ...mapGetters(["layoutConfig"])

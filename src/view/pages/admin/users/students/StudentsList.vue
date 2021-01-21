@@ -2,16 +2,16 @@
   <div>
     <v-card class="mb-6">
       <v-card-title>
-        <span class="title font-weight-light" style="padding-right:5px;"
+        <span class="title font-weight-light" style="padding-right: 5px"
           >Mahasiswa</span
         >
-        <span class="title font-weight-light" style="padding-right:5px;"
+        <span class="title font-weight-light" style="padding-right: 5px"
           >Pendaftar</span
         >
-        <span class="title font-weight-light" style="padding-right:5px;"
+        <span class="title font-weight-light" style="padding-right: 5px"
           >Beasiswa</span
         >
-        <span class="title font-weight-light" style="padding-right:5px;"
+        <span class="title font-weight-light" style="padding-right: 5px"
           >Pembangunan</span
         >
         <span class="title font-weight-light">Jaya</span>
@@ -59,9 +59,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  <v-icon>
-                    mdi-file-find
-                  </v-icon>
+                  <v-icon> mdi-file-find </v-icon>
                 </v-btn>
               </template>
               <span>Data Mahasiswa</span>
@@ -107,9 +105,7 @@
                   }"
                   v-on="on"
                 >
-                  <v-icon>
-                    mdi-file-find
-                  </v-icon>
+                  <v-icon> mdi-file-find </v-icon>
                 </v-btn>
               </template>
               <span>Data Mahasiswa</span>
