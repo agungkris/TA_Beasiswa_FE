@@ -46,7 +46,7 @@ export default {
         },
         {
           text: "Program Studi",
-          value: "profile.prodi_id"
+          value: "profile.prodi.name"
         },
         {
           text: "Angkatan",

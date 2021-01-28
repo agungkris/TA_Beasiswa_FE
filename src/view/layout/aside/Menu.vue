@@ -373,7 +373,7 @@
       </li>
     </router-link>
     <router-link
-      v-if="auth.user.level == 'juri'"
+      v-if="checkJuryFGD"
       v-slot="{ href, navigate, isActive, isExactActive }"
       :to="{ name: 'FgdAssessmentList' }"
     >
@@ -607,11 +607,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "KTMenu",
   computed: {
-    ...mapState(["auth"])
+    ...mapState(["auth"]),
+    ...mapGetters(["currentUser"]),
+    checkJuryFGD: function() {
+      let mantul = this.currentUser.category_jury ?? {};
+      let getFGDAvailable = mantul.fgd == 1 ? true : false;
+      return this.currentUser.level == "juri" && getFGDAvailable;
+    }
   },
   methods: {
     hasActiveChildren(match) {

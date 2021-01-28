@@ -21,7 +21,7 @@
               ></v-text-field>
 
               <v-text-field
-                v-model="usersData.profile.prodi"
+                v-model="usersData.profile.prodi.name"
                 :rules="usernameRules"
                 label="Program Studi"
                 required

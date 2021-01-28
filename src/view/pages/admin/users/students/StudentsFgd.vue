@@ -20,7 +20,37 @@
         <v-card-text>
           <p>PENILAIAN KARYA TULIS :{{ paperassessmentReport.papers_score }}</p>
           <p>KOMENTAR JURI :{{ paperassessmentReport.comment }}</p>
-          <p>PENILAIAN FGD :{{ fgdassessmentReport.final_score }}</p>
+          <p>PENILAIAN FGD :</p>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">
+                    Name
+                  </th>
+                  <th class="text-left">
+                    Final Score
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(fgd, fgdKey) in fgdassessmentReport" :key="fgdKey">
+                  <td>
+                    {{ fgd.jury.name }}
+                  </td>
+                  <td>
+                    {{ fgd.final_score }}
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>Total</td>
+                  <td class="font-weight-bold ">{{ totalFGDScore }}</td>
+                </tr>
+              </tfoot>
+            </template>
+          </v-simple-table>
         </v-card-text>
       </v-card>
     </div>
@@ -79,7 +109,15 @@ export default {
   computed: {
     ...mapState("uploadscholarship", ["uploadscholarshipData"]),
     ...mapState("paperassessment", ["paperassessmentReport"]),
-    ...mapState("fgdassessment", ["fgdassessmentReport"])
+    ...mapState("fgdassessment", ["fgdassessmentReport"]),
+    totalFGDScore: function() {
+      const getTotalScore = this.fgdassessmentReport.reduce((prev, current) => {
+        return prev + current.final_score;
+      }, 0);
+      const fgdLength = this.fgdassessmentReport.length;
+
+      return getTotalScore / fgdLength;
+    }
   },
 
   mounted() {
