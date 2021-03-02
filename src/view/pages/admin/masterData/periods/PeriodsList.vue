@@ -1,8 +1,17 @@
 <template>
   <div>
     <v-card>
-      <v-card-title
-        >{{ title }}
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Periode</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Beasiswa</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Pembangunan</span
+        >
+        <span class="title font-weight-light">Jaya</span>
         <v-tooltip right>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -94,7 +103,6 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      title: "Periode Beasiswa Pembangunan Jaya",
       isLoading: false,
       dialog: false,
       headers: [

@@ -195,7 +195,34 @@ export default new Router({
               name: "StudentsAkunEdit",
               component: () =>
                 import("@/view/pages/admin/users/students/StudentsAkunEdit.vue")
+            },
+
+            {
+              path: "selection/fgd",
+              name: "SelectionFgd",
+              component: () =>
+                import("@/view/pages/admin/selections/FgdSelection.vue")
+            },
+            {
+              path: "selection/ipk",
+              name: "SelectionIpk",
+              component: () =>
+                import("@/view/pages/admin/selections/IpkSelection.vue")
+            },
+            {
+              path: "selection/administration",
+              name: "SelectionAdministration",
+              component: () =>
+                import(
+                  "@/view/pages/admin/selections/AdministrationSelection.vue"
+                )
             }
+            // {
+            //   path: "students/selection/:id/period/:period",
+            //   name: "StudentsSelection",
+            //   component: () =>
+            //     import("@/view/pages/admin/users/students/StudentSelection.vue")
+            // },
           ]
         },
 

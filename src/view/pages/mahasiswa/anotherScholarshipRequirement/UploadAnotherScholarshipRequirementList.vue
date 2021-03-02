@@ -55,36 +55,34 @@
               <span>Edit</span>
             </v-tooltip>
 
-            <v-dialog v-model="dialogAcademic" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialogAcademic = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeleteAcademic(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeleteAcademic(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
           </template>
         </v-data-table>
+
+        <v-dialog v-model="dialogAcademic" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogAcademic = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeleteAcademic(academicId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
 
@@ -148,37 +146,34 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialogCompetition" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialogCompetition = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeleteCompetition(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeleteCompetition(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
           </template>
         </v-data-table>
+
+        <v-dialog v-model="dialogCompetition" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogCompetition = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeleteCompetition(competitionId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
 
@@ -243,40 +238,34 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialogOrganization" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="disable"
-                    text
-                    @click="dialogOrganization = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeleteOrganization(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeleteOrganization(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
           </template>
         </v-data-table>
+
+        <v-dialog v-model="dialogOrganization" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogOrganization = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeleteOrganization(organizationId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
 
@@ -332,38 +321,34 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialogEvent" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialogEvent = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeleteEvent(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeleteEvent(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
           </template>
         </v-data-table>
       </v-card-text>
+      <v-dialog v-model="dialogEvent" persistent max-width="290">
+        <v-card>
+          <v-card-title class="headline">Hapus</v-card-title>
+          <v-card-text
+            >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+          >
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="disable" text @click="dialogEvent = false"
+              >Kembali</v-btn
+            >
+            <v-btn
+              color="red darken-4"
+              text
+              icon
+              class="mr-2"
+              @click="onDeleteEvent(eventId)"
+              >Hapus</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card>
 
     <!-- PAPER/KARYA TULIS -->
@@ -418,37 +403,33 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialogPaper" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialogPaper = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeletePaper(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeletePaper(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
           </template>
         </v-data-table>
+        <v-dialog v-model="dialogPaper" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogPaper = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeletePaper(paperId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
 
@@ -488,6 +469,12 @@
           }"
           :items-per-page="5"
         >
+          <template v-slot:[`item.spp`]="{ item }">
+            {{ item.spp | formatRupiah }}
+          </template>
+          <template v-slot:[`item.sks`]="{ item }">
+            {{ item.sks | formatRupiah }}
+          </template>
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip right>
               <template v-slot:activator="{ on, attrs }">
@@ -502,37 +489,36 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialogFinancial" persistent max-width="290">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon color="red darken-4"> mdi-delete </v-icon>
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialogFinancial = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDeleteFinancial(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn icon @click="onOpenDeleteFinancial(item.id)">
+              <v-icon color="red darken-4"> mdi-delete </v-icon>
+            </v-btn>
+          </template>
+          <template v-slot:[`item.amount`]="{ item }">
+            {{ item.amount | formatRupiah }}
           </template>
         </v-data-table>
+        <v-dialog v-model="dialogFinancial" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogFinancial = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeleteFinancial(financialId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -545,11 +531,17 @@ export default {
   data() {
     return {
       dialogAcademic: false,
+      academicId: "",
       dialogCompetition: false,
+      competitionId: "",
       dialogOrganization: false,
+      organizationId: "",
       dialogEvent: false,
+      eventId: "",
       dialogPaper: false,
+      paperId: "",
       dialogFinancial: false,
+      financialId: "",
       academic: [
         {
           text: "Semester",
@@ -720,6 +712,10 @@ export default {
       await this.getFinancialList({ student_id: this.auth.user.id });
     },
 
+    onOpenDeleteAcademic(id) {
+      this.dialogAcademic = true;
+      this.academicId = id;
+    },
     async onDeleteAcademic(id) {
       try {
         this.dialogAcademic = true;
@@ -731,6 +727,10 @@ export default {
       }
     },
 
+    onOpenDeleteCompetition(id) {
+      this.dialogCompetition = true;
+      this.competitionId = id;
+    },
     async onDeleteCompetition(id) {
       try {
         this.dialogCompetition = true;
@@ -742,6 +742,10 @@ export default {
       }
     },
 
+    onOpenDeleteOrganization(id) {
+      this.dialogOrganization = true;
+      this.organizationId = id;
+    },
     async onDeleteOrganization(id) {
       try {
         this.dialogOrganization = true;
@@ -753,6 +757,10 @@ export default {
       }
     },
 
+    onOpenDeleteEvent(id) {
+      this.dialogEvent = true;
+      this.eventId = id;
+    },
     async onDeleteEvent(id) {
       try {
         this.dialogEvent = true;
@@ -764,6 +772,10 @@ export default {
       }
     },
 
+    onOpenDeletePaper(id) {
+      this.dialogPaper = true;
+      this.paperId = id;
+    },
     async onDeletePaper(id) {
       try {
         this.dialogPaper = true;
@@ -775,6 +787,10 @@ export default {
       }
     },
 
+    onOpenDeleteFinancial(id) {
+      this.dialogFinancial = true;
+      this.financialId = id;
+    },
     async onDeleteFinancial(id) {
       try {
         this.dialogFinancial = true;

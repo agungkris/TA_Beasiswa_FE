@@ -48,9 +48,17 @@
           KARYA TULIS :
           <a :href="uploadscholarshipData.papers">DOWNLOAD</a>
         </v-card-text>
-        <v-card-text>
+        <v-card-text
+          v-if="
+            uploadscholarshipData.other_requirements == null ||
+              uploadscholarshipData.other_requirements == ''
+          "
+        >
+          BUKTI PRESTASI / SURAT PERMOHONAN REKTOR : Tidak Ada
+        </v-card-text>
+        <v-card-text v-else>
           BUKTI PRESTASI / SURAT PERMOHONAN REKTOR :
-          <a :href="uploadscholarshipData.other_requirement">DOWNLOAD</a>
+          <a :href="uploadscholarshipData.other_requirements">Lihat</a>
         </v-card-text>
       </v-card>
     </div>

@@ -31,11 +31,7 @@
 
       <!--begin::Form-->
       <b-form ref="usersData" class="usersData" @submit.stop.prevent="onSubmit">
-        <b-form-group
-          id="example-input-group-0"
-          label=""
-          label-for="example-input-0"
-        >
+        <b-form-group>
           <b-form-input
             id="example-input-0"
             v-model="usersData.name"
@@ -67,7 +63,7 @@
           ></b-form-input>
 
           <b-form-invalid-feedback id="input-1-live-feedback">
-            NIK wajib diisi.
+            NIM wajib diisi.
           </b-form-invalid-feedback>
         </b-form-group>
 
@@ -78,14 +74,24 @@
         >
           <b-form-select
             v-model="usersData.prodi_id"
+            :state="validateState('prodi_id')"
+            name="example-input-4"
             :options="prodiList"
             value-field="id"
             text-field="name"
             placeholder="Program Studi"
-          ></b-form-select>
-          <!-- <b-form-input class="form-control form-control-solid h-auto py-5 px-6" id="example-input-4"
-            name="example-input-4" v-model="usersData.prodi" :state="validateState('prodi')"
-            aria-describedby="input-4-live-feedback" placeholder="Program Studi"></b-form-input> -->
+            style="background-color: #FAFAFA; color: #BDBDBD"
+          >
+            <template #first>
+              <b-form-select-option
+                :value="null"
+                disabled
+                style="color: #BDBDBD"
+                >Program Studi</b-form-select-option
+              >
+            </template>
+          </b-form-select>
+
           <b-form-invalid-feedback id="input-4-live-feedback">
             Program Studi wajib diisi.
           </b-form-invalid-feedback>
@@ -215,7 +221,6 @@ export default {
       },
       prodi_id: {
         required
-        // value: "student.profile.prodi"
       },
       generation: {
         required,
@@ -282,7 +287,7 @@ export default {
       this.usersData = {
         name: null,
         username: null,
-        prodi_id: null,
+        prodi_id: "",
         generation: null,
         email: null,
         password: null
@@ -321,24 +326,6 @@ export default {
         "spinner-light",
         "spinner-right"
       );
-
-      // dummy delay
-      // setTimeout(() => {
-      //   // send register request
-      //   this.$store
-      //     .dispatch(REGISTER, {
-      //       name: name,
-      //       email: email,
-      //       password: password
-      //     })
-      //     .then(() => this.$router.push({ name: "Login" }));
-
-      //   submitButton.classList.remove(
-      //     "spinner",
-      //     "spinner-light",
-      //     "spinner-right"
-      //   );
-      // }, 2000);
     }
   }
 };

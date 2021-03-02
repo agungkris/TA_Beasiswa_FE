@@ -4,7 +4,10 @@ const state = {
   uploadscholarshipFgd: [],
   uploadscholarshipFinal: [],
   uploadscholarshipData: {}, //ini objek
-  reportData: {}
+  reportData: {},
+  reportNewList: [],
+  kmeansData: [],
+  submitScholarship: []
 };
 const mutations = {
   setUploadScholarshipList(state, payload) {
@@ -21,6 +24,15 @@ const mutations = {
   },
   setReportData(state, payload) {
     state.reportData = payload;
+  },
+  setReportNewList(state, payload) {
+    state.reportNewList = payload;
+  },
+  setKmeansData(state, payload) {
+    state.kmeansData = payload;
+  },
+  setSubmitScholarshipList(state, payload) {
+    state.submitScholarshipList = payload;
   }
 };
 const actions = {
@@ -122,7 +134,7 @@ const actions = {
       let response = await ApiService.query(
         `api/scholarship/scholarshipsubmissions/get/${id}`
       );
-      context.commit("setUploadScholarshipData", response.data);
+      context.commit("setUploadScholarshipData", response.data.data);
     } catch (error) {
       throw Error(error);
     }
@@ -187,6 +199,51 @@ const actions = {
         "api/scholarship/scholarshipsubmissions/report?" + searchParams
       );
       context.commit("setReportData", response.data);
+    } catch (error) {
+      throw Error(error);
+    }
+  },
+
+  async reportNew(context, { period_id }) {
+    try {
+      var searchParams = new URLSearchParams();
+      if (period_id != null) {
+        searchParams.append("period_id", period_id);
+      }
+      let response = await ApiService.post(
+        "api/scholarship/scholarshipsubmissions/reportnew?" + searchParams
+      );
+      context.commit("setReportNewList", response.data);
+    } catch (error) {
+      throw Error(error);
+    }
+  },
+
+  async kmeans(context, { period_id }) {
+    try {
+      var searchParams = new URLSearchParams();
+      if (period_id != null) {
+        searchParams.append("period_id", period_id);
+      }
+      let response = await ApiService.post(
+        "api/scholarship/scholarshipsubmissions/kmeans?" + searchParams
+      );
+      context.commit("setKmeansData", response.data);
+    } catch (error) {
+      throw Error(error);
+    }
+  },
+  async submitScholarship(context, { beasiswa_list }) {
+    try {
+      const payload = {
+        beasiswa_list: beasiswa_list
+      };
+
+      let response = await ApiService.post(
+        "api/scholarship/scholarshipsubmissions/submit-scholarship",
+        payload
+      );
+      context.commit("setSubmitScholarshipList", response.data);
     } catch (error) {
       throw Error(error);
     }

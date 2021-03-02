@@ -51,7 +51,7 @@
     </v-card>
     <v-container grid-list-md>
       <v-layout row wrap>
-        <v-flex lg4 sm4 xs12 md6 style="display:flex;" class="justify-center">
+        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
           <v-card>
             <v-card-title>
               <span class="title font-weight-light" style="padding-right:5px;"
@@ -75,7 +75,7 @@
           </v-card>
         </v-flex>
 
-        <v-flex lg4 sm4 xs12 md6 style="display:flex;" class="justify-center">
+        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
           <v-card>
             <v-card-title>
               <span class="title font-weight-light" style="padding-right:5px;"
@@ -101,12 +101,12 @@
           </v-card>
         </v-flex>
 
-        <v-flex lg4 sm4 xs12 md12 style="display:flex;" class="justify-center">
+        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
           <v-card>
             <v-card-title>
-              <span class="title font-weight-light" style="padding-right:5px;"
+              <!-- <span class="title font-weight-light" style="padding-right:5px;"
                 >Daftar</span
-              >
+              > -->
               <span class="title font-weight-light" style="padding-right:5px;"
                 >Mahasiswa</span
               >
@@ -116,15 +116,27 @@
               <span class="title font-weight-light">Angkatan</span>
             </v-card-title>
             <v-card-text>
-              <p>Angkatan 2017: {{ reportData.angkatan17 }} Orang</p>
-              <p>Angkatan 2018: {{ reportData.angkatan18 }} Orang</p>
-              <p>Angkatan 2019: {{ reportData.angkatan19 }} Orang</p>
-              <p>Angkatan 2020: {{ reportData.angkatan20 }} Orang</p>
-              <b>Total Keseluruhan: {{ reportData.total }} Orang</b>
+              <ul v-for="(generation, key) in reportNewList" :key="key">
+                <li>Angkatan {{ key }} : {{ generation.length }} Orang</li>
+              </ul>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+
+        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
+          <v-card>
+            <v-card-title>
+              <span class="title font-weight-light" style="padding-right:5px;"
+                >Total</span
+              >
+              <span class="title font-weight-light">Keseluruhan</span>
+            </v-card-title>
+            <v-card-text>
+              <b>Jumlah Mahasiswa: {{ reportData.total }} Orang</b>
               <p>
-                Jumlah dana beasiswa yang dikeluarkan: {{ reportData.total }} x
-                3.500.000 =
-                {{ reportData.hasil }}
+                Jumlah dana beasiswa yang dikeluarkan: <br />
+                {{ reportData.total }} Orang x Rp 3.500.000,00 =
+                {{ reportData.hasil | formatRupiah }}
               </p>
             </v-card-text>
           </v-card>
@@ -166,7 +178,11 @@ export default {
     };
   },
   computed: {
-    ...mapState("uploadscholarship", ["uploadscholarshipFgd", "reportData"]),
+    ...mapState("uploadscholarship", [
+      "uploadscholarshipFgd",
+      "reportData",
+      "reportNewList"
+    ]),
     ...mapState("period", ["periodList"])
   },
   async mounted() {
@@ -183,11 +199,18 @@ export default {
     await this.onFetchData();
   },
   methods: {
-    ...mapActions("uploadscholarship", ["getUploadScholarshipFgd", "report"]),
+    ...mapActions("uploadscholarship", [
+      "getUploadScholarshipFgd",
+      "report",
+      "reportNew"
+    ]),
     ...mapActions("period", ["getPeriodList"]),
     async onFetchData() {
       // this.loading = true;
       await this.report({
+        period_id: this.selectedPeriod
+      });
+      await this.reportNew({
         period_id: this.selectedPeriod
       });
       await this.getUploadScholarshipFgd({
@@ -204,6 +227,9 @@ export default {
       });
 
       await this.report({
+        period_id: this.selectedPeriod
+      });
+      await this.reportNew({
         period_id: this.selectedPeriod
       });
     }

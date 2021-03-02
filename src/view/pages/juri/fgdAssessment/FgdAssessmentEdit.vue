@@ -160,7 +160,12 @@
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-btn :disabled="!valid" color="success" @click="validate">
+              <v-btn
+                :disabled="!valid"
+                color="success"
+                class="mb-2"
+                @click="validate"
+              >
                 Selesai
               </v-btn>
             </v-col>

@@ -41,14 +41,13 @@
             v-model="uploadscholarshipData.submit_form"
             :rules="submitform"
             label="Formulir Beasiswa"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             outlined
             :show-size="1000"
             required
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -58,14 +57,13 @@
             v-model="uploadscholarshipData.brs"
             :rules="brs"
             label="BRS"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             outlined
             :show-size="1000"
             required
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -75,14 +73,13 @@
             v-model="uploadscholarshipData.raport"
             :rules="raport"
             label="Transkrip Nilai"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             outlined
             :show-size="1000"
             required
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -92,14 +89,13 @@
             v-model="uploadscholarshipData.cv"
             :rules="cv"
             label="CV"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             outlined
             :show-size="1000"
             required
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -108,7 +104,6 @@
           <v-file-input
             v-model="uploadscholarshipData.papers"
             :rules="papers"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             label="Karya Tulis"
             outlined=""
@@ -116,7 +111,7 @@
             required
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -125,14 +120,13 @@
           <v-file-input
             v-model="uploadscholarshipData.other_requirements"
             :rules="other"
-            placeholder="Unggah Dokumen"
             prepend-icon="mdi-paperclip"
             label="Bukti Prestasi / Surat Permohonan Rektor *Optional"
             outlined=""
             :show-size="1000"
           >
             <template v-slot:selection="{ text }">
-              <v-chip dark label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
@@ -156,10 +150,10 @@
 
           <template>
             <div class="text-center">
-              <v-dialog v-model="dialog" width="390">
+              <v-dialog v-model="dialog" width="400">
                 <v-card>
                   <v-card-text> </v-card-text>
-                  <v-list-item-title class="text-center">{{
+                  <v-list-item-title class=" text-center text-wrap">{{
                     dialogMessage
                   }}</v-list-item-title>
                   <v-card-actions>

@@ -45,7 +45,7 @@
               <v-text-field
                 v-model="financialData.amount"
                 :rules="amountRules"
-                label="Besaran Biasiswa"
+                label="Besaran Beasiswa"
                 required
                 prepend-icon="mdi-format-title"
                 outlined

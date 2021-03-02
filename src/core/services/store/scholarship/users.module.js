@@ -1,7 +1,9 @@
 import ApiService from "../../api.service";
 const state = {
   usersList: [],
-  usersData: {}
+  usersData: {
+    prodi_id: null
+  }
 };
 const mutations = {
   setUsersList(state, payload) {

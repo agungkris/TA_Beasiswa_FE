@@ -34,6 +34,13 @@ ApiService.init();
 // Remove this to disable mock API
 // MockService.init();
 
+Vue.filter("formatRupiah", function(value) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  }).format(value);
+});
+
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.
   Promise.all([store.dispatch(VERIFY_AUTH)]).then(next);
