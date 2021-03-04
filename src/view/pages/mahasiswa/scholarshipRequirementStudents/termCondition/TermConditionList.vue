@@ -27,15 +27,24 @@
           h
         >
           <template v-slot:[`item.scholarship_term_condition`]="{ item }">
-            <a :href="item.scholarship_term_condition">
+            <a target="_blank" :href="item.scholarship_term_condition">
               UNDUH FILE SYARAT DAN KETENTUAN BEASISWA PEMBANGUNAN JAYA
             </a>
           </template>
-          <!-- <template v-slot:item.action="{ item }">
-            {{ item }}
-          </template> -->
         </v-data-table>
       </v-card-text>
+      <v-dialog v-model="isLoading" persistent width="300">
+        <v-card dark>
+          <v-card-text>
+            Mohon Menunggu...
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0 mt-1"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -45,6 +54,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      isLoading: false,
       headers: [
         {
           value: "scholarship_term_condition"
@@ -65,7 +75,9 @@ export default {
   methods: {
     ...mapActions("termcondition", ["getTermConditionList"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getTermConditionList();
+      this.isLoading = false;
     }
     // onDeleteService(id) {}
   }

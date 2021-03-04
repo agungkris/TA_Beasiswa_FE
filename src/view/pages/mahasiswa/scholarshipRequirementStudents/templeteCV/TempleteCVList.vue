@@ -26,18 +26,24 @@
           hide-default-header=""
         >
           <template v-slot:[`item.cv_templete`]="{ item }">
-            <a :href="item.cv_templete"
+            <a target="_blank" :href="item.cv_templete"
               >UNDUH FILE KETENTUAN CV BEASISWA PEMBANGUNAN JAYA</a
             >
           </template>
-          <!-- <template v-slot:[`item.total`]="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
-          <template v-slot:[`item.action`]="{ item }">
-            {{ item }}
-          </template> -->
         </v-data-table>
       </v-card-text>
+      <v-dialog v-model="isLoading" persistent width="300">
+        <v-card dark>
+          <v-card-text>
+            Mohon Menunggu...
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0 mt-1"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -47,6 +53,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      isLoading: false,
       headers: [
         {
           value: "cv_templete"
@@ -67,7 +74,9 @@ export default {
   methods: {
     ...mapActions("cvtemplete", ["getCvTempleteList"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getCvTempleteList();
+      this.isLoading = false;
     }
     // onDeleteService(id) {}
   }

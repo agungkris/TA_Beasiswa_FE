@@ -161,6 +161,7 @@
           <v-row>
             <v-col cols="12">
               <v-btn
+                :loading="isLoading"
                 :disabled="!valid"
                 color="success"
                 class="mb-2"
@@ -183,6 +184,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       id: this.$route.params.id,
       score_A: [v => !!v || "Nilai harus diisi dari 0-100"],
       score_B: [v => !!v || "Nilai harus diisi dari 0-100"],
@@ -213,6 +215,7 @@ export default {
     // code 1
     async onFetchData() {},
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.fgdassessmentData.period_id = this.$route.params.period;
@@ -223,6 +226,7 @@ export default {
           payload: this.fgdassessmentData
         });
         this.fgdassessmentData = {};
+        this.isLoading = false;
         this.$router.push({ name: "FgdAssessmentList" });
       }
     }

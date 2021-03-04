@@ -26,7 +26,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -39,9 +39,20 @@
               </template>
               <span>Edit Akun</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeleteModal(item.id)">
-              <v-icon color="red darken-4"> mdi-account-remove </v-icon>
-            </v-btn>
+
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteModal(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-account-remove </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus Akun</span>
+            </v-tooltip>
           </template>
         </v-data-table>
 
@@ -57,6 +68,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="isLoading"
                 color="red darken-4"
                 text
                 icon
@@ -78,6 +90,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      isLoading: false,
       searchakun: "",
       selectedID: "",
       dialogAkun: false,
@@ -120,7 +133,9 @@ export default {
   methods: {
     ...mapActions("users", ["getUsersList", "deleteUsers"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getUsersList();
+      this.isLoading = false;
     },
     onEditUsers(id) {
       this.$router.push({

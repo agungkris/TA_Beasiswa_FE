@@ -49,10 +49,18 @@
             <v-checkbox v-model="item.final_stage"></v-checkbox>
           </template>
         </v-data-table>
-        <v-btn color="success" class="mt-2 mr-4" @click="selectionAcak()"
+        <v-btn
+          outlined
+          color="indigo"
+          class="mt-2 mr-4"
+          @click="selectionAcak()"
           >Seleksi Acak</v-btn
         >
-        <v-btn color="success" class="mt-2 mr-4" @click="onFinish()"
+        <v-btn
+          :loading="isLoading"
+          color="success"
+          class="mt-2 mr-4"
+          @click="onFinish()"
           >Selesai</v-btn
         >
       </v-card-text>
@@ -71,6 +79,7 @@ const deepCopy = require("lodash.clonedeep");
 export default {
   data() {
     return {
+      isLoading: false,
       id: this.$route.params.id,
       valid: false,
       search: "",
@@ -165,8 +174,11 @@ export default {
     },
 
     async onFinish() {
+      this.isLoading = true;
       const beasiswa_list = this.beasiswaMahasiswa;
       await this.submitScholarship({ beasiswa_list: beasiswa_list });
+      this.isLoading = false;
+      this.$router.push({ name: "PembangunanJayaScholarshipList" });
     },
 
     // clearfinal_stage(){

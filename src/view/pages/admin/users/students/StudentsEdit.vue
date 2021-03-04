@@ -30,23 +30,23 @@
         <v-card-title>FILE MAHASISWA</v-card-title>
         <v-card-text>
           FORMULIR BEASISWA :
-          <a :href="uploadscholarshipData.submit_form">DOWNLOAD</a>
+          <a target="_blank" :href="uploadscholarshipData.submit_form">Unduh</a>
         </v-card-text>
         <v-card-text>
           BRS :
-          <a :href="uploadscholarshipData.brs">DOWNLOAD</a>
+          <a target="_blank" :href="uploadscholarshipData.brs">Unduh</a>
         </v-card-text>
         <v-card-text>
           TRANSKRIP NILAI :
-          <a :href="uploadscholarshipData.raport">DOWNLOAD</a>
+          <a target="_blank" :href="uploadscholarshipData.raport">Unduh</a>
         </v-card-text>
         <v-card-text>
           CURRICULUM VITAE :
-          <a :href="uploadscholarshipData.cv">DOWNLOAD</a>
+          <a target="_blank" :href="uploadscholarshipData.cv">Unduh</a>
         </v-card-text>
         <v-card-text>
           KARYA TULIS :
-          <a :href="uploadscholarshipData.papers">DOWNLOAD</a>
+          <a target="_blank" :href="uploadscholarshipData.papers">Unduh</a>
         </v-card-text>
         <v-card-text
           v-if="
@@ -58,18 +58,36 @@
         </v-card-text>
         <v-card-text v-else>
           BUKTI PRESTASI / SURAT PERMOHONAN REKTOR :
-          <a :href="uploadscholarshipData.other_requirements">Lihat</a>
+          <a target="_blank" :href="uploadscholarshipData.other_requirements"
+            >Unduh</a
+          >
         </v-card-text>
       </v-card>
     </div>
 
     <v-card-text class="text-center">
-      <v-btn color="success" class="mr-4" @click="validate(1)"
+      <v-btn
+        :loading="loadingButton"
+        color="success"
+        class="mr-4"
+        @click="validate(1)"
         >Lolos Administrasi</v-btn
       >
 
       <v-btn color="error" class="mr-4" @click="validate(0)">Gagal</v-btn>
     </v-card-text>
+    <v-dialog v-model="isLoading" persistent width="300">
+      <v-card dark>
+        <v-card-text>
+          Mohon Menunggu...
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0 mt-1"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -78,6 +96,8 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      isLoading: false,
+      loadingButton: false,
       id: this.$route.params.id
     };
   },
@@ -96,15 +116,19 @@ export default {
     ...mapActions("uploadscholarship", ["getUploadScholarship", "NextStage"]),
     ...mapActions("paperassessment", ["report"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getUploadScholarship({ id: this.id });
       await this.report({
         student_id: this.uploadscholarshipData.student_id,
         period_id: this.$route.params.period
       });
+      this.isLoading = false;
     },
     async validate(data) {
+      this.loadingButton = true;
       await this.NextStage({ id: this.id, next_stage: data });
       this.uploadscholarshipData = {};
+      this.loadingButton = false;
       this.$router.push({ name: "StudentsList" });
     }
     // onDeleteService(id) {}

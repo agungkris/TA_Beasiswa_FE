@@ -27,7 +27,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon

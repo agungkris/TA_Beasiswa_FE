@@ -46,7 +46,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -62,7 +62,7 @@
               <span>Detail</span>
             </v-tooltip>
 
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -78,38 +78,46 @@
               <span>Edit Kelompok</span>
             </v-tooltip>
 
-            <v-dialog v-model="dialog" persistent max-width="290">
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteGroup(item.id)"
+                  v-on="on"
+                >
                   <v-icon color="red darken-4">
                     mdi-account-remove
                   </v-icon>
                 </v-btn>
               </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus Kelompok</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus kelompok ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDelete(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <span>Hapus Kelompok</span>
+            </v-tooltip>
           </template>
         </v-data-table>
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus Kelompok</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus kelompok ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialog = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                :loading="loadingDeleteButton"
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDelete(groupId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -120,8 +128,10 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      loadingDeleteButton: false,
       selectedPeriod: "",
       dialog: false,
+      groupId: "",
       headers: [
         {
           text: "Periode Beasiswa",
@@ -171,11 +181,18 @@ export default {
         params: { id: id }
       });
     },
+
+    onOpenDeleteGroup(id) {
+      this.dialog = true;
+      this.groupId = id;
+    },
+
     async onDelete(id) {
       try {
-        this.dialog = true;
+        this.loadingDeleteButton = true;
         await this.deleteGroup({ id: id });
         await this.onFetchData();
+        this.loadingDeleteButton = false;
         this.dialog = false;
       } catch (error) {
         alert(error);

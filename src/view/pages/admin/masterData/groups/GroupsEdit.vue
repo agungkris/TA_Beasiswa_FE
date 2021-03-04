@@ -32,19 +32,32 @@
               ></v-text-field>
 
               <v-btn
+                :loading="loadingButton"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
 
               <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
+                Reset
               </v-btn>
             </v-form>
           </v-card-text>
+          <v-dialog v-model="isLoading" persistent width="300">
+            <v-card dark>
+              <v-card-text>
+                Mohon Menunggu...
+                <v-progress-linear
+                  indeterminate
+                  color="white"
+                  class="mb-0 mt-1"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </v-card>
       </div>
     </div>
@@ -58,6 +71,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      loadingButton: false,
+      isLoading: false,
       id: this.$route.params.id,
       valid: true,
       periode: [v => !!v || "Periode grup beasiswa harus diisi"],
@@ -91,19 +106,18 @@ export default {
       this.isLoading = false;
     },
     async validate() {
+      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
         await this.updateGroup({ id: this.id, payload: this.groupData });
         this.groupData = {};
+        this.loadingButton = false;
         this.$router.push({ name: "GroupsList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

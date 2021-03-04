@@ -50,6 +50,7 @@
               </v-file-input>
 
               <v-btn
+                :loading="isLoading"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
@@ -72,6 +73,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       valid: false,
       semester: [v => !!v || "Semester wajib diisi"],
       activity: "",
@@ -106,6 +108,7 @@ export default {
     ...mapActions("event", ["createEvent"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -116,6 +119,7 @@ export default {
         formData.append("document", this.eventData.document);
 
         await this.createEvent({ payload: formData });
+        this.isLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });
       }
     },

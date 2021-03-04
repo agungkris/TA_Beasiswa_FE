@@ -40,6 +40,10 @@
         ></v-text-field>
       </v-card-title>
       <v-card-text>
+        <!-- Ini untuk loading table item-key="name"
+          class="elevation-1"
+          :loading="isLoading"
+          loading-text="Loading... Please wait" -->
         <v-data-table
           :headers="headers"
           :items="announcementList"
@@ -49,19 +53,20 @@
           }"
           :items-per-page="5"
         >
-          <!-- <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template> -->
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip
               v-if="
                 (auth.user.level == 'student' || 'admin') &&
                   item.document !== null
               "
-              right
+              left
             >
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.document != null" :href="item.document">
+                <a
+                  v-if="item.document != null"
+                  target="_blank"
+                  :href="item.document"
+                >
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon>
                       mdi-download
@@ -71,7 +76,7 @@
               </template>
               <span>Unduh Pengumuman</span>
             </v-tooltip>
-            <v-tooltip v-if="auth.user.level == 'admin'" right>
+            <v-tooltip v-if="auth.user.level == 'admin'" left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -87,46 +92,52 @@
               <span>Edit Pengumuman</span>
             </v-tooltip>
 
-            <v-dialog
-              v-if="auth.user.level == 'admin'"
-              v-model="dialog"
-              persistent
-              max-width="290"
-            >
+            <v-tooltip v-if="auth.user.level == 'admin'" left>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
+                <v-btn
+                  v-if="auth.user.level == 'admin'"
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDelete(item.id)"
+                  v-on="on"
+                >
                   <v-icon color="red darken-4">
                     mdi-delete
                   </v-icon>
                 </v-btn>
               </template>
-
-              <v-card>
-                <v-card-title class="headline"
-                  >Hapus Pemberitahuan</v-card-title
-                >
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus pemberitahuan
-                  ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDelete(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <span>Hapus Pengumuman</span>
+            </v-tooltip>
           </template>
         </v-data-table>
+        <v-dialog
+          v-if="auth.user.level == 'admin'"
+          v-model="dialog"
+          persistent
+          max-width="290"
+        >
+          <v-card>
+            <v-card-title class="headline">Hapus Pemberitahuan</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus pemberitahuan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialog = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                :loading="isLoading"
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDelete(announcementId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -140,9 +151,11 @@ export default {
     return {
       searchpengumuman: "",
       dialog: false,
+      announcementId: "",
+      isLoading: false,
       headers: [
         {
-          text: "Periode Pengumuman",
+          text: "Periode",
           value: "period.name"
         },
         {
@@ -181,7 +194,9 @@ export default {
     ]),
     ...mapActions("period", ["getPeriodList"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getAnnouncementList();
+      this.isLoading = false;
       await this.getPeriodList();
     },
     async onChangeFilter() {
@@ -193,6 +208,12 @@ export default {
         params: { id: id }
       });
     },
+
+    onOpenDelete(id) {
+      this.dialog = true;
+      this.announcementId = id;
+    },
+
     async onDelete(id) {
       try {
         this.dialog = true;
@@ -203,7 +224,6 @@ export default {
         alert(error);
       }
     }
-    // onDeleteService(id) {}
   }
 };
 </script>

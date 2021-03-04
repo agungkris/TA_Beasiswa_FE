@@ -23,18 +23,24 @@
           hide-default-header=""
         >
           <template v-slot:[`item.scholarship_form`]="{ item }">
-            <a :href="item.scholarship_form"
+            <a target="_blank" :href="item.scholarship_form"
               >UNDUH FILE FORMULIR BEASISWA PEMBANGUNAN JAYA</a
             >
           </template>
-          <!-- <template v-slot:[`item.total`]="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template>
-          <template v-slot:[`item.action`]="{ item }">
-            {{ item }}
-          </template> -->
         </v-data-table>
       </v-card-text>
+      <v-dialog v-model="isLoading" persistent width="300">
+        <v-card dark>
+          <v-card-text>
+            Mohon Menunggu...
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0 mt-1"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -44,6 +50,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      isLoading: false,
       headers: [
         {
           value: "scholarship_form"
@@ -64,9 +71,10 @@ export default {
   methods: {
     ...mapActions("scholarshipform", ["getScholarshipFormList"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getScholarshipFormList();
+      this.isLoading = false;
     }
-    // onDeleteService(id) {}
   }
 };
 </script>

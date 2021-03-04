@@ -31,7 +31,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a v-if="item.khs != null" :href="item.khs">
                   <v-btn icon v-bind="attrs" v-on="on">
@@ -41,7 +41,7 @@
               </template>
               <span>Unduh KHS</span>
             </v-tooltip>
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -54,10 +54,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-
-            <v-btn icon @click="onOpenDeleteAcademic(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteAcademic(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
         </v-data-table>
 
@@ -73,6 +82,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="loadingAcademic"
                 color="red darken-4"
                 text
                 icon
@@ -123,7 +133,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a v-if="item.document != null" :href="item.document">
                   <v-btn icon v-bind="attrs" v-on="on">
@@ -133,7 +143,7 @@
               </template>
               <span>Unduh Dokumen</span>
             </v-tooltip>
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -146,9 +156,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeleteCompetition(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteCompetition(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
         </v-data-table>
 
@@ -164,6 +184,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="loadingCompetition"
                 color="red darken-4"
                 text
                 icon
@@ -215,7 +236,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a v-if="item.document != null" :href="item.document">
                   <v-btn icon v-bind="attrs" v-on="on">
@@ -225,7 +246,7 @@
               </template>
               <span>Unduh Dokumen</span>
             </v-tooltip>
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -238,9 +259,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeleteOrganization(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteOrganization(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
         </v-data-table>
 
@@ -256,6 +287,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="loadingOrganization"
                 color="red darken-4"
                 text
                 icon
@@ -298,7 +330,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a v-if="item.document != null" :href="item.document">
                   <v-btn icon v-bind="attrs" v-on="on">
@@ -308,7 +340,7 @@
               </template>
               <span>Unduh Dokumen</span>
             </v-tooltip>
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -321,9 +353,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeleteEvent(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteEvent(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
         </v-data-table>
       </v-card-text>
@@ -339,6 +381,7 @@
               >Kembali</v-btn
             >
             <v-btn
+              :loading="loadingEvent"
               color="red darken-4"
               text
               icon
@@ -380,7 +423,7 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <a v-if="item.document != null" :href="item.document">
                   <v-btn icon v-bind="attrs" v-on="on">
@@ -390,7 +433,7 @@
               </template>
               <span>Unduh Dokumen</span>
             </v-tooltip>
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -403,9 +446,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeletePaper(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeletePaper(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
         </v-data-table>
         <v-dialog v-model="dialogPaper" persistent max-width="290">
@@ -420,6 +473,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="loadingPaper"
                 color="red darken-4"
                 text
                 icon
@@ -476,7 +530,7 @@
             {{ item.sks | formatRupiah }}
           </template>
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -489,9 +543,19 @@
               </template>
               <span>Edit</span>
             </v-tooltip>
-            <v-btn icon @click="onOpenDeleteFinancial(item.id)">
-              <v-icon color="red darken-4"> mdi-delete </v-icon>
-            </v-btn>
+            <v-tooltip left>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteFinancial(item.id)"
+                  v-on="on"
+                >
+                  <v-icon color="red darken-4"> mdi-delete </v-icon>
+                </v-btn>
+              </template>
+              <span>Hapus</span>
+            </v-tooltip>
           </template>
           <template v-slot:[`item.amount`]="{ item }">
             {{ item.amount | formatRupiah }}
@@ -509,6 +573,7 @@
                 >Kembali</v-btn
               >
               <v-btn
+                :loading="loadingFinancial"
                 color="red darken-4"
                 text
                 icon
@@ -530,16 +595,22 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      loadingAcademic: false,
       dialogAcademic: false,
       academicId: "",
+      loadingCompetition: false,
       dialogCompetition: false,
       competitionId: "",
+      loadingOrganization: false,
       dialogOrganization: false,
       organizationId: "",
+      loadingEvent: false,
       dialogEvent: false,
       eventId: "",
+      loadingPaper: false,
       dialogPaper: false,
       paperId: "",
+      loadingFinancial: false,
       dialogFinancial: false,
       financialId: "",
       academic: [
@@ -719,8 +790,10 @@ export default {
     async onDeleteAcademic(id) {
       try {
         this.dialogAcademic = true;
+        this.loadingAcademic = true;
         await this.deleteAcademic({ id: id });
         await this.onFetchData();
+        this.loadingAcademic = false;
         this.dialogAcademic = false;
       } catch (error) {
         alert(error);
@@ -734,8 +807,10 @@ export default {
     async onDeleteCompetition(id) {
       try {
         this.dialogCompetition = true;
+        this.loadingCompetition = true;
         await this.deleteCompetition({ id: id });
         await this.onFetchData();
+        this.loadingCompetition = false;
         this.dialogCompetition = false;
       } catch (error) {
         alert(error);
@@ -749,8 +824,10 @@ export default {
     async onDeleteOrganization(id) {
       try {
         this.dialogOrganization = true;
+        this.loadingOrganization = true;
         await this.deleteOrganization({ id: id });
         await this.onFetchData();
+        this.loadingOrganization = false;
         this.dialogOrganization = false;
       } catch (error) {
         alert(error);
@@ -764,8 +841,10 @@ export default {
     async onDeleteEvent(id) {
       try {
         this.dialogEvent = true;
+        this.loadingEvent = true;
         await this.deleteEvent({ id: id });
         await this.onFetchData();
+        this.loadingEvent = false;
         this.dialogEvent = false;
       } catch (error) {
         alert(error);
@@ -779,8 +858,10 @@ export default {
     async onDeletePaper(id) {
       try {
         this.dialogPaper = true;
+        this.loadingPaper = true;
         await this.deletePaper({ id: id });
         await this.onFetchData();
+        this.loadingPaper = false;
         this.dialogPaper = false;
       } catch (error) {
         alert(error);
@@ -794,8 +875,10 @@ export default {
     async onDeleteFinancial(id) {
       try {
         this.dialogFinancial = true;
+        this.loadingFinancial = true;
         await this.deleteFinancial({ id: id });
         await this.onFetchData();
+        this.loadingFinancial = false;
         this.dialogFinancial = false;
       } catch (error) {
         alert(error);

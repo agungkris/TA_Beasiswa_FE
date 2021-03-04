@@ -16,15 +16,49 @@
       ></v-card-title>
       <v-card-text>
         <v-data-table
-          :headers="headers"
-          :items="uploadscholarshipFgd"
-          :search="searchfinal"
+          :headers="academic"
+          :items="academicList"
           :footer-props="{
             'items-per-page-options': [5, 10, 25, 50]
           }"
           :items-per-page="5"
         >
+          <template v-slot:[`item.action`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a v-if="item.khs != null" :href="item.khs">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon> mdi-download </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh KHS</span>
+            </v-tooltip>
+          </template>
         </v-data-table>
+
+        <v-dialog v-model="dialogAcademic" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialogAcademic = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDeleteAcademic(academicId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -35,25 +69,27 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      headers: [
+      dialogAcademic: false,
+      academicId: "",
+      academic: [
         {
           text: "Semester",
-          value: "id"
+          value: "semester.semester"
         },
         {
-          text: "NIM",
-          value: "id"
+          text: "IP",
+          value: "ip"
         },
         {
-          text: "Nama Mahasiswa",
-          value: "name"
+          text: "SKS",
+          value: "sks"
         },
         {
-          text: "Program Studi",
-          value: "description"
+          text: "IPK",
+          value: "ipk"
         },
         {
-          text: "Angkatan",
+          text: "Keterangan",
           value: "description"
         },
         {
@@ -64,22 +100,19 @@ export default {
     };
   },
   computed: {
-    ...mapState("kategorilingkup", ["kategorilingkupList"])
+    ...mapState("academic", ["academicList"])
   },
   async mounted() {
-    await this.getKategoriLingkupList();
     this.$store.dispatch(SET_BREADCRUMB, [
       { title: "Setting", route: "alert" },
       { title: this.title }
     ]);
+    await this.onFetchData();
   },
   methods: {
-    ...mapActions("kategorilingkup", ["getKategoriLingkupList"]),
-    onEditKategoriLingkup(id) {
-      this.$router.push({
-        name: "kategorilingkupDetail",
-        params: { id: id }
-      });
+    ...mapActions("academic", ["getAcademicList", "deleteAcademic"]),
+    async onFetchData() {
+      await this.getAcademicList();
     }
   }
 };

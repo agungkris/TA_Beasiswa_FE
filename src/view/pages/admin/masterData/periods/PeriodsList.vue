@@ -46,53 +46,48 @@
               </template>
               <span>Edit Periode</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialog" persistent max-width="290">
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeletePeriod(item.id)"
+                  v-on="on"
+                >
                   <v-icon color="red darken-4">
                     mdi-calendar-remove
                   </v-icon>
                 </v-btn>
               </template>
-
-              <v-card>
-                <v-card-title class="headline">Hapus Periode</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus periode beasiswa
-                  ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDelete(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <span>Hapus Periode</span>
+            </v-tooltip>
           </template>
         </v-data-table>
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus Periode</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus periode beasiswa
+              ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialog = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                :loading="loadingDeleteButton"
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDelete(periodId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
-      <v-dialog v-model="isLoading" persistent width="300">
-        <v-card color="primary" dark>
-          <v-card-text>
-            Please Wait...
-            <v-progress-linear
-              indeterminate
-              color="white"
-              class="mb-0"
-            ></v-progress-linear>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -103,8 +98,9 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      isLoading: false,
+      loadingDeleteButton: false,
       dialog: false,
+      periodId: "",
       headers: [
         {
           text: "Nama Periode",
@@ -142,12 +138,10 @@ export default {
   methods: {
     ...mapActions("period", ["getPeriodList", "deletePeriod"]),
     async onFetchData() {
-      this.isLoading = true;
       await this.getPeriodList();
       // this.periodList.start_Date = moment(this.periodList.start_Date).format(
       //   "dd-MM-yyyy"
       // );
-      this.isLoading = false;
     },
     onEditPeriodeList(id) {
       this.$router.push({
@@ -155,11 +149,17 @@ export default {
         params: { id: id }
       });
     },
+
+    onOpenDeletePeriod(id) {
+      this.dialog = true;
+      this.periodId = id;
+    },
     async onDelete(id) {
       try {
-        this.dialog = true;
+        this.loadingDeleteButton = true;
         await this.deletePeriod({ id: id });
         await this.onFetchData();
+        this.loadingDeleteButton = false;
         this.dialog = false;
       } catch (error) {
         alert(error);

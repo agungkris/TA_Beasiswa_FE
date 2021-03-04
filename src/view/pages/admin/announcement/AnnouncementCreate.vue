@@ -52,6 +52,7 @@
               </v-file-input>
 
               <v-btn
+                :loading="isLoading"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
@@ -74,6 +75,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       valid: false,
       periode: [v => !!v || "Periode pemberitahuan harus diisi"],
       judul: "",
@@ -107,8 +109,8 @@ export default {
   methods: {
     ...mapActions("announcement", ["createAnnouncement"]),
     ...mapActions("period", ["getPeriodList"]),
-    // code 1
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -119,14 +121,12 @@ export default {
         formData.append("document", this.announcementData.document);
 
         await this.createAnnouncement({ payload: formData });
+        this.isLoading = false;
         this.$router.push({ name: "AnnouncementList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

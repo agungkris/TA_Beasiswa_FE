@@ -102,31 +102,20 @@
               </v-row>
 
               <v-btn
+                :loading="loadingButton"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
 
               <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
+                Reset
               </v-btn>
             </v-form>
           </v-card-text>
-          <v-dialog v-model="isLoading" persistent width="300">
-            <v-card color="primary" dark>
-              <v-card-text>
-                Please Wait...
-                <v-progress-linear
-                  indeterminate
-                  color="white"
-                  class="mb-0"
-                ></v-progress-linear>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
         </v-card>
       </div>
     </div>
@@ -140,7 +129,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      isLoading: false,
+      loadingButton: false,
       date: new Date().toISOString().substr(0, 10),
       scholars: false,
       endDate: false,
@@ -171,21 +160,17 @@ export default {
     ...mapActions("period", ["createPeriod"]),
     // code 1
     async validate() {
-      this.isLoading = true;
+      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         await this.createPeriod({ payload: this.periodData });
         this.periodData = {};
-        this.isLoading = false;
+        this.loadingButton = false;
         this.$router.push({ name: "PeriodsList" });
       }
-      this.isLoading = false;
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

@@ -201,6 +201,7 @@
                     label="Komentar"
                   ></v-textarea>
                   <v-btn
+                    :loading="isLoading"
                     :disabled="!valid"
                     color="success"
                     class="mb-2"
@@ -225,6 +226,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       id: this.$route.params.id,
       papers: [v => !!v || "Nilai harus diisi dari 0-100"],
       creativity: [v => !!v || "Nilai harus diisi dari 0-100"],
@@ -250,6 +252,7 @@ export default {
     // code 1
     async onFetchData() {},
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.paperassessmentReport.period_id = this.$route.params.period;
@@ -259,6 +262,7 @@ export default {
           payload: this.paperassessmentReport
         });
         this.paperassessmentReport = {};
+        this.isLoading = false;
         this.$router.push({ name: "PaperAssessmentList" });
       }
     }

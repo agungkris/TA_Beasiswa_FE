@@ -61,6 +61,7 @@
               </v-card-text>
 
               <v-btn
+                :loading="loadingButton"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
@@ -77,16 +78,37 @@
           <v-card-text>
             <v-data-table :headers="headers2" :items="paperjuryList">
               <template v-slot:[`item.action`]="{ item }">
-                <v-btn
-                  color="red darken-4"
-                  text
-                  icon
-                  class="mr-2"
-                  @click="onRemove(item.id)"
+                <v-btn color="error" class="mr-2" @click="onOpenDelete(item.id)"
                   >Hapus</v-btn
                 >
               </template>
             </v-data-table>
+            <v-dialog v-model="dialog" persistent max-width="290">
+              <v-card>
+                <v-card-title class="headline"
+                  >Pembatalan Penilaian Mahasiswa</v-card-title
+                >
+                <v-card-text
+                  >Apakah Anda yakin ingin membatalkan juri terkait untuk
+                  menilai karya tulis mahasiswa ini?</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="disable" text @click="dialog = false"
+                    >Kembali</v-btn
+                  >
+                  <v-btn
+                    :loading="loadingDeleteButton"
+                    color="red darken-4"
+                    text
+                    icon
+                    class="mr-2"
+                    @click="onRemove(paperJuryId)"
+                    >Hapus</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-card-text>
         </v-card>
       </div>
@@ -101,6 +123,10 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      paperJuryId: "",
+      dialog: false,
+      loadingButton: false,
+      loadingDeleteButton: false,
       id: this.$route.params.id,
       valid: false,
       search: "",
@@ -203,6 +229,7 @@ export default {
     },
 
     async validate() {
+      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.createjuryData.level = "juri";
@@ -211,18 +238,27 @@ export default {
           payload: this.paperjuryData
         });
         this.paperjuryData = {};
+        this.loadingButton = false;
         this.$router.push({
           name: "JuryList"
         });
       }
     },
+
+    onOpenDelete(id) {
+      this.dialog = true;
+      this.paperJuryId = id;
+    },
     async onRemove(submission_id) {
       try {
+        this.loadingDeleteButton = true;
         await this.deletePaperJury({
           id: this.id,
           submission_id: submission_id
         });
         await this.onFetchData();
+        this.loadingDeleteButton = false;
+        this.dialog = false;
       } catch (error) {
         alert(error);
       }

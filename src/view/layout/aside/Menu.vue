@@ -26,7 +26,11 @@
       data-menu-toggle="hover"
       class="menu-item"
     >
-      <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
+      <a
+        target="_blank"
+        href="https://smallseotools.com/plagiarism-checker/"
+        class="menu-link"
+      >
         <i class="menu-icon flaticon2-expand"></i>
         <span class="menu-text">Pengecekan Plagiarisme</span></a
       >
@@ -38,7 +42,11 @@
       data-menu-toggle="hover"
       class="menu-item"
     >
-      <a href="https://smallseotools.com/plagiarism-checker/" class="menu-link">
+      <a
+        target="_blank"
+        href="https://smallseotools.com/plagiarism-checker/"
+        class="menu-link"
+      >
         <i class="menu-icon flaticon2-expand"></i>
         <span class="menu-text">Pengecekan Plagiarisme</span></a
       >

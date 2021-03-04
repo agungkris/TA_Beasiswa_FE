@@ -50,6 +50,7 @@
               </v-file-input>
 
               <v-btn
+                :loading="buttonLoading"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
@@ -59,6 +60,18 @@
               <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
             </v-form>
           </v-card-text>
+          <v-dialog v-model="isLoading" persistent width="300">
+            <v-card dark>
+              <v-card-text>
+                Mohon Menunggu...
+                <v-progress-linear
+                  indeterminate
+                  color="white"
+                  class="mb-0 mt-1"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </v-card>
       </div>
     </div>
@@ -72,6 +85,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
+      buttonLoading: false,
       id: this.$route.params.id,
       valid: false,
       semester: [v => !!v || "Semester wajib diisi"],
@@ -108,9 +123,12 @@ export default {
     ...mapActions("event", ["getEvent", "updateEvent"]),
     ...mapActions("semester", ["getSemesterList"]),
     async onFetchData() {
+      this.isLoading = true;
       await this.getEvent({ id: this.id });
+      this.isLoading = false;
     },
     async validate() {
+      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -125,6 +143,7 @@ export default {
           id: this.id,
           payload: formData
         });
+        this.buttonLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });
       }
     },

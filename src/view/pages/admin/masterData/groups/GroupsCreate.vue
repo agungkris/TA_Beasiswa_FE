@@ -32,16 +32,17 @@
               ></v-text-field>
 
               <v-btn
+                :loading="isLoading"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
 
               <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
+                Reset
               </v-btn>
             </v-form>
           </v-card-text>
@@ -58,6 +59,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       valid: true,
       periode: [v => !!v || "Periode grup beasiswa harus diisi"],
       name: "",
@@ -85,18 +87,17 @@ export default {
     ...mapActions("period", ["getPeriodList"]),
     // code 1
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         await this.createGroup({ payload: this.groupData });
         this.groupData = {};
+        this.isLoading = false;
         this.$router.push({ name: "GroupsList" });
       }
     },
     reset() {
       this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
     }
   }
 };

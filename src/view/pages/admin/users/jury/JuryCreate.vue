@@ -46,16 +46,17 @@
               </v-container>
 
               <v-btn
+                :loading="isLoading"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
 
               <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
+                Reset
               </v-btn>
             </v-form>
           </v-card-text>
@@ -72,6 +73,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      isLoading: false,
       karyatulis: false,
       fgd: false,
       valid: false,
@@ -104,11 +106,13 @@ export default {
     ...mapActions("createjury", ["createCreateJury"]),
     // code 1
     async validate() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.createjuryData.level = "juri";
         await this.createCreateJury({ payload: this.createjuryData });
         this.createjuryData = {};
+        this.isLoading = true;
         this.$router.push({ name: "JuryList" });
       }
     },

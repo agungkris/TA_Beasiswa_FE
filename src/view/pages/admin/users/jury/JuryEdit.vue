@@ -46,19 +46,32 @@
               </v-container>
 
               <v-btn
+                :loading="loadingButton"
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
                 @click="validate"
               >
-                Confirm
+                Selesai
               </v-btn>
 
               <v-btn color="error" class="mr-4" @click="reset">
-                Reset Form
+                Reset
               </v-btn>
             </v-form>
           </v-card-text>
+          <v-dialog v-model="isLoading" persistent width="300">
+            <v-card dark>
+              <v-card-text>
+                Mohon Menunggu...
+                <v-progress-linear
+                  indeterminate
+                  color="white"
+                  class="mb-0 mt-1"
+                ></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </v-card>
       </div>
     </div>
@@ -72,6 +85,8 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
+      loadingButton: false,
+      isLoading: false,
       karyatulis: false,
       fgd: false,
       id: this.$route.params.id,
@@ -106,16 +121,19 @@ export default {
     ...mapActions("createjury", ["updateCreateJury", "getCreateJury"]),
     // code 1
     async onFetchData() {
+      this.isLoading = true;
       await this.getCreateJury({ id: this.id });
+      this.isLoading = false;
     },
     async validate() {
+      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         await this.updateCreateJury({
           id: this.id,
           payload: this.createjuryData
         });
-        this.createjuryData = {};
+        this.loadingButton = false;
         this.$router.push({ name: "JuryList" });
       }
     },

@@ -5,7 +5,7 @@
       <v-card-text>
         <v-data-table :headers="headers" :items="groupData.member">
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon

@@ -56,7 +56,7 @@
             <v-checkbox v-model="item.category_jury.fgd" :disabled="true" />
           </template>
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
@@ -72,7 +72,7 @@
               <span>Edit Juri</span>
             </v-tooltip>
 
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   v-if="item.category_jury.karya_tulis != null"
@@ -91,42 +91,46 @@
               </template>
               <span>Pilih Mahasiswa</span>
             </v-tooltip>
-
-            <v-dialog v-model="dialog" persistent max-width="290">
-              <!-- <v-tooltip right> -->
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
+                <v-btn
+                  icon
+                  v-bind="attrs"
+                  @click="onOpenDeleteJury(item.id)"
+                  v-on="on"
+                >
                   <v-icon color="red darken-4">
                     mdi-delete
                   </v-icon>
                 </v-btn>
               </template>
-              <!-- <span>Hapus Akun</span>
-              </v-tooltip> -->
-
-              <v-card>
-                <v-card-title class="headline">Hapus Akun Juri</v-card-title>
-                <v-card-text
-                  >Apakah Anda yakin ingin menghapus akun juri ini?</v-card-text
-                >
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="disable" text @click="dialog = false"
-                    >Kembali</v-btn
-                  >
-                  <v-btn
-                    color="red darken-4"
-                    text
-                    icon
-                    class="mr-2"
-                    @click="onDelete(item.id)"
-                    >Hapus</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+              <span>Hapus Juri</span>
+            </v-tooltip>
           </template>
         </v-data-table>
+        <v-dialog v-model="dialog" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Hapus Akun Juri</v-card-title>
+            <v-card-text
+              >Apakah Anda yakin ingin menghapus akun juri ini?</v-card-text
+            >
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="disable" text @click="dialog = false"
+                >Kembali</v-btn
+              >
+              <v-btn
+                :loading="loadingButton"
+                color="red darken-4"
+                text
+                icon
+                class="mr-2"
+                @click="onDelete(juryId)"
+                >Hapus</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -138,10 +142,12 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      loadingButton: false,
       searchdaftarjury: "",
       searchkaryatulis: "",
       searchfgd: "",
       dialog: false,
+      juryId: "",
       headers: [
         {
           text: "Nama Lengkap",
@@ -219,11 +225,16 @@ export default {
         params: { id: id }
       });
     },
+    onOpenDeleteJury(id) {
+      this.dialog = true;
+      this.juryId = id;
+    },
     async onDelete(id) {
       try {
-        this.dialog = true;
+        this.loadingButton = true;
         await this.deleteCreateJury({ id: id });
         await this.onFetchData();
+        this.loadingButton = false;
         this.dialog = false;
       } catch (error) {
         alert(error);
