@@ -146,7 +146,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("period", ["periodData"])
+    ...mapState("period", ["periodData", "resetPeriod"])
   },
   mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -154,6 +154,7 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    this.resetPeriod();
   },
 
   methods: {

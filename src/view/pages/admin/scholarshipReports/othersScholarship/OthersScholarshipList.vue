@@ -24,41 +24,24 @@
           :items-per-page="5"
         >
           <template v-slot:[`item.action`]="{ item }">
-            <v-tooltip right>
+            <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.khs != null" :href="item.khs">
-                  <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon> mdi-download </v-icon>
-                  </v-btn>
-                </a>
+                <v-btn
+                  icon
+                  :to="{
+                    name: 'AnotherScholarshipRequirementList',
+                    params: { id: item.id }
+                  }"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <v-icon> mdi-file-find </v-icon>
+                </v-btn>
               </template>
-              <span>Unduh KHS</span>
+              <span>Lihat</span>
             </v-tooltip>
           </template>
         </v-data-table>
-
-        <v-dialog v-model="dialogAcademic" persistent max-width="290">
-          <v-card>
-            <v-card-title class="headline">Hapus</v-card-title>
-            <v-card-text
-              >Apakah Anda yakin ingin menghapus laporan ini?</v-card-text
-            >
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="disable" text @click="dialogAcademic = false"
-                >Kembali</v-btn
-              >
-              <v-btn
-                color="red darken-4"
-                text
-                icon
-                class="mr-2"
-                @click="onDeleteAcademic(academicId)"
-                >Hapus</v-btn
-              >
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </v-card-text>
     </v-card>
   </div>
@@ -73,24 +56,16 @@ export default {
       academicId: "",
       academic: [
         {
-          text: "Semester",
-          value: "semester.semester"
+          text: "Angkatan",
+          value: "profile.generation"
         },
         {
-          text: "IP",
-          value: "ip"
+          text: "Nama Mahasiswa",
+          value: "student.name"
         },
         {
-          text: "SKS",
-          value: "sks"
-        },
-        {
-          text: "IPK",
-          value: "ipk"
-        },
-        {
-          text: "Keterangan",
-          value: "description"
+          text: "Program Studi",
+          value: "profile.prodi.name"
         },
         {
           text: "Action",

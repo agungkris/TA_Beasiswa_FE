@@ -12,6 +12,9 @@ const mutations = {
   }
 };
 const actions = {
+  async resetPeriod(context) {
+    context.commit("setPeriodData", {});
+  },
   async getPeriodList(context) {
     try {
       let response = await ApiService.query("api/scholarship/periods");

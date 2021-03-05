@@ -14,6 +14,7 @@
           @change="onChangeFilter"
         ></v-select>
         <v-data-table
+          fixed-header
           :items="uploadscholarshipList"
           :headers="headers"
           item-key="name"
@@ -32,12 +33,49 @@
             ></v-text-field>
           </template>
 
-          <template v-slot:[`item.pilihan`]="{ item }">
-            <v-btn icon>
-              <v-icon>
-                mdi-pencil
-              </v-icon>
-            </v-btn>
+          <template v-slot:item.name="props">
+            <v-edit-dialog
+              :return-value.sync="props.item.name"
+              @save="save"
+              @cancel="cancel"
+              @open="open"
+              @close="close"
+            >
+              {{ props.item.name }}
+              <template v-slot:input>
+                <v-text-field
+                  v-model="props.item.name"
+                  label="Edit"
+                  single-line
+                  counter
+                ></v-text-field>
+              </template>
+            </v-edit-dialog>
+          </template>
+          <template v-slot:item.initial_ipk="props">
+            <v-edit-dialog
+              :return-value.sync="props.item.initial_ipk"
+              large
+              persistent
+              @save="save"
+              @cancel="cancel"
+              @open="open"
+              @close="close"
+            >
+              <div>{{ props.item.initial_ipk }}</div>
+              <template v-slot:input>
+                <div class="mt-4 title">
+                  Update IPK
+                </div>
+                <v-text-field
+                  v-model="props.item.initial_ipk"
+                  label="Edit"
+                  single-line
+                  counter
+                  autofocus
+                ></v-text-field>
+              </template>
+            </v-edit-dialog>
           </template>
         </v-data-table>
 
@@ -83,7 +121,7 @@ export default {
         },
         {
           text: "IPK",
-          value: "pilihan"
+          value: "initial_ipk"
         }
       ]
     };

@@ -11,9 +11,6 @@
       </v-card-title>
       <v-card-text>
         <v-data-table :headers="headers" :items="kategorilingkupList">
-          <!-- <template v-slot:item.total="{ item }">
-            {{ formatRupiah(item.total) }}
-          </template> -->
           <template v-slot:[`item.action`]="{ item }">
             <!-- {{ item }} -->
             <v-btn icon @click="onEditService(item.service_no)">

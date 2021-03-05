@@ -674,7 +674,15 @@
           </v-card>
         </v-flex>
 
-        <v-flex lg4 sm4 xs12 md4 style="display:flex;" class="justify-center">
+        <v-flex
+          v-if="checkJuryFGD"
+          lg4
+          sm4
+          xs12
+          md4
+          style="display:flex;"
+          class="justify-center"
+        >
           <v-card shaped :to="{ name: 'FgdAssessmentList' }">
             <v-card-title>
               <v-icon large left>
@@ -740,7 +748,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
@@ -770,7 +778,14 @@ export default {
     ...mapState("tutorialseleksibeasiswa", ["seleksibeasiswaData"]),
     ...mapState("tutorialakunjuri", ["akunjuriData"]),
     ...mapState("tutorialgrupfgd", ["grupfgdData"]),
-    ...mapState("tutoriallaporanbeasiswa", ["laporanData"])
+    ...mapState("tutoriallaporanbeasiswa", ["laporanData"]),
+    ...mapGetters(["currentUser"]),
+
+    checkJuryFGD: function() {
+      let mantul = this.currentUser.category_jury ?? {};
+      let getFGDAvailable = mantul.fgd == 1 ? true : false;
+      return this.currentUser.level == "juri" && getFGDAvailable;
+    }
   },
 
   async mounted() {

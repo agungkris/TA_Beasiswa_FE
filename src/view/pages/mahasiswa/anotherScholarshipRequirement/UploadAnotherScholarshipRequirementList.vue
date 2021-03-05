@@ -650,7 +650,7 @@ export default {
         },
         {
           text: "Tingkat",
-          value: "level"
+          value: "level.level"
         },
         {
           text: "Waktu Pelaksanaan",

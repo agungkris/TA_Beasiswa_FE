@@ -25,14 +25,25 @@
                 prepend-icon="mdi-format-title"
                 outlined
               ></v-text-field>
-              <v-text-field
+              <v-overflow-btn
+                v-model="competitionData.level_id"
+                class="my-2"
+                label="Tingkat"
+                target="#dropdown-example2"
+                :items="tingkatList"
+                item-value="id"
+                item-text="level"
+                required
+                :rules="leveldd"
+              ></v-overflow-btn>
+              <!-- <v-text-field
                 v-model="competitionData.level"
                 :rules="levelRules"
                 label="Tingkat"
                 required
                 prepend-icon="mdi-format-title"
                 outlined
-              ></v-text-field>
+              ></v-text-field> -->
               <v-text-field
                 v-model="competitionData.realization"
                 :rules="realizationRules"
@@ -91,6 +102,7 @@ export default {
     return {
       isLoading: false,
       valid: false,
+      level_dd: [v => !!v || "Tingkat wajib diisi"],
       semester: [v => !!v || "Semester wajib diisi"],
       activity: "",
       activityRules: [v => !!v || "Kegiatan wajib diisi"],
@@ -113,6 +125,7 @@ export default {
   computed: {
     ...mapState("competition", ["competitionData"]),
     ...mapState("semester", ["semesterList"]),
+    ...mapState("level", ["getTingkatList"]),
     ...mapState(["auth"])
   },
 
@@ -122,12 +135,18 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    // this.getLevelList();
     this.getSemesterList();
+    this.fetchData();
   },
 
   methods: {
     ...mapActions("competition", ["createCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
+    ...mapActions("level", ["getTingkatList"]),
+    async fetchData() {
+      this.getTingkatList();
+    },
     async validate() {
       this.isLoading = true;
       if (this.$refs.form.validate()) {
@@ -136,7 +155,7 @@ export default {
         let formData = new FormData();
         formData.append("semester_id", this.competitionData.semester_id);
         formData.append("activity", this.competitionData.activity);
-        formData.append("level", this.competitionData.level);
+        formData.append("level_id", this.competitionData.level_id);
         formData.append("realization", this.competitionData.realization);
         formData.append("result", this.competitionData.result);
         formData.append("document", this.competitionData.document);

@@ -31,6 +31,100 @@
               class="mx-4"
             ></v-text-field>
           </template>
+          <template v-slot:[`item.submit_form`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a :href="item.submit_form" target="_blank">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>
+                      mdi-file-find
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh Formulir Beasiswa</span>
+            </v-tooltip>
+          </template>
+          <template v-slot:[`item.brs`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a :href="item.brs" target="_blank">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>
+                      mdi-file-find
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh BRS</span>
+            </v-tooltip>
+          </template>
+          <template v-slot:[`item.raport`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a :href="item.raport" target="_blank">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>
+                      mdi-file-find
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh Transkrip Nilai</span>
+            </v-tooltip>
+          </template>
+          <template v-slot:[`item.cv`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a :href="item.cv" target="_blank">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>
+                      mdi-file-find
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh CV</span>
+            </v-tooltip>
+          </template>
+          <template v-slot:[`item.papers`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <a :href="item.papers" target="_blank">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>
+                      mdi-file-find
+                    </v-icon>
+                  </v-btn>
+                </a>
+              </template>
+              <span>Unduh Karya Tulis</span>
+            </v-tooltip>
+          </template>
+          <template v-slot:[`item.other_requirements`]="{ item }">
+            <v-tooltip right>
+              <template v-slot:activator="{ on, attrs }">
+                <v-card-text
+                  v-if="
+                    item.other_requirements == null ||
+                      item.other_requirements == ''
+                  "
+                >
+                  Tidak Ada
+                </v-card-text>
+                <v-card-text v-else>
+                  <a :href="item.other_requirements" target="_blank">
+                    <v-btn icon v-bind="attrs" v-on="on">
+                      <v-icon>
+                        mdi-file-find
+                      </v-icon>
+                    </v-btn>
+                  </a>
+                </v-card-text>
+              </template>
+              <span>Unduh lainnya</span>
+            </v-tooltip>
+          </template>
           <template v-slot:[`item.pilihan`]="{ item }">
             <v-checkbox></v-checkbox>
           </template>
@@ -38,7 +132,7 @@
         <v-btn color="success" class="mt-2 mr-4" @click="validate(1)"
           >Selesai</v-btn
         >
-        <v-btn color="success" class="mt-2 mr-4" @click="validate(0)"
+        <v-btn color="depressed" class="mt-2 mr-4" @click="validate(0)"
           >Batal</v-btn
         >
       </v-card-text>
@@ -64,35 +158,43 @@ export default {
         },
         {
           text: "Formulir Beasiswa",
-          value: "submit_form"
+          value: "submit_form",
+          align: "center"
         },
         {
           text: "BRS",
-          value: "brs"
+          value: "brs",
+          align: "center"
         },
         {
           text: "Transkrip Nilai",
-          value: "raport"
+          value: "raport",
+          align: "center"
         },
         {
           text: "CV",
-          value: "cv"
+          value: "cv",
+          align: "center"
         },
         {
           text: "Karya Tulis",
-          value: "papers"
+          value: "papers",
+          align: "center"
         },
         {
           text: "Bukti Prestasi/Surat Permohonan Rektor",
-          value: "other_requirements"
+          value: "other_requirements",
+          align: "center"
         },
         {
           text: "Penilaian Karya Tulis",
-          value: "paper"
+          value: "paper",
+          align: "center"
         },
         {
           text: "Lolos Administrasi",
-          value: "pilihan"
+          value: "pilihan",
+          align: "center"
         }
       ]
     };

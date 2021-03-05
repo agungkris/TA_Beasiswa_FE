@@ -14,7 +14,7 @@
             :show-size="1000"
           >
             <template v-slot:selection="{ text }">
-              <v-chip label small>
+              <v-chip dark label small class=" text-center text-wrap">
                 {{ text }}
               </v-chip>
             </template>
