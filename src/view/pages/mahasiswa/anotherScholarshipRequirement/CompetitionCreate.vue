@@ -123,10 +123,10 @@ export default {
     };
   },
   computed: {
+    ...mapState(["auth"]),
     ...mapState("competition", ["competitionData"]),
     ...mapState("semester", ["semesterList"]),
-    ...mapState("level", ["getTingkatList"]),
-    ...mapState(["auth"])
+    ...mapState("level", ["getTingkatList"])
   },
 
   mounted() {
@@ -135,7 +135,7 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
-    // this.getLevelList();
+    // this.getTingkatList();
     this.getSemesterList();
     this.fetchData();
   },

@@ -188,7 +188,7 @@ export default {
         },
         {
           text: "Penilaian Karya Tulis",
-          value: "paper",
+          value: "paper_assessments",
           align: "center"
         },
         {
