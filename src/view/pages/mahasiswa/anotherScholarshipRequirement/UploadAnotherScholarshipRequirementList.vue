@@ -585,6 +585,27 @@
           </v-card>
         </v-dialog>
       </v-card-text>
+
+      <v-dialog v-model="dialog" persistent max-width="290">
+        <v-card>
+          <v-card-title class="headline">Konfirmasi</v-card-title>
+          <v-card-text
+            >Apakah Anda ingin memberikan laporan untuk keperluan beasiswa
+            ASAK/Dikti/Bidikmisi?</v-card-text
+          >
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="disable" text @click="cancel()">Tidak</v-btn>
+            <v-btn
+              color="success"
+              text
+              class="mr-2"
+              @click="accept(), validate(1)"
+              >Ya</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -595,6 +616,7 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
+      dialog: "",
       loadingAcademic: false,
       dialogAcademic: false,
       academicId: "",
@@ -775,6 +797,7 @@ export default {
     ...mapActions("paper", ["getPaperList", "deletePaper"]),
     ...mapActions("financial", ["getFinancialList", "deleteFinancial"]),
     async onFetchData() {
+      this.dialog = true;
       await this.getAcademicList({ student_id: this.auth.user.id });
       await this.getCompetitionList({ student_id: this.auth.user.id });
       await this.getOrganizationList({ student_id: this.auth.user.id });
@@ -883,6 +906,23 @@ export default {
       } catch (error) {
         alert(error);
       }
+    },
+
+    // Open() {
+    //   this.dialog = true;
+    // },
+    cancel() {
+      try {
+        this.dialog = false;
+        this.$router.push({
+          name: "dashboard"
+        });
+      } catch (error) {
+        alert(error);
+      }
+    },
+    accept() {
+      this.dialog = false;
     }
   }
 };

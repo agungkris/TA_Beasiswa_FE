@@ -106,8 +106,8 @@ export default {
       semester: [v => !!v || "Semester wajib diisi"],
       activity: "",
       activityRules: [v => !!v || "Kegiatan wajib diisi"],
-      level: "",
-      levelRules: [v => !!v || "Tingkat wajib diisi"],
+      // level: "",
+      // levelRules: [v => !!v || "Tingkat wajib diisi"],
       realization: "",
       realizationRules: [v => !!v || "Waktu Pelaksanaan wajib diisi"],
       result: "",
@@ -124,9 +124,9 @@ export default {
   },
   computed: {
     ...mapState(["auth"]),
+    ...mapState("level", ["getTingkatList"]),
     ...mapState("competition", ["competitionData"]),
-    ...mapState("semester", ["semesterList"]),
-    ...mapState("level", ["getTingkatList"])
+    ...mapState("semester", ["semesterList"])
   },
 
   mounted() {
@@ -135,18 +135,18 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
-    // this.getTingkatList();
+    this.getTingkatList();
     this.getSemesterList();
-    this.fetchData();
+    // this.fetchData();
   },
 
   methods: {
     ...mapActions("competition", ["createCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
     ...mapActions("level", ["getTingkatList"]),
-    async fetchData() {
-      this.getTingkatList();
-    },
+    // async fetchData() {
+    //   this.getTingkatList();
+    // },
     async validate() {
       this.isLoading = true;
       if (this.$refs.form.validate()) {

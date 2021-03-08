@@ -195,7 +195,7 @@ export default {
     ...mapActions("period", ["getPeriodList"]),
     async onFetchData() {
       this.isLoading = true;
-      await this.getAnnouncementList();
+      await this.getAnnouncementList({ period_id: null });
       this.isLoading = false;
       await this.getPeriodList();
     },

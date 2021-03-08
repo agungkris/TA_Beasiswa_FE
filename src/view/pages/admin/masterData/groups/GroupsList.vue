@@ -169,7 +169,7 @@ export default {
     ...mapActions("group", ["getGroupList", "deleteGroup", "randomMember"]),
     ...mapActions("period", ["getPeriodList"]),
     async onFetchData() {
-      await this.getGroupList();
+      await this.getGroupList({ period_id: null });
       await this.getPeriodList();
     },
     async onChangeFilter() {

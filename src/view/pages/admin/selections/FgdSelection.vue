@@ -89,31 +89,38 @@ export default {
       headers: [
         {
           text: "Nama Mahasiswa",
-          value: "student.name"
+          value: "student.name",
+          align: "justify"
         },
         {
           text: "Karya Tulis",
-          value: "paper_assessments"
+          value: "paper_assessments",
+          align: "center"
         },
         {
           text: "FGD",
-          value: "presentation_assessments"
+          value: "presentation_assessments",
+          align: "center"
         },
         {
           text: "IPK",
-          value: "ipk"
+          value: "ipk",
+          align: "center"
         },
         {
           text: "Bukti Prestasi/Surat Permohonan Rektor",
-          value: "other_requirements"
+          value: "other_requirements",
+          align: "center"
         },
         {
           text: "Nilai Akhir",
-          value: "final_score"
+          value: "final_score",
+          align: "center"
         },
         {
           text: "Lulus",
-          value: "final_stage"
+          value: "final_stage",
+          align: "center"
         }
       ]
     };
