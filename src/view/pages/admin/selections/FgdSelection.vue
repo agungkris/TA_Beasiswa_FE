@@ -165,7 +165,7 @@ export default {
 
         return copyObject;
       });
-      console.log("ini map kmeans", response);
+      // console.log("ini map kmeans", response);
       this.beasiswaMahasiswa = response;
     },
 
@@ -230,9 +230,9 @@ export default {
       let self = this;
       let selectedCluster;
       kmeans.clusterize(mapData, { k: 2 }, (err, res) => {
-        if (err) console.error(err);
+        if (err);
         else {
-          console.log("%o", res);
+          // console.log("%o", res);
           const clusterOne = res[0].centroid.reduce((previous, current) => {
             // console.log(previous);
             // console.log(current);

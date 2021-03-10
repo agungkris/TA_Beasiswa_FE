@@ -45,6 +45,7 @@ import organization from "./scholarship/anotherscholarship/organization.module";
 import paper from "./scholarship/anotherscholarship/paper.module";
 import financial from "./scholarship/anotherscholarship/financial.module";
 import level from "./scholarship/anotherscholarship/level.module";
+import achievement from "./scholarship/anotherscholarship/achievement.module";
 
 Vue.use(Vuex);
 
@@ -93,7 +94,8 @@ export default new Vuex.Store({
     organization,
     paper,
     financial,
-    level
+    level,
+    achievement
     //#endregion
   }
 });

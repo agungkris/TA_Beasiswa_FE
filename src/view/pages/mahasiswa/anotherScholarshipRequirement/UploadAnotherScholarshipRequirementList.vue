@@ -595,14 +595,8 @@
           >
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="disable" text @click="cancel()">Tidak</v-btn>
-            <v-btn
-              color="success"
-              text
-              class="mr-2"
-              @click="accept(), validate(1)"
-              >Ya</v-btn
-            >
+            <v-btn color="disable" text @click="cancel">Tidak</v-btn>
+            <v-btn color="success" text class="mr-2" @click="accept">Ya</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -776,7 +770,8 @@ export default {
     ...mapState("event", ["eventList"]),
     ...mapState("paper", ["paperList"]),
     ...mapState("financial", ["financialList"]),
-    ...mapState(["auth"])
+    ...mapState(["auth"]),
+    ...mapState("users", ["usersData"])
   },
 
   async mounted() {
@@ -796,6 +791,8 @@ export default {
     ...mapActions("event", ["getEventList", "deleteEvent"]),
     ...mapActions("paper", ["getPaperList", "deletePaper"]),
     ...mapActions("financial", ["getFinancialList", "deleteFinancial"]),
+    ...mapActions("achievement", ["getAchievementList", "createAchievement"]),
+    ...mapActions("users", ["updateAchievementUsers"]),
     async onFetchData() {
       this.dialog = true;
       await this.getAcademicList({ student_id: this.auth.user.id });
@@ -911,8 +908,15 @@ export default {
     // Open() {
     //   this.dialog = true;
     // },
-    cancel() {
+    async cancel() {
       try {
+        await this.updateAchievementUsers({
+          id: this.auth.user.id,
+          payload: {
+            is_achievement: 0
+          }
+        });
+        this.getUsersList = {};
         this.dialog = false;
         this.$router.push({
           name: "dashboard"
@@ -921,8 +925,20 @@ export default {
         alert(error);
       }
     },
-    accept() {
-      this.dialog = false;
+    async accept() {
+      try {
+        await this.updateAchievementUsers({
+          id: this.auth.user.id,
+          payload: {
+            is_achievement: 1
+          }
+        });
+        this.getUsersList = {};
+
+        this.dialog = false;
+      } catch (error) {
+        alert(error);
+      }
     }
   }
 };

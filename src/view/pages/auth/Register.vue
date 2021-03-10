@@ -300,7 +300,7 @@ export default {
     onSubmit() {
       this.$v.usersData.$touch();
       if (this.$v.usersData.$anyError) {
-        console.log("asdasd");
+        // console.log("asdasd");
         return;
       }
 

@@ -3,7 +3,8 @@ const state = {
   usersList: [],
   usersData: {
     prodi_id: null
-  }
+  },
+  usersAchievementList: []
 };
 const mutations = {
   setUsersList(state, payload) {
@@ -11,6 +12,9 @@ const mutations = {
   },
   setUsersData(state, payload) {
     state.usersData = payload;
+  },
+  setUsersAchievementList(state, payload) {
+    state.usersAchievementList = payload;
   }
 };
 const actions = {
@@ -18,6 +22,14 @@ const actions = {
     try {
       let response = await ApiService.query("api/auth/users?level=student");
       context.commit("setUsersList", response.data);
+    } catch (error) {
+      throw error;
+    }
+  },
+  async getUsersAchievementList(context) {
+    try {
+      let response = await ApiService.query("api/auth/users/achievementlist");
+      context.commit("setUsersAchievementList", response.data);
     } catch (error) {
       throw error;
     }
@@ -45,6 +57,15 @@ const actions = {
       throw Error(error);
     }
   },
+
+  async updateAchievementUsers(context, { id, payload }) {
+    try {
+      await ApiService.post(`api/auth/users/achievement/${id}`, payload);
+    } catch (error) {
+      throw Error(error);
+    }
+  },
+
   async deleteUsers(context, { id }) {
     try {
       await ApiService.delete(`api/auth/users/delete/${id}`);

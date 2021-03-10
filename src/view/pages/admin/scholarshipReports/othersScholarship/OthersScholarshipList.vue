@@ -16,8 +16,8 @@
       ></v-card-title>
       <v-card-text>
         <v-data-table
-          :headers="academic"
-          :items="academicList"
+          :headers="users"
+          :items="usersAchievementList"
           :footer-props="{
             'items-per-page-options': [5, 10, 25, 50]
           }"
@@ -52,20 +52,24 @@ import { SET_BREADCRUMB } from "@/core/services/store/breadcrumbs.module";
 export default {
   data() {
     return {
-      dialogAcademic: false,
-      academicId: "",
-      academic: [
+      // dialogAcademic: false,
+      // academicId: "",
+      users: [
+        {
+          text: "NIM",
+          value: "username"
+        },
+        {
+          text: "Program Studi",
+          value: "profile.prodi.name"
+        },
         {
           text: "Angkatan",
           value: "profile.generation"
         },
         {
-          text: "Nama Mahasiswa",
-          value: "student.name"
-        },
-        {
-          text: "Program Studi",
-          value: "profile.prodi.name"
+          text: "Nama Lengkap",
+          value: "name"
         },
         {
           text: "Action",
@@ -75,7 +79,7 @@ export default {
     };
   },
   computed: {
-    ...mapState("academic", ["academicList"])
+    ...mapState("users", ["usersAchievementList"])
   },
   async mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -85,9 +89,9 @@ export default {
     await this.onFetchData();
   },
   methods: {
-    ...mapActions("academic", ["getAcademicList", "deleteAcademic"]),
+    ...mapActions("users", ["getUsersAchievementList"]),
     async onFetchData() {
-      await this.getAcademicList();
+      await this.getUsersAchievementList({ is_achievement: 1 });
     }
   }
 };
