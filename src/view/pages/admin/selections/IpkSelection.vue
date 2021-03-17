@@ -79,12 +79,10 @@
           </template>
         </v-data-table>
 
-        <v-btn color="success" class="mt-2 mr-4" @click="validate(1)"
+        <v-btn color="success" class="mt-2 mr-4" @click="validate"
           >Selesai</v-btn
         >
-        <v-btn color="depressed" class="mt-2 mr-4" @click="validate(0)"
-          >Batal</v-btn
-        >
+        <v-btn color="depressed" class="mt-2 mr-4">Batal</v-btn>
       </v-card-text>
     </v-card>
   </div>
@@ -101,6 +99,7 @@ export default {
       valid: false,
       search: "",
       selectedPeriod: "",
+      ipkMahasiswa: [],
 
       headers: [
         {
@@ -150,7 +149,10 @@ export default {
   },
 
   methods: {
-    ...mapActions("uploadscholarship", ["getUploadScholarshipList"]),
+    ...mapActions("uploadscholarship", [
+      "getUploadScholarshipList",
+      "submitIpk"
+    ]),
     ...mapActions("period", ["getPeriodList"]),
 
     async onFetchData() {
@@ -166,6 +168,11 @@ export default {
         period_id: this.selectedPeriod,
         next_stage: 1
       });
+    },
+    async validate() {
+      const ipk_list = this.ipkMahasiswa;
+      await this.submitIpk({ ipk_list: this.uploadscholarshipList });
+      this.$router.push({ name: "SelectionFgd" });
     }
   }
 };

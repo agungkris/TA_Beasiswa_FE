@@ -586,7 +586,12 @@
         </v-dialog>
       </v-card-text>
 
-      <v-dialog v-model="dialog" persistent max-width="290">
+      <v-dialog
+        v-if="auth.user.is_achievement == 0"
+        v-model="dialog"
+        persistent
+        max-width="290"
+      >
         <v-card>
           <v-card-title class="headline">Konfirmasi</v-card-title>
           <v-card-text

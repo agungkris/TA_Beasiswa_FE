@@ -7,7 +7,8 @@ const state = {
   reportData: {},
   reportNewList: [],
   kmeansData: [],
-  submitScholarship: []
+  submitScholarship: [],
+  submitIpk: []
 };
 const mutations = {
   setUploadScholarshipList(state, payload) {
@@ -33,6 +34,9 @@ const mutations = {
   },
   setSubmitScholarshipList(state, payload) {
     state.submitScholarshipList = payload;
+  },
+  setSubmitIpkList(state, payload) {
+    state.submitIpkList = payload;
   }
 };
 const actions = {
@@ -244,6 +248,21 @@ const actions = {
         payload
       );
       context.commit("setSubmitScholarshipList", response.data);
+    } catch (error) {
+      throw Error(error);
+    }
+  },
+  async submitIpk(context, { ipk_list }) {
+    try {
+      const payload = {
+        ipk_list: ipk_list
+      };
+
+      let response = await ApiService.post(
+        "api/scholarship/scholarshipsubmissions/submitipk",
+        payload
+      );
+      context.commit("setSubmitIpkList", response.data);
     } catch (error) {
       throw Error(error);
     }
