@@ -1,50 +1,50 @@
 import ApiService from "../../../api.service";
 const state = {
-  tingkatList: [],
-  tingkatData: {}
+  levelList: [],
+  levelData: {}
 };
 const mutations = {
-  setTingkatList(state, payload) {
-    state.tingkatList = payload;
+  setLevelList(state, payload) {
+    state.levelList = payload;
   },
-  setTingkatData(state, payload) {
-    state.tingkatData = payload;
+  setLevelData(state, payload) {
+    state.levelData = payload;
   }
 };
 const actions = {
-  async getTingkatList(context) {
+  async getLevelList(context) {
     try {
       let response = await ApiService.query("api/scholarship/levels");
-      context.commit("setTingkatList", response.data);
+      context.commit("setLevelList", response.data);
     } catch (error) {
       throw error;
     }
   },
-  async createTingkat(context, { payload }) {
+  async createLevel(context, { payload }) {
     try {
       await ApiService.post("api/scholarship/levels/create", payload);
-      context.commit("setTingkatData", {});
+      context.commit("setLevelData", {});
     } catch (error) {
       throw Error(error);
     }
   },
-  async getTingkat(context, { id }) {
+  async getLevel(context, { id }) {
     try {
       let response = await ApiService.query(`api/scholarship/levels/get/${id}`);
-      context.commit("setTingkatData", response.data);
+      context.commit("setLevelData", response.data);
     } catch (error) {
       throw Error(error);
     }
   },
 
-  async updateTingkat(context, { id, payload }) {
+  async updateLevel(context, { id, payload }) {
     try {
       await ApiService.post(`api/scholarship/levels/update/${id}`, payload);
     } catch (error) {
       throw Error(error);
     }
   },
-  async deleteTingkat(context, { id }) {
+  async deleteLevel(context, { id }) {
     try {
       await ApiService.delete(`api/scholarship/levels/delete/${id}`);
     } catch (error) {
@@ -54,7 +54,7 @@ const actions = {
 };
 const getters = {};
 
-const tingkat = {
+const level = {
   namespaced: true,
   state,
   getters,
@@ -62,4 +62,4 @@ const tingkat = {
   actions
 };
 
-export default tingkat;
+export default level;

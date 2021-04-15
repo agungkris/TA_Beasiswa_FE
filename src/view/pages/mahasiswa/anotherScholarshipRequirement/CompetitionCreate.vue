@@ -30,20 +30,12 @@
                 class="my-2"
                 label="Tingkat"
                 target="#dropdown-example2"
-                :items="tingkatList"
+                :items="levelList"
                 item-value="id"
                 item-text="level"
                 required
                 :rules="leveldd"
               ></v-overflow-btn>
-              <!-- <v-text-field
-                v-model="competitionData.level"
-                :rules="levelRules"
-                label="Tingkat"
-                required
-                prepend-icon="mdi-format-title"
-                outlined
-              ></v-text-field> -->
               <v-text-field
                 v-model="competitionData.realization"
                 :rules="realizationRules"
@@ -72,7 +64,9 @@
                 required
               >
                 <template v-slot:selection="{ text }">
-                  <v-chip label small>{{ text }}</v-chip>
+                  <v-chip label small class=" text-center text-wrap">{{
+                    text
+                  }}</v-chip>
                 </template>
               </v-file-input>
 
@@ -106,8 +100,8 @@ export default {
       semester: [v => !!v || "Semester wajib diisi"],
       activity: "",
       activityRules: [v => !!v || "Kegiatan wajib diisi"],
-      // level: "",
-      // levelRules: [v => !!v || "Tingkat wajib diisi"],
+      level: "",
+      levelRules: [v => !!v || "Tingkat wajib diisi"],
       realization: "",
       realizationRules: [v => !!v || "Waktu Pelaksanaan wajib diisi"],
       result: "",
@@ -124,9 +118,9 @@ export default {
   },
   computed: {
     ...mapState(["auth"]),
-    ...mapState("level", ["getTingkatList"]),
     ...mapState("competition", ["competitionData"]),
-    ...mapState("semester", ["semesterList"])
+    ...mapState("semester", ["semesterList"]),
+    ...mapState("level", ["levelList"])
   },
 
   mounted() {
@@ -135,7 +129,7 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
-    this.getTingkatList();
+    this.getLevelList();
     this.getSemesterList();
     // this.fetchData();
   },
@@ -143,7 +137,7 @@ export default {
   methods: {
     ...mapActions("competition", ["createCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
-    ...mapActions("level", ["getTingkatList"]),
+    ...mapActions("level", ["getLevelList"]),
     // async fetchData() {
     //   this.getTingkatList();
     // },

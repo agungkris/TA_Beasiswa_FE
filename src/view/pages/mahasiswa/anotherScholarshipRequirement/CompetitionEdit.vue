@@ -25,14 +25,17 @@
                 prepend-icon="mdi-format-title"
                 outlined
               ></v-text-field>
-              <v-text-field
-                v-model="competitionData.level"
-                :rules="levelRules"
+              <v-overflow-btn
+                v-model="competitionData.level_id"
+                class="my-2"
                 label="Tingkat"
+                target="#dropdown-example2"
+                :items="levelList"
+                item-value="id"
+                item-text="level"
                 required
-                prepend-icon="mdi-format-title"
-                outlined
-              ></v-text-field>
+                :rules="level"
+              ></v-overflow-btn>
               <v-text-field
                 v-model="competitionData.realization"
                 :rules="realizationRules"
@@ -61,7 +64,9 @@
                 required
               >
                 <template v-slot:selection="{ text }">
-                  <v-chip label small>{{ text }}</v-chip>
+                  <v-chip label small class=" text-center text-wrap">{{
+                    text
+                  }}</v-chip>
                 </template>
               </v-file-input>
 
@@ -126,7 +131,8 @@ export default {
   },
   computed: {
     ...mapState("competition", ["competitionData"]),
-    ...mapState("semester", ["semesterList"])
+    ...mapState("semester", ["semesterList"]),
+    ...mapState("level", ["levelList"])
   },
 
   mounted() {
@@ -136,12 +142,14 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getSemesterList();
+    this.getLevelList();
     this.onFetchData();
   },
 
   methods: {
     ...mapActions("competition", ["getCompetition", "updateCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
+    ...mapActions("level", ["getLevelList"]),
     async onFetchData() {
       this.isLoading = true;
       await this.getCompetition({ id: this.id });
@@ -155,7 +163,7 @@ export default {
         let formData = new FormData();
         formData.append("semester_id", this.competitionData.semester_id);
         formData.append("activity", this.competitionData.activity);
-        formData.append("level", this.competitionData.level);
+        formData.append("level_id", this.competitionData.level_id);
         formData.append("realization", this.competitionData.realization);
         formData.append("result", this.competitionData.result);
         if (this.competitionData.document != null) {

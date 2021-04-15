@@ -23,7 +23,7 @@
           }"
           :items-per-page="5"
         >
-          <template v-slot:[`item.action`]="{ item }">
+          <!-- <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -40,7 +40,7 @@
               </template>
               <span>Lihat</span>
             </v-tooltip>
-          </template>
+          </template> -->
         </v-data-table>
       </v-card-text>
     </v-card>
@@ -70,11 +70,11 @@ export default {
         {
           text: "Nama Lengkap",
           value: "name"
-        },
-        {
-          text: "Action",
-          value: "action"
         }
+        // {
+        //   text: "Action",
+        //   value: "action"
+        // }
       ]
     };
   },

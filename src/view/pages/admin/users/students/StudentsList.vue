@@ -3,18 +3,18 @@
     <v-card class="mb-6">
       <v-card-title>
         <span class="title font-weight-light" style="padding-right: 5px"
-          >Mahasiswa</span
+          >Seleksi</span
         >
-        <span class="title font-weight-light" style="padding-right: 5px"
+        <!-- <span class="title font-weight-light" style="padding-right: 5px"
           >Pendaftar</span
         >
         <span class="title font-weight-light" style="padding-right: 5px"
           >Beasiswa</span
-        >
-        <span class="title font-weight-light" style="padding-right: 5px"
+        > -->
+        <!-- <span class="title font-weight-light" style="padding-right: 5px"
           >Pembangunan</span
-        >
-        <span class="title font-weight-light">Jaya</span>
+        > -->
+        <span class="title font-weight-light">Administrasi</span>
         <v-spacer></v-spacer>
         <v-select
           v-model="selectedPeriod"
@@ -69,7 +69,7 @@
       </v-card-text>
     </v-card>
 
-    <v-card>
+    <!-- <v-card>
       <v-card-title
         >{{ title2 }}
         <v-spacer></v-spacer>
@@ -113,7 +113,7 @@
           </template>
         </v-data-table>
       </v-card-text>
-    </v-card>
+    </v-card> -->
   </div>
 </template>
 <script>

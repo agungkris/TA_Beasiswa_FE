@@ -47,7 +47,7 @@
                 required
               >
                 <template v-slot:selection="{ text }">
-                  <v-chip label small>
+                  <v-chip label small class=" text-center text-wrap">
                     {{ text }}
                   </v-chip>
                 </template>

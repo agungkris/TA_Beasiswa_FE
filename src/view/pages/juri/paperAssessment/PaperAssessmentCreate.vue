@@ -1,8 +1,17 @@
 <template>
   <div>
-    <v-card-title class="justify-center col-md-12"
-      >INFORMASI PENILAIAN KARYA TULIS</v-card-title
-    >
+    <v-card-title class="justify-center col-md-12">
+      <span class="title font-weight-light" style="padding-right:5px;"
+        >INFORMASI</span
+      >
+      <span class="title font-weight-light" style="padding-right:5px;"
+        >PENILAIAN</span
+      >
+      <span class="title font-weight-light" style="padding-right:5px;"
+        >KARYA</span
+      >
+      <span class="title font-weight-light">TULIS</span>
+    </v-card-title>
     <v-container grid-list-md>
       <v-layout row wrap>
         <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">

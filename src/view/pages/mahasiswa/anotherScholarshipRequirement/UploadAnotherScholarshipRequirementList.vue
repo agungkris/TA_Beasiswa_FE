@@ -33,7 +33,7 @@
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.khs != null" :href="item.khs">
+                <a v-if="item.khs != null" target="_blank" :href="item.khs">
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon> mdi-download </v-icon>
                   </v-btn>
@@ -135,7 +135,11 @@
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.document != null" :href="item.document">
+                <a
+                  v-if="item.document != null"
+                  target="_blank"
+                  :href="item.document"
+                >
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon> mdi-download </v-icon>
                   </v-btn>
@@ -238,7 +242,11 @@
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.document != null" :href="item.document">
+                <a
+                  v-if="item.document != null"
+                  target="_blank"
+                  :href="item.document"
+                >
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon> mdi-download </v-icon>
                   </v-btn>
@@ -332,7 +340,11 @@
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.document != null" :href="item.document">
+                <a
+                  v-if="item.document != null"
+                  target="_blank"
+                  :href="item.document"
+                >
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon> mdi-download </v-icon>
                   </v-btn>
@@ -425,7 +437,11 @@
           <template v-slot:[`item.action`]="{ item }">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a v-if="item.document != null" :href="item.document">
+                <a
+                  v-if="item.document != null"
+                  target="_blank"
+                  :href="item.document"
+                >
                   <v-btn icon v-bind="attrs" v-on="on">
                     <v-icon> mdi-download </v-icon>
                   </v-btn>

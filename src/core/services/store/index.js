@@ -39,13 +39,14 @@ import tutorialpengumpulandokumenmahasiswa from "./scholarship/tutorial/pengumpu
 
 import semester from "./scholarship/anotherscholarship/semester.module";
 import academic from "./scholarship/anotherscholarship/academic.module";
+import level from "./scholarship/anotherscholarship/level.module";
 import competition from "./scholarship/anotherscholarship/competition.module";
 import event from "./scholarship/anotherscholarship/event.module";
 import organization from "./scholarship/anotherscholarship/organization.module";
 import paper from "./scholarship/anotherscholarship/paper.module";
 import financial from "./scholarship/anotherscholarship/financial.module";
-import level from "./scholarship/anotherscholarship/level.module";
 import achievement from "./scholarship/anotherscholarship/achievement.module";
+// import tingkat from "./scholarship/anotherscholarship/tingkat.module";
 
 Vue.use(Vuex);
 
@@ -89,13 +90,14 @@ export default new Vuex.Store({
 
     semester,
     academic,
+    level,
     competition,
     event,
     organization,
     paper,
     financial,
-    level,
     achievement
+    // tingkat
     //#endregion
   }
 });

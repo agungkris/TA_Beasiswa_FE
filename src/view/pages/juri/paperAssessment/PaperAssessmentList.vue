@@ -30,24 +30,6 @@
 
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
-                <a
-                  target="_blank"
-                  href="https://smallseotools.com/plagiarism-checker/"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  <v-btn icon>
-                    <v-icon>
-                      mdi-find-replace
-                    </v-icon>
-                  </v-btn>
-                </a>
-              </template>
-              <span>Pengecekan Plagiat</span>
-            </v-tooltip>
-
-            <v-tooltip left>
-              <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   icon
                   v-bind="attrs"

@@ -21,35 +21,63 @@
     </router-link>
 
     <li
-      v-if="auth.user.level == 'admin'"
       aria-haspopup="true"
       data-menu-toggle="hover"
-      class="menu-item"
+      class="menu-item menu-item-submenu"
+      :class="{ 'menu-item-open': hasActiveChildren('vuetify') }"
     >
-      <a
-        target="_blank"
-        href="https://smallseotools.com/plagiarism-checker/"
-        class="menu-link"
-      >
-        <i class="menu-icon flaticon2-expand"></i>
-        <span class="menu-text">Pengecekan Plagiarisme</span></a
-      >
-    </li>
+      <a href="#" class="menu-link menu-toggle">
+        <i class="menu-icon flaticon-web"></i>
+        <span class="menu-text">Pengecekan Plagiat</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="menu-submenu" style="display: none; overflow: hidden;">
+        <span class="menu-arrow"></span>
+        <ul class="menu-subnav">
+          <li aria-haspopup="true" class="menu-item menu-item-parent">
+            <span class="menu-link">
+              <span class="menu-text">Pengecekan Plagiat</span>
+            </span>
+          </li>
 
-    <li
-      v-if="auth.user.level == 'student'"
-      aria-haspopup="true"
-      data-menu-toggle="hover"
-      class="menu-item"
-    >
-      <a
-        target="_blank"
-        href="https://smallseotools.com/plagiarism-checker/"
-        class="menu-link"
-      >
-        <i class="menu-icon flaticon2-expand"></i>
-        <span class="menu-text">Pengecekan Plagiarisme</span></a
-      >
+          <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item">
+            <a
+              target="_blank"
+              href="https://smallseotools.com/plagiarism-checker/"
+              class="menu-link"
+            >
+              <i class="menu-bullet menu-bullet-dot">
+                <span></span>
+              </i>
+              <span class="menu-text">Small SEO Tools</span></a
+            >
+          </li>
+          <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item">
+            <a
+              target="_blank"
+              href="https://www.duplichecker.com/id"
+              class="menu-link"
+            >
+              <i class="menu-bullet menu-bullet-dot">
+                <span></span>
+              </i>
+              <span class="menu-text">Dupli Checker</span></a
+            >
+          </li>
+          <li aria-haspopup="true" data-menu-toggle="hover" class="menu-item">
+            <a
+              target="_blank"
+              href="https://www.plagramme.com/"
+              class="menu-link"
+            >
+              <i class="menu-bullet menu-bullet-dot">
+                <span></span>
+              </i>
+              <span class="menu-text">Plagramme.com</span></a
+            >
+          </li>
+        </ul>
+      </div>
     </li>
 
     <router-link
@@ -244,7 +272,7 @@
             </li>
           </router-link>
 
-          <router-link
+          <!-- <router-link
             v-slot="{ href, navigate, isActive, isExactActive }"
             :to="{ name: 'StudentsList' }"
             :exact="true"
@@ -265,7 +293,7 @@
                 <span class="menu-text">Daftar Mahasiswa</span>
               </a>
             </li>
-          </router-link>
+          </router-link> -->
 
           <router-link
             v-slot="{ href, navigate, isActive, isExactActive }"
@@ -312,9 +340,31 @@
               <span class="menu-text">Seleksi</span>
             </span>
           </li>
-          <router-link
+          <!-- <router-link
             v-slot="{ href, navigate, isActive, isExactActive }"
             :to="{ name: 'SelectionAdministration' }"
+          >
+            <li
+              aria-haspopup="true"
+              data-menu-toggle="hover"
+              class="menu-item"
+              :class="[
+                isActive && 'menu-item-active',
+                isExactActive && 'menu-item-active'
+              ]"
+            >
+              <a :href="href" class="menu-link" @click="navigate">
+                <i class="menu-bullet menu-bullet-dot">
+                  <span></span>
+                </i>
+                <span class="menu-text">Seleksi Administrasi</span>
+              </a>
+            </li>
+          </router-link> -->
+
+          <router-link
+            v-slot="{ href, navigate, isActive, isExactActive }"
+            :to="{ name: 'StudentsList' }"
           >
             <li
               aria-haspopup="true"

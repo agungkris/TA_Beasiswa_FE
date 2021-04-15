@@ -233,6 +233,7 @@ export default {
         if (err);
         else {
           // console.log("%o", res);
+          // ini pembagian menjadi 2 cluster dimana nantinya nilai tertinggi atau terendah akan masuk ke cluster dibawah ini dan otomatis kepilah sendiri
           const clusterOne = res[0].centroid.reduce((previous, current) => {
             // console.log(previous);
             // console.log(current);
@@ -245,11 +246,12 @@ export default {
             return previous + current;
           });
 
+          // ini untuk memberikan true/1 pada cluster yang memiliki nilai tertinggi
           selectedCluster = clusterOne > clusterTwo ? 0 : 1;
 
           // console.log(clusterOne);
           // console.log(clusterTwo);
-
+          // ini untuk mengecek jumlah array/data yang ada pada cluster nilai tertinggi yang udah di dapet di atas
           for (let i = 0; i < res[selectedCluster].clusterInd.length; i++) {
             // let
             // console.log(res[0], "testing");
@@ -257,13 +259,14 @@ export default {
             // let testing = this.kmeansData[res[0].clusterInd[i]];
             // console.log(testing);
 
-            // console.log(res[0].clusterInd[i]);
+            console.log(res[0].clusterInd[i]);
 
+            // abis itu ini untuk memberikan ceklis pada data yang masuk kecluster dengan nilai tertinggi
             self.beasiswaMahasiswa[
               res[selectedCluster].clusterInd[i]
             ].final_stage = true;
 
-            // console.log(self.beasiswaMahasiswa);
+            console.log(self.beasiswaMahasiswa);
 
             // mahasiswaBeasiswa.push()
           }
