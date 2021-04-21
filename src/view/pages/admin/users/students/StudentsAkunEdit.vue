@@ -20,12 +20,23 @@
                 required
               ></v-text-field>
 
-              <v-text-field
+              <v-select
+                v-model="usersData.profile.prodi_id"
+                class="my-2"
+                label="Program Studi"
+                target="#dropdown-example"
+                :items="prodiList"
+                item-value="id"
+                item-text="name"
+                @change="onChangeFilter"
+              ></v-select>
+
+              <!-- <v-text-field
                 v-model="usersData.profile.prodi.name"
                 :rules="usernameRules"
                 label="Program Studi"
                 required
-              ></v-text-field>
+              ></v-text-field> -->
 
               <v-text-field
                 v-model="usersData.profile.generation"
@@ -107,7 +118,8 @@ export default {
   },
 
   computed: {
-    ...mapState("users", ["usersData"])
+    ...mapState("users", ["usersData"]),
+    ...mapState("prodi", ["prodiList"])
   },
   async mounted() {
     this.$store.dispatch(SET_BREADCRUMB, [
@@ -115,11 +127,13 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    await this.getProdiList();
     await this.onFetchData();
   },
 
   methods: {
     ...mapActions("users", ["updateUsers", "getUsers"]),
+    ...mapActions("prodi", ["getProdiList"]),
     // code 1
     async onFetchData() {
       this.isLoading = true;
@@ -130,6 +144,8 @@ export default {
       this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.usersData.generation = this.usersData.profile.generation;
+        this.usersData.prodi_id = this.usersData.profile.prodi_id;
         await this.updateUsers({
           id: this.id,
           payload: this.usersData

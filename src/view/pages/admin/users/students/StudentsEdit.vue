@@ -19,8 +19,11 @@
       <v-card>
         <v-card-title>PENILAIAN JURI</v-card-title>
         <v-card-text>
-          <p>PENILAIAN KARYA TULIS :{{ paperassessmentReport.papers_score }}</p>
-          <p>KOMENTAR JURI :{{ paperassessmentReport.comment }}</p>
+          <p>NAMA JURI : {{ paperassessmentReport.jury.name }}</p>
+          <p>
+            PENILAIAN KARYA TULIS : {{ paperassessmentReport.papers_score }}
+          </p>
+          <!-- <p>KOMENTAR JURI : {{ paperassessmentReport.comment }}</p> -->
         </v-card-text>
       </v-card>
     </div>

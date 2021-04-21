@@ -203,12 +203,12 @@
               </v-row>
               <v-row>
                 <v-col cols="12">
-                  <v-textarea
+                  <!-- <v-textarea
                     v-model="paperassessmentReport.comment"
                     outlined
                     name="input-7-4"
                     label="Komentar"
-                  ></v-textarea>
+                  ></v-textarea> -->
                   <v-btn
                     :loading="isLoading"
                     :disabled="!valid"

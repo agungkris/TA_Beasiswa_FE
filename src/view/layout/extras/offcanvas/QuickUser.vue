@@ -86,6 +86,7 @@
         <div class="navi navi-spacer-x-0 p-0">
           <!--begin::Item-->
           <router-link
+            v-if="auth.user.level == 'student'"
             :to="{ name: 'ProfileEdit' }"
             href="#"
             class="navi-item"
