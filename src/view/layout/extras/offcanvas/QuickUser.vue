@@ -219,10 +219,7 @@ export default {
   },
 
   methods: {
-    // ...mapActions("users", ["getUsersList"]),
-    async onFetchData() {
-      // await this.getUsersList();
-    },
+    async onFetchData() {},
     onLogout() {
       this.$store
         .dispatch(LOGOUT)
