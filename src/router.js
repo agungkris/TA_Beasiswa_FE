@@ -218,12 +218,6 @@ export default new Router({
                   "@/view/pages/admin/selections/AdministrationSelection.vue"
                 )
             }
-            // {
-            //   path: "students/selection/:id/period/:period",
-            //   name: "StudentsSelection",
-            //   component: () =>
-            //     import("@/view/pages/admin/users/students/StudentSelection.vue")
-            // },
           ]
         },
 
