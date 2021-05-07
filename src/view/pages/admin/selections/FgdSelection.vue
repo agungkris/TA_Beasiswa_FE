@@ -259,14 +259,14 @@ export default {
             // let testing = this.kmeansData[res[0].clusterInd[i]];
             // console.log(testing);
 
-            console.log(res[0].clusterInd[i]);
+            // console.log(res[0].clusterInd[i]);
 
             // abis itu ini untuk memberikan ceklis pada data yang masuk kecluster dengan nilai tertinggi
             self.beasiswaMahasiswa[
               res[selectedCluster].clusterInd[i]
             ].final_stage = true;
 
-            console.log(self.beasiswaMahasiswa);
+            // console.log(self.beasiswaMahasiswa);
 
             // mahasiswaBeasiswa.push()
           }
