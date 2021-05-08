@@ -27,9 +27,9 @@
       <div
         class="offcanvas-header d-flex align-items-center justify-content-between pb-5"
       >
-        <h3 class="font-weight-bold m-0">
+        <!-- <h3 class="font-weight-bold m-0">
           {{ auth.user.name }}
-        </h3>
+        </h3> -->
         <a
           id="kt_quick_user_close"
           href="#"
