@@ -241,6 +241,14 @@ export default new Router({
                 import(
                   "@/view/pages/admin/scholarshipReports/othersScholarship/OthersScholarshipList.vue"
                 )
+            },
+            {
+              path: "others-scholarship-report/:id",
+              name: "OthersScholarshipReport",
+              component: () =>
+                import(
+                  "@/view/pages/admin/scholarshipReports/othersScholarship/OthersScholarshipReport.vue"
+                )
             }
           ]
         },

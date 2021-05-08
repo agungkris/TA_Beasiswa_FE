@@ -29,12 +29,13 @@
                 <v-btn
                   icon
                   :to="{
-                    name: 'AnotherScholarshipRequirementList',
+                    name: 'OthersScholarshipReport',
                     params: { id: item.id }
                   }"
                   v-bind="attrs"
                   v-on="on"
                 >
+                  <!-- {{ item.id }} -->
                   <v-icon> mdi-file-find </v-icon>
                 </v-btn>
               </template>
