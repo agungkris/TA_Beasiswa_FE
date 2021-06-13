@@ -6,7 +6,7 @@
       style="margin-right:2px;"
     >
       <span
-        class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
+        class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3 name"
       >
         {{ auth.user.name }}
       </span>
@@ -69,7 +69,7 @@
                       <!--end::Svg Icon-->
                     </span>
                   </span>
-                  <span class="navi-text text-muted text-hover-success">
+                  <span class="navi-text text-muted text-hover-success name">
                     {{ auth.user.email }}
                   </span>
                 </span>
@@ -158,6 +158,14 @@
 <style lang="scss" scoped>
 #kt_quick_user {
   overflow: hidden;
+}
+</style>
+
+<style lang="css" scoped>
+@media screen and (max-width: 900px) {
+  .name {
+    font-size: 10px !important;
+  }
 }
 </style>
 
