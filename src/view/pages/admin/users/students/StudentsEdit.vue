@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <v-card class="mb-6">
         <v-card-title>DATA MAHASISWA</v-card-title>
-        <v-card-text>
+        <v-card-text v-if="uploadscholarshipData.student">
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
           <!-- {{ student.profile.prodi }} -->
           <p>
@@ -18,7 +18,7 @@
 
       <v-card>
         <v-card-title>PENILAIAN JURI</v-card-title>
-        <v-card-text>
+        <v-card-text v-if="paperassessmentReport.jury">
           <p>NAMA JURI : {{ paperassessmentReport.jury.name }}</p>
           <p>
             PENILAIAN KARYA TULIS : {{ paperassessmentReport.papers_score }}
