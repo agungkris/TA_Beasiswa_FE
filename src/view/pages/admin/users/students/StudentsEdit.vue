@@ -2,7 +2,7 @@
   <div class="row justify-center">
     <div class="col-md-6">
       <v-card class="mb-6">
-        <v-card-title>DATA MAHASISWA PEMBANGUNAN JAYA</v-card-title>
+        <v-card-title>DATA MAHASISWA</v-card-title>
         <v-card-text v-if="uploadscholarshipData.student">
           <p>Nama Mahasiswa : {{ uploadscholarshipData.student.name }}</p>
           <!-- {{ student.profile.prodi }} -->
