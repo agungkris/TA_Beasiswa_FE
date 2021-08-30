@@ -34,7 +34,7 @@
                 item-value="id"
                 item-text="level"
                 required
-                :rules="level"
+                :rules="levelRules"
               ></v-overflow-btn>
               <v-text-field
                 v-model="competitionData.realization"
@@ -156,7 +156,6 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -169,6 +168,7 @@ export default {
         if (this.competitionData.document != null) {
           formData.append("document", this.competitionData.document);
         }
+        this.buttonLoading = true;
         await this.updateCompetition({
           id: this.id,
           payload: formData

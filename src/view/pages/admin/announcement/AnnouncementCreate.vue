@@ -106,13 +106,13 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getPeriodList();
+    this.resetAnnouncement();
   },
 
   methods: {
-    ...mapActions("announcement", ["createAnnouncement"]),
+    ...mapActions("announcement", ["createAnnouncement", "resetAnnouncement"]),
     ...mapActions("period", ["getPeriodList"]),
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -121,7 +121,7 @@ export default {
         formData.append("title", this.announcementData.title);
         formData.append("description", this.announcementData.description);
         formData.append("document", this.announcementData.document);
-
+        this.isLoading = true;
         await this.createAnnouncement({ payload: formData });
         this.isLoading = false;
         this.$router.push({ name: "AnnouncementList" });

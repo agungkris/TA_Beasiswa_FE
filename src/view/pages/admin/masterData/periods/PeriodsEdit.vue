@@ -151,7 +151,7 @@ export default {
       menu: false,
       valid: false,
 
-      namaperiode: [v => !!v || "Periode harus diisi"],
+      namaperiode: [v => !!v || "Nama Periode harus diisi"],
       startdate: [v => !!v || "Tanggal pembukaan beasiswa harus diisi"],
       endfile: [
         v => !!v || "Tanggal batas pengumpulan dokumen beasiswa harus diisi"
@@ -180,10 +180,9 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-
+        this.loadingButton = true;
         await this.updatePeriod({ id: this.id, payload: this.periodData });
         this.periodData = {};
         this.loadingButton = false;

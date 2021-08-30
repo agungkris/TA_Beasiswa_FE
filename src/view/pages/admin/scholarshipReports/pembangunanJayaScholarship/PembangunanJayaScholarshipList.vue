@@ -49,100 +49,161 @@
         </v-data-table>
       </v-card-text>
     </v-card>
-    <v-container grid-list-md>
-      <v-layout row wrap>
-        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
-          <v-card>
-            <v-card-title>
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Fakultas</span
-              >
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Humaniora</span
-              >
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >dan</span
-              >
-              <span class="title font-weight-light">Bisnis</span>
-            </v-card-title>
-            <v-card-text>
-              <p>Akuntansi: {{ reportData.prodiAkun }} Orang</p>
-              <p>Manajemen: {{ reportData.prodiMene }} Orang</p>
-              <p>Ilmu Komunikasi: {{ reportData.prodiIlkom }} Orang</p>
-              <p>Psikologi: {{ reportData.prodiPsi }} Orang</p>
-              <b>Total FHB: {{ reportData.totalfhb }} Orang</b>
-            </v-card-text>
-          </v-card>
-        </v-flex>
+    <v-card class="mb-6">
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Fakultas</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Humaniora</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >dan</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Bisnis</span
+        >
+        <span class="title font-weight-light">
+          : {{ reportData.totalfhb }} Orang</span
+        >
+      </v-card-title>
+      <v-card-text>
+        <p>
+          Akuntansi : {{ reportData.prodiAkun }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiAkun }} Orang *
+          {{ reportData.subsidiAkun | formatRupiah }} =
+          {{ reportData.hasilAkun | formatRupiah }}
+        </p>
+        <p>
+          Manajemen : {{ reportData.prodiMene }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiMene }} Orang *
+          {{ reportData.subsidiMene | formatRupiah }} =
+          {{ reportData.hasilMene | formatRupiah }}
+        </p>
+        <p>
+          Ilmu Komunikasi : {{ reportData.prodiIlkom }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiIlkom }} Orang *
+          {{ reportData.subsidiIlkom | formatRupiah }} =
+          {{ reportData.hasilIlkom | formatRupiah }}
+        </p>
+        <p>
+          Psikologi : {{ reportData.prodiPsi }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiPsi }} Orang *
+          {{ reportData.subsidiPsi | formatRupiah }} =
+          {{ reportData.hasilPsi | formatRupiah }}
+        </p>
+        <b
+          >Total Subsidi Beasiswa FHB =
+          {{ reportData.totalSubsidiFhb | formatRupiah }}
+        </b>
+      </v-card-text>
+    </v-card>
+    <v-card class="mb-6">
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Fakultas</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Teknologi</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >dan</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Desain</span
+        >
+        <span class="title font-weight-light">
+          : {{ reportData.totalftd }} Orang</span
+        >
+      </v-card-title>
+      <v-card-text>
+        <p>
+          Desain Komunikasi Visual : {{ reportData.prodiDkv }} Orang
+          <br />
+          Subsidi Beasiswa : {{ reportData.prodiDkv }} Orang *
+          {{ reportData.subsidiDkv | formatRupiah }} =
+          {{ reportData.hasilDkv | formatRupiah }}
+        </p>
+        <p>
+          Desain Produk : {{ reportData.prodiDp }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiDp }} Orang *
+          {{ reportData.subsidiDp | formatRupiah }} =
+          {{ reportData.hasilDp | formatRupiah }}
+        </p>
+        <p>
+          Informatika : {{ reportData.prodiInformatika }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiInformatika }} Orang *
+          {{ reportData.subsidiInf | formatRupiah }} =
+          {{ reportData.hasilInf | formatRupiah }}
+        </p>
+        <p>
+          Sistem Informasi : {{ reportData.prodiSif }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiSif }} Orang *
+          {{ reportData.subsidiSi | formatRupiah }} =
+          {{ reportData.hasilSi | formatRupiah }}
+        </p>
+        <p>
+          Teknik Sipil : {{ reportData.prodiTeksip }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiTeksip }} Orang *
+          {{ reportData.subsidiTsp | formatRupiah }} =
+          {{ reportData.hasilTsp | formatRupiah }}
+        </p>
+        <p>
+          Arsitektur : {{ reportData.prodiArsi }} Orang <br />
+          Subsidi Beasiswa : {{ reportData.prodiArsi }} Orang *
+          {{ reportData.subsidiArsi | formatRupiah }} =
+          {{ reportData.hasilArsi | formatRupiah }}
+        </p>
+        <b
+          >Total Subsidi Beasiswa FTD =
+          {{ reportData.totalSubsidiFtd | formatRupiah }}
+        </b>
+      </v-card-text>
+    </v-card>
+    <v-card class="mb-6">
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Sebaran</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Angkatan</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Penerima</span
+        >
+        <span class="title font-weight-light"> Beasiswa</span>
+      </v-card-title>
+      <v-card-text>
+        <ul v-for="(generation, key) in reportNewList" :key="key">
+          <li>Angkatan {{ key }} = {{ generation.length }} Orang</li>
+        </ul>
+      </v-card-text>
+    </v-card>
 
-        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
-          <v-card>
-            <v-card-title>
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Fakultas</span
-              >
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Teknologi</span
-              >
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >dan</span
-              >
-              <span class="title font-weight-light">Desain</span>
-            </v-card-title>
-            <v-card-text>
-              <p>Desain Komunikasi Visual: {{ reportData.prodiDkv }} Orang</p>
-              <p>Desain Produk: {{ reportData.prodiDp }} Orang</p>
-              <p>Informatika: {{ reportData.prodiInformatika }} Orang</p>
-              <p>Sistem Informasi: {{ reportData.prodiSif }} Orang</p>
-              <p>Arsitektur: {{ reportData.prodiArsi }} Orang</p>
-              <p>Teknik Sipil: {{ reportData.prodiTeksip }} Orang</p>
-              <b>Total FTD: {{ reportData.totalftd }} Orang</b>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-
-        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
-          <v-card>
-            <v-card-title>
-              <!-- <span class="title font-weight-light" style="padding-right:5px;"
-                >Daftar</span
-              > -->
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Mahasiswa</span
-              >
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Per</span
-              >
-              <span class="title font-weight-light">Angkatan</span>
-            </v-card-title>
-            <v-card-text>
-              <ul v-for="(generation, key) in reportNewList" :key="key">
-                <li>Angkatan {{ key }} : {{ generation.length }} Orang</li>
-              </ul>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-
-        <v-flex lg3 sm3 xs12 md6 style="display:flex;" class="justify-center">
-          <v-card>
-            <v-card-title>
-              <span class="title font-weight-light" style="padding-right:5px;"
-                >Total</span
-              >
-              <span class="title font-weight-light">Keseluruhan</span>
-            </v-card-title>
-            <v-card-text>
-              <b>Jumlah Mahasiswa: {{ reportData.total }} Orang</b>
-              <p>
-                Jumlah dana beasiswa yang dikeluarkan: <br />
-                {{ reportData.total }} Orang x Rp 3.500.000,00 =
-                {{ reportData.hasil | formatRupiah }}
-              </p>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <v-card>
+      <v-card-title>
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Laporan</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Akhir</span
+        >
+        <span class="title font-weight-light" style="padding-right:5px;"
+          >Penerima</span
+        >
+        <span class="title font-weight-light"> Beasiswa</span>
+      </v-card-title>
+      <v-card-text>
+        <p>
+          Jumlah mahasiswa penerima beasiswa pembangunan jaya =
+          {{ reportData.total }} Orang
+        </p>
+        <p>
+          Total subsidi beasiswa pembangunan jaya =
+          {{ reportData.totalSubsidiKeseluruhan | formatRupiah }}
+        </p>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 <script>

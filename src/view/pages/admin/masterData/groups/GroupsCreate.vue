@@ -87,9 +87,9 @@ export default {
     ...mapActions("period", ["getPeriodList"]),
     // code 1
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.isLoading = true;
         await this.createGroup({ payload: this.groupData });
         this.groupData = {};
         this.isLoading = false;

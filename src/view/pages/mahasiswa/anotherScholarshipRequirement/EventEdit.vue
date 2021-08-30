@@ -130,7 +130,6 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -141,6 +140,7 @@ export default {
         if (this.eventData.document != null) {
           formData.append("document", this.eventData.document);
         }
+        this.buttonLoading = true;
         await this.updateEvent({
           id: this.id,
           payload: formData

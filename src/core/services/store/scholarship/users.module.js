@@ -38,7 +38,7 @@ const actions = {
     try {
       await ApiService.post("api/auth/register", payload);
     } catch (error) {
-      throw Error(error);
+      throw Error(error.message);
     }
   },
   async getUsers(context, { id }) {

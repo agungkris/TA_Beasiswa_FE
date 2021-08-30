@@ -9,7 +9,7 @@
               <v-overflow-btn
                 v-model="groupData.period_id"
                 class="my-2"
-                label="Periode Group Beasiswa"
+                label="Periode Grup Beasiswa"
                 target="#dropdown-example"
                 :items="periodList"
                 item-value="id"
@@ -20,14 +20,14 @@
               <v-text-field
                 v-model="groupData.group_name"
                 :rules="nameRules"
-                label="Group Name"
+                label="Nama Kelompok"
                 required
               ></v-text-field>
 
               <v-text-field
                 v-model="groupData.topic"
                 :rules="topicRules"
-                label="Topic"
+                label="Topik"
                 required
               ></v-text-field>
 
@@ -106,10 +106,9 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-
+        this.loadingButton = true;
         await this.updateGroup({ id: this.id, payload: this.groupData });
         this.groupData = {};
         this.loadingButton = false;

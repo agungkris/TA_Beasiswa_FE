@@ -78,16 +78,16 @@ export default {
       fgd: false,
       valid: false,
       name: "",
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || "Nama wajib diisi"],
       username: "",
-      usernameRules: [v => !!v || "NIK is required"],
+      usernameRules: [v => !!v || "NIDN wajib diisi"],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || "E-mail wajib diisi",
+        v => /.+@.+\..+/.test(v) || "E-mail wajib diisi"
       ],
       password: "",
-      passwordRules: [v => !!v || "Password is required"]
+      passwordRules: [v => !!v || "Password wajib diisi"]
     };
   },
   computed: {
@@ -106,13 +106,13 @@ export default {
     ...mapActions("createjury", ["createCreateJury"]),
     // code 1
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.createjuryData.level = "juri";
+        this.isLoading = true;
         await this.createCreateJury({ payload: this.createjuryData });
         this.createjuryData = {};
-        this.isLoading = true;
+        this.isLoading = false;
         this.$router.push({ name: "JuryList" });
       }
     },

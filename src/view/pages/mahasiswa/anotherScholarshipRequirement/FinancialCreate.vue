@@ -106,9 +106,9 @@ export default {
     ...mapActions("financial", ["createFinancial"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.isLoading = true;
         await this.createFinancial({ payload: this.financialData });
         this.financialData = {};
         this.isLoading = false;

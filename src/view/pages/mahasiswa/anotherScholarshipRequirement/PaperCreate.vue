@@ -103,7 +103,6 @@ export default {
     ...mapActions("paper", ["createPaper"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -111,7 +110,7 @@ export default {
         formData.append("semester_id", this.paperData.semester_id);
         formData.append("title", this.paperData.title);
         formData.append("document", this.paperData.document);
-
+        this.isLoading = true;
         await this.createPaper({ payload: formData });
         this.isLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });

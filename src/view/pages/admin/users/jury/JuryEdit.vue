@@ -92,16 +92,16 @@ export default {
       id: this.$route.params.id,
       valid: false,
       name: "",
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || "Nama wajib diisi"],
       username: "",
-      usernameRules: [v => !!v || "Username is required"],
+      usernameRules: [v => !!v || "NIDN wajib diisi"],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || "E-mail wajib diisi",
+        v => /.+@.+\..+/.test(v) || "E-mail wajib diisi"
       ],
       password: "",
-      passwordRules: [v => !!v || "Password is required"]
+      passwordRules: [v => !!v || "Password wajib diisi"]
     };
   },
 
@@ -126,9 +126,9 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.loadingButton = true;
         await this.updateCreateJury({
           id: this.id,
           payload: this.createjuryData

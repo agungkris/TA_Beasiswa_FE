@@ -93,7 +93,7 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      isLoading: false,
+      // isLoading: false,
       valid: false,
       semester: [v => !!v || "Semester wajib diisi"],
       ip: "",
@@ -133,10 +133,8 @@ export default {
     ...mapActions("academic", ["createAcademic"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-
         let formData = new FormData();
         formData.append("semester_id", this.academicData.semester_id);
         formData.append("ip", this.academicData.ip);
@@ -144,7 +142,7 @@ export default {
         formData.append("ipk", this.academicData.ipk);
         formData.append("description", this.academicData.description);
         formData.append("khs", this.academicData.khs);
-
+        this.isLoading = true;
         await this.createAcademic({ payload: formData });
         this.isLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });

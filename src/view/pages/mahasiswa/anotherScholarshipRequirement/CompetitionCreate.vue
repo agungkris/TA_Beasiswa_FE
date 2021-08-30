@@ -142,7 +142,6 @@ export default {
     //   this.getTingkatList();
     // },
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -153,7 +152,7 @@ export default {
         formData.append("realization", this.competitionData.realization);
         formData.append("result", this.competitionData.result);
         formData.append("document", this.competitionData.document);
-
+        this.isLoading = true;
         await this.createCompetition({ payload: formData });
         this.isLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });

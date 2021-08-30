@@ -28,6 +28,9 @@
           ini tidak sesuai dengan semestinya.
         </p>
       </div>
+      <div>
+        {{ errors }}
+      </div>
 
       <!--begin::Form-->
       <b-form ref="usersData" class="usersData" @submit.stop.prevent="onSubmit">
@@ -262,21 +265,25 @@ export default {
     ...mapActions("prodi", ["getProdiList"]),
     // code 1
     async validate() {
-      if (
-        this.$refs.usersData.validate() &&
-        this.$refs.profilesData.validate()
-      ) {
-        await this.createUsers({
-          payload: this.usersData
-        });
-        await this.createProfiles({
-          payload: this.profilesData
-        });
-        this.usersData = {};
-        this.profilesData = {};
-        this.$router.push({
-          name: "Login"
-        });
+      try {
+        if (
+          this.$refs.usersData.validate() &&
+          this.$refs.profilesData.validate()
+        ) {
+          await this.createUsers({
+            payload: this.usersData
+          });
+          await this.createProfiles({
+            payload: this.profilesData
+          });
+          this.usersData = {};
+          this.profilesData = {};
+          this.$router.push({
+            name: "Login"
+          });
+        }
+      } catch (error) {
+        alert(error.message);
       }
     },
     validateState(name) {

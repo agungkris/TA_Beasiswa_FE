@@ -67,6 +67,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetAnnouncement(context) {
+    context.commit("setAnnouncementData", {});
   }
 };
 const getters = {};

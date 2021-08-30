@@ -28,19 +28,13 @@
                 :items="prodiList"
                 item-value="id"
                 item-text="name"
+                :rules="prodiRules"
                 @change="onChangeFilter"
               ></v-select>
 
-              <!-- <v-text-field
-                v-model="usersData.profile.prodi.name"
-                :rules="usernameRules"
-                label="Program Studi"
-                required
-              ></v-text-field> -->
-
               <v-text-field
                 v-model="usersData.profile.generation"
-                :rules="usernameRules"
+                :rules="angkatanRules"
                 label="Angkatan"
                 required
               ></v-text-field>
@@ -104,16 +98,20 @@ export default {
       id: this.$route.params.id,
       valid: false,
       name: "",
-      nameRules: [v => !!v || "Name is required"],
+      nameRules: [v => !!v || "Nama wajib diisi"],
       username: "",
-      usernameRules: [v => !!v || "Username is required"],
+      usernameRules: [v => !!v || "NIM wajib diisi"],
+      prodi: "",
+      prodiRules: [v => !!v || "Program studi wajib diisi"],
+      angkatan: "",
+      angkatanRules: [v => !!v || "Angkatan wajib diisi"],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || "E-mail wajib diisi",
+        v => /.+@.+\..+/.test(v) || "E-mail wajib diisi"
       ],
       password: "",
-      passwordRules: [v => !!v || "Password is required"]
+      passwordRules: [v => !!v || "Password wajib diisi"]
     };
   },
 
@@ -141,11 +139,11 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.usersData.generation = this.usersData.profile.generation;
         this.usersData.prodi_id = this.usersData.profile.prodi_id;
+        this.buttonLoading = true;
         await this.updateUsers({
           id: this.id,
           payload: this.usersData

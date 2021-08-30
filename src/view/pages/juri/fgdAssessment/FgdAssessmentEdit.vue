@@ -238,12 +238,12 @@ export default {
     // code 1
     async onFetchData() {},
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.fgdassessmentData.period_id = this.$route.params.period;
         this.fgdassessmentData.jury_id = this.auth.user.id;
         this.fgdassessmentData.student_id = this.$route.params.student_id;
+        this.isLoading = true;
         await this.createFgdAssessment({
           id: this.id,
           payload: this.fgdassessmentData

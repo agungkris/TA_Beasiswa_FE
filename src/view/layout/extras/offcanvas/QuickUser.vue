@@ -69,7 +69,9 @@
                       <!--end::Svg Icon-->
                     </span>
                   </span>
-                  <span class="navi-text text-muted text-hover-success name">
+                  <span
+                    class="navi-text text-muted text-hover-success name text-break"
+                  >
                     {{ auth.user.email }}
                   </span>
                 </span>

@@ -75,7 +75,10 @@
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  v-if="item.category_jury.karya_tulis != null"
+                  v-if="
+                    item.category_jury.karya_tulis != 0 &&
+                      item.category_jury.karya_tulis != null
+                  "
                   icon
                   :to="{
                     name: 'JuryPaperCreate',

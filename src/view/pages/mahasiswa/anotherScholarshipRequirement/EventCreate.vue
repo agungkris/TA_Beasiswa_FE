@@ -110,7 +110,6 @@ export default {
     ...mapActions("event", ["createEvent"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
-      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -119,7 +118,7 @@ export default {
         formData.append("activity", this.eventData.activity);
         formData.append("realization", this.eventData.realization);
         formData.append("document", this.eventData.document);
-
+        this.isLoading = true;
         await this.createEvent({ payload: formData });
         this.isLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });

@@ -126,9 +126,9 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.buttonLoading = true;
         await this.updateFinancial({
           id: this.id,
           payload: this.financialData

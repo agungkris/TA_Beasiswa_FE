@@ -14,7 +14,7 @@
           ></v-text-field>
           <v-text-field
             v-model="auth.user.username"
-            :rules="nimRules"
+            :rules="usernameRules"
             label="NIM"
             required
             prepend-icon="mdi-format-title"
@@ -31,6 +31,7 @@
             item-value="id"
             item-text="name"
             outlined
+            :rules="prodiRules"
             @change="onChangeFilter"
           ></v-select>
           <!-- <v-text-field
@@ -90,8 +91,21 @@ import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      nameRules: [v => !!v || "Periode harus diisi"],
-      nimRules: [v => !!v || "Tanggal pembukaan beasiswa harus diisi"]
+      name: "",
+      nameRules: [v => !!v || "Nama wajib diisi"],
+      username: "",
+      usernameRules: [v => !!v || "NIM wajib diisi"],
+      prodi: "",
+      prodiRules: [v => !!v || "Program studi wajib diisi"],
+      angkatan: "",
+      angkatanRules: [v => !!v || "Angkatan wajib diisi"],
+      email: "",
+      emailRules: [
+        v => !!v || "E-mail wajib diisi",
+        v => /.+@.+\..+/.test(v) || "E-mail wajib diisi"
+      ],
+      password: "",
+      passwordRules: [v => !!v || "Password wajib diisi"]
     };
   },
 

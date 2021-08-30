@@ -141,7 +141,6 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -153,6 +152,7 @@ export default {
         if (this.organizationData.document != null) {
           formData.append("document", this.organizationData.document);
         }
+        this.buttonLoading = true;
         await this.updateOrganization({
           id: this.id,
           payload: formData

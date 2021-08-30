@@ -7,7 +7,10 @@
       <!--begin::Aside-->
       <div
         class="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-15"
-        :style="{ backgroundImage: `url(${backgroundImage})` }"
+        :style="{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundPosition: `center center`
+        }"
       >
         <!--begin: Aside Container -->
         <div class="d-flex flex-row-fluid flex-column justify-content-between">

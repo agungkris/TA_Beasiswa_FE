@@ -123,7 +123,6 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.buttonLoading = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -133,6 +132,7 @@ export default {
         if (this.paperData.document != null) {
           formData.append("document", this.paperData.document);
         }
+        this.buttonLoading = true;
         await this.updatePaper({ id: this.id, payload: formData });
         this.buttonLoading = false;
         this.$router.push({ name: "AnotherScholarshipRequirementList" });

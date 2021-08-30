@@ -156,7 +156,6 @@ export default {
       this.isLoading = false;
     },
     async validate() {
-      this.loadingButton = true;
       if (this.$refs.form.validate()) {
         this.snackbar = true;
 
@@ -170,7 +169,7 @@ export default {
         if (this.academicData.khs != null) {
           formData.append("khs", this.academicData.khs);
         }
-
+        this.loadingButton = true;
         await this.updateAcademic({
           id: this.id,
           payload: formData
