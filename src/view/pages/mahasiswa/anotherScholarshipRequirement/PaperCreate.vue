@@ -97,10 +97,11 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getSemesterList();
+    this.resetPaper();
   },
 
   methods: {
-    ...mapActions("paper", ["createPaper"]),
+    ...mapActions("paper", ["createPaper", "resetPaper"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
       if (this.$refs.form.validate()) {

@@ -29,7 +29,7 @@
         </p>
       </div>
       <div>
-        {{ errors }}
+        <!-- {{ errors }} -->
       </div>
 
       <!--begin::Form-->
@@ -259,9 +259,10 @@ export default {
       }
     ]);
     await this.getProdiList();
+    this.resetRegistrasi();
   },
   methods: {
-    ...mapActions("users", ["createUsers"]),
+    ...mapActions("users", ["createUsers", "resetRegistrasi"]),
     ...mapActions("prodi", ["getProdiList"]),
     // code 1
     async validate() {

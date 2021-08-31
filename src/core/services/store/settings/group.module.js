@@ -73,6 +73,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetGroup(context) {
+    context.commit("setGroupData", {});
   }
 };
 const getters = {};

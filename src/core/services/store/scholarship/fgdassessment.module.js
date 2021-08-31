@@ -83,6 +83,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetFgdAssessment(context) {
+    context.commit("setFgdAssessmentData", {});
   }
 };
 const getters = {};

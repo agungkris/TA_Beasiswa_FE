@@ -49,6 +49,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetCreateJury(context) {
+    context.commit("setCreateJuryData", {});
   }
 };
 const getters = {};

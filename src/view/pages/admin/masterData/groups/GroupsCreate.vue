@@ -80,10 +80,11 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getPeriodList();
+    this.resetGroup();
   },
 
   methods: {
-    ...mapActions("group", ["createGroup"]),
+    ...mapActions("group", ["createGroup", "resetGroup"]),
     ...mapActions("period", ["getPeriodList"]),
     // code 1
     async validate() {

@@ -67,6 +67,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetAcademic(context) {
+    context.commit("setAcademicData", {});
   }
 };
 const getters = {};

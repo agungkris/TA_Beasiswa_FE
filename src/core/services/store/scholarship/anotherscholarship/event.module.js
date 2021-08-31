@@ -62,6 +62,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetEvent(context) {
+    context.commit("setEventData", {});
   }
 };
 const getters = {};

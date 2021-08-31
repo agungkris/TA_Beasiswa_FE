@@ -67,6 +67,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetCompetition(context) {
+    context.commit("setCompetitionData", {});
   }
 };
 const getters = {};

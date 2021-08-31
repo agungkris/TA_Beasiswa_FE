@@ -62,6 +62,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetPaper(context) {
+    context.commit("setPaperData", {});
   }
 };
 const getters = {};

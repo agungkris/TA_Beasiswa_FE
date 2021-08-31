@@ -131,11 +131,12 @@ export default {
     ]);
     this.getLevelList();
     this.getSemesterList();
+    this.resetCompetition();
     // this.fetchData();
   },
 
   methods: {
-    ...mapActions("competition", ["createCompetition"]),
+    ...mapActions("competition", ["createCompetition", "resetCompetition"]),
     ...mapActions("semester", ["getSemesterList"]),
     ...mapActions("level", ["getLevelList"]),
     // async fetchData() {

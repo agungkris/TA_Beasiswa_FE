@@ -158,7 +158,7 @@ export default {
   },
 
   methods: {
-    ...mapActions("period", ["createPeriod"]),
+    ...mapActions("period", ["createPeriod", "resetPeriod"]),
     // code 1
     async validate() {
       if (this.$refs.form.validate()) {

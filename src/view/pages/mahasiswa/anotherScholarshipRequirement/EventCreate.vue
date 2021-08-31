@@ -104,10 +104,11 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getSemesterList();
+    this.resetEvent();
   },
 
   methods: {
-    ...mapActions("event", ["createEvent"]),
+    ...mapActions("event", ["createEvent", "resetEvent"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
       if (this.$refs.form.validate()) {

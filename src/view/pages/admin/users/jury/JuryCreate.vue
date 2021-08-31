@@ -100,10 +100,11 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    this.resetCreateJury();
   },
 
   methods: {
-    ...mapActions("createjury", ["createCreateJury"]),
+    ...mapActions("createjury", ["createCreateJury", "resetCreateJury"]),
     // code 1
     async validate() {
       if (this.$refs.form.validate()) {

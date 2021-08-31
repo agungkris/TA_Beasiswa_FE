@@ -67,6 +67,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetOrganization(context) {
+    context.commit("setOrganizationData", {});
   }
 };
 const getters = {};

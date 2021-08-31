@@ -62,6 +62,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetFinancial(context) {
+    context.commit("setFinancialData", {});
   }
 };
 const getters = {};

@@ -72,6 +72,9 @@ const actions = {
     } catch (error) {
       throw Error(error);
     }
+  },
+  resetRegistrasi(context) {
+    context.commit("setUsersData", {});
   }
 };
 const getters = {};

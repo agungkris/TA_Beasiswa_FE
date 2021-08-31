@@ -231,10 +231,14 @@ export default {
       { title: "Form Inputs & Control", route: "autocompletes" },
       { title: "Fileinptus" }
     ]);
+    this.resetFgdAssessment();
   },
 
   methods: {
-    ...mapActions("fgdassessment", ["createFgdAssessment"]),
+    ...mapActions("fgdassessment", [
+      "createFgdAssessment",
+      "resetFgdAssessment"
+    ]),
     // code 1
     async onFetchData() {},
     async validate() {

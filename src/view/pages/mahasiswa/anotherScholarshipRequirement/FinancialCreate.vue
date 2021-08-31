@@ -100,10 +100,11 @@ export default {
       { title: "Fileinptus" }
     ]);
     this.getSemesterList();
+    this.resetFinancial();
   },
 
   methods: {
-    ...mapActions("financial", ["createFinancial"]),
+    ...mapActions("financial", ["createFinancial", "resetFinancial"]),
     ...mapActions("semester", ["getSemesterList"]),
     async validate() {
       if (this.$refs.form.validate()) {
