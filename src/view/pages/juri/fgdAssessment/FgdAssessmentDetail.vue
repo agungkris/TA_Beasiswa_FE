@@ -13,7 +13,8 @@
                     name: 'FgdAssessmentEdit',
                     params: {
                       student_id: item.id,
-                      period: groupData.period_id
+                      period: groupData.period_id,
+                      group: id
                     }
                   }"
                   v-bind="attrs"

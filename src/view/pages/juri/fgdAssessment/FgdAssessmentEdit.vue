@@ -244,7 +244,8 @@ export default {
     async validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
-        this.fgdassessmentData.period_id = this.$route.params.period;
+        const periodID = this.$route.params.period;
+        this.fgdassessmentData.period_id = periodID;
         this.fgdassessmentData.jury_id = this.auth.user.id;
         this.fgdassessmentData.student_id = this.$route.params.student_id;
         this.isLoading = true;
@@ -254,7 +255,12 @@ export default {
         });
         this.fgdassessmentData = {};
         this.isLoading = false;
-        this.$router.push({ name: "FgdAssessmentList" });
+        const groupID = this.$route.params.group;
+
+        this.$router.push({
+          name: "FgdAssessmentDetail",
+          params: { id: groupID, period: periodID }
+        });
       }
     }
   }

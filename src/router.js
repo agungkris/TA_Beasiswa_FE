@@ -319,7 +319,8 @@ export default new Router({
                 import("@/view/pages/juri/fgdAssessment/FgdAssessmentList.vue")
             },
             {
-              path: "fgd-assessment/edit/:student_id/period/:period",
+              path:
+                "fgd-assessment/edit/:student_id/period/:period/group/:group",
               name: "FgdAssessmentEdit",
               component: () =>
                 import("@/view/pages/juri/fgdAssessment/FgdAssessmentEdit.vue")

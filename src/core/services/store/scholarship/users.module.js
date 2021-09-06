@@ -4,11 +4,17 @@ const state = {
   usersData: {
     prodi_id: null
   },
+  userErrors: {
+    errors: []
+  },
   usersAchievementList: []
 };
 const mutations = {
   setUsersList(state, payload) {
     state.usersList = payload;
+  },
+  setUserError(state, payload) {
+    state.userErrors = payload;
   },
   setUsersData(state, payload) {
     state.usersData = payload;
@@ -38,6 +44,12 @@ const actions = {
     try {
       await ApiService.post("api/auth/register", payload);
     } catch (error) {
+      if (error.response) {
+        const { data } = error.response;
+        console.log(error.response);
+        context.commit("setUserError", data);
+      }
+      console.log(error);
       throw Error(error.message);
     }
   },

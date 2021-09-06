@@ -161,6 +161,13 @@
           </b-form-invalid-feedback>
         </b-form-group>
 
+        <div v-if="userErrors && userErrors.errors">
+          <ul class="alert alert-danger">
+            <li v-for="(error, key) in userErrors.errors" :key="key">
+              {{ error[0] }}
+            </li>
+          </ul>
+        </div>
         <!--begin::Action-->
         <div class="form-group d-flex flex-wrap flex-center">
           <button
@@ -243,7 +250,7 @@ export default {
     ...mapState({
       errors: state => state.auth.errors
     }),
-    ...mapState("users", ["usersData"]),
+    ...mapState("users", ["usersData", "userErrors"]),
     ...mapState("prodi", ["prodiList"]),
     ...mapState("generations", ["generationsList"])
   },
@@ -284,6 +291,7 @@ export default {
           });
         }
       } catch (error) {
+        console.error("ini error");
         alert(error.message);
       }
     },
