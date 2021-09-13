@@ -291,7 +291,7 @@ export default {
           });
         }
       } catch (error) {
-        console.error("ini error");
+        // console.error("ini error");
         alert(error.message);
       }
     },
